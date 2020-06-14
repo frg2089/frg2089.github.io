@@ -241,7 +241,7 @@
   .full-toc #rocket {
     right: -7px;
   }
-  .shang_box {
+  .reward_box {
     width: 100%;
     height: 400px;
     bottom: 0px;
@@ -250,23 +250,23 @@
     margin-left: initial;
     padding: 0;
   }
-  .shang_box .shang_close {
+  .reward_box .reward_close {
     right: 10px;
   }
-  .shang_box .shang_tit {
+  .reward_box .reward_tit {
     font-size: 23px;
   }
-  .shang_box .shang_payimg {
+  .reward_box .reward_payimg {
     width: 200px;
     height: 200px;
   }
-  .shang_box .shang_payimg .pay_img {
+  .reward_box .reward_payimg .pay_img {
     width: 427px;
   }
-  .shang_box .shang_payimg .pay_img.wechat_img {
+  .reward_box .reward_payimg .pay_img.wechat_img {
     margin-left: -227px;
   }
-  .shang_box .shang_payimg .pay_img img {
+  .reward_box .reward_payimg .pay_img img {
     width: 200px;
   }
 }
@@ -281,7 +281,7 @@ font-size
   .post .pjax .article_copyright {
     font-size: 6px;
   }
-  .shang_box {
+  .reward_box {
     height: 331px;
     bottom: 0px;
     left: initial;
@@ -289,27 +289,27 @@ font-size
     margin-left: initial;
     padding: 0;
   }
-  .shang_box .shang_close {
+  .reward_box .reward_close {
     font-size: 39px;
     right: 8px;
   }
-  .shang_box .shang_tit {
+  .reward_box .reward_tit {
     font-size: 15px;
   }
-  .shang_box .shang_payimg {
+  .reward_box .reward_payimg {
     width: 150px;
     height: 150px;
   }
-  .shang_box .shang_payimg .pay_img {
+  .reward_box .reward_payimg .pay_img {
     width: 324px;
   }
-  .shang_box .shang_payimg .pay_img.wechat_img {
+  .reward_box .reward_payimg .pay_img.wechat_img {
     margin-left: -174px;
   }
-  .shang_box .shang_payimg .pay_img img {
+  .reward_box .reward_payimg .pay_img img {
     width: 150px;
   }
-  .shang_box .shang_payselect {
+  .reward_box .reward_payselect {
     font-size: 16px;
   }
 }
