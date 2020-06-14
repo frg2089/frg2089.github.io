@@ -1,0 +1,27 @@
+pre {
+  position: relative;
+  margin-bottom: 24px;
+  border: 1px solid #555;
+  border-radius: 10px 0 0 10px;
+  background: rgba(0,0,0,0);
+  overflow: hidden;
+}
+code.has-numbering {
+  margin-left: 30px;
+}
+code.has-numbering.widther {
+  margin-left: 35px;
+}
+.pre-numbering {
+  margin: 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  padding: 0.5em 3px 0.7em 5px;
+  border-right: 1px solid #555;
+  text-align: right;
+}
+.pre-numbering.widther {
+  width: 35px;
+}

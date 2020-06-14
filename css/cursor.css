@@ -1,0 +1,29 @@
+* {
+  cursor: url("/cursors/通常の選択.ani"), url("/cursors/通常の選択.gif"), auto;
+}
+a,
+button,
+.brackets {
+  cursor: url("/cursors/链接选择.ani"), url("/cursors/链接选择.gif"), auto;
+}
+a img,
+button img,
+.brackets img,
+a i,
+button i,
+.brackets i,
+a span,
+button span,
+.brackets span {
+  cursor: url("/cursors/链接选择.ani"), url("/cursors/链接选择.gif"), auto;
+}
+.div_img img {
+  cursor: url("/cursors/精确选择.ani"), url("/cursors/精确选择.gif"), auto;
+}
+p,
+input {
+  cursor: url("/cursors/文本选择.ani"), url("/cursors/文本选择.gif"), auto;
+}
+/* {
+  cursor: url("/cursors/xxx.ani"), url("/cursors/xxx.gif"), auto;
+} */
