@@ -124,7 +124,12 @@ div.ac > ul.tag > li:before {
 .categories-box .category-list-child {
   margin-left: 20px;
 }
-#comments .comment-bar {
+#comments {
+  background: rgba(255,255,255,0.7);
+  border-radius: 15px;
+  padding: 10px;
+}
+.comment-bar {
   display: block;
   background: rgba(255,255,255,0.3);
   padding: 0.5rem;
@@ -133,7 +138,7 @@ div.ac > ul.tag > li:before {
   text-align: center;
   font-size: 2rem;
 }
-#comments .comment-bar a {
+.comment-bar a {
   display: inline-block;
   width: 3em;
   text-decoration: none;
@@ -141,24 +146,24 @@ div.ac > ul.tag > li:before {
   color: #258fb8;
   outline: none;
 }
-#comments .comment-bar a .fa.pulse {
+.comment-bar a .fa.pulse {
   -webkit-animation-name: pulse;
   animation-name: pulse;
 }
-#comments .comment-bar a .fa.animated {
+.comment-bar a .fa.animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-#comments .comment-bar a .fa.animated.infinite {
+.comment-bar a .fa.animated.infinite {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
 }
-#comments .comment-bar a .fa:before {
+.comment-bar a .fa:before {
   content: "\f27b";
 }
-#comments .comment-bar a .fa.fa-spinner {
+.comment-bar a .fa.fa-spinner {
   display: none;
 }
 .reward_box {
