@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>岛风的博客</title>
+  
+  <subtitle>这个岛风就是逊啦</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://frg2089.github.io/"/>
+  <updated>2020-06-15T04:43:18.030Z</updated>
+  <id>http://frg2089.github.io/</id>
+  
+  <author>
+    <name>舰队的偶像-岛风酱！</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WPF 捕获系统主题改变</title>
+    <link href="http://frg2089.github.io/post/3867e2db/"/>
+    <id>http://frg2089.github.io/post/3867e2db/</id>
+    <published>2020-06-15T04:14:20.000Z</published>
+    <updated>2020-06-15T04:43:18.030Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term=".Net" scheme="http://frg2089.github.io/categories/Net/"/>
+    
+      <category term=".Net Core" scheme="http://frg2089.github.io/categories/Net/Net-Core/"/>
+    
+      <category term="WPF" scheme="http://frg2089.github.io/categories/Net/Net-Core/WPF/"/>
+    
+    
+      <category term="C#" scheme="http://frg2089.github.io/tags/C/"/>
+    
+      <category term=".Net Core" scheme="http://frg2089.github.io/tags/Net-Core/"/>
+    
+      <category term="WPF" scheme="http://frg2089.github.io/tags/WPF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C# 获取操作系统的主题强调色和颜色主题的方法</title>
+    <link href="http://frg2089.github.io/post/29ea410b/"/>
+    <id>http://frg2089.github.io/post/29ea410b/</id>
+    <published>2020-06-14T11:52:31.000Z</published>
+    <updated>2020-06-15T04:43:38.098Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term=".Net" scheme="http://frg2089.github.io/categories/Net/"/>
+    
+      <category term=".Net Core" scheme="http://frg2089.github.io/categories/Net/Net-Core/"/>
+    
+    
+      <category term="C#" scheme="http://frg2089.github.io/tags/C/"/>
+    
+      <category term=".Net Core" scheme="http://frg2089.github.io/tags/Net-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于我在一边鸽子一边做CSF编辑器这件事</title>
+    <link href="http://frg2089.github.io/post/227935cb/"/>
+    <id>http://frg2089.github.io/post/227935cb/</id>
+    <published>2020-06-12T13:26:55.000Z</published>
+    <updated>2020-06-14T12:13:31.780Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="CSF Editor" scheme="http://frg2089.github.io/tags/CSF-Editor/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>测试</title>
+    <link href="http://frg2089.github.io/post/784dd132/"/>
+    <id>http://frg2089.github.io/post/784dd132/</id>
+    <published>2020-04-18T14:56:55.000Z</published>
+    <updated>2020-06-01T07:45:54.392Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://frg2089.github.io/post/4a17b156/"/>
+    <id>http://frg2089.github.io/post/4a17b156/</id>
+    <published>2020-04-15T02:00:00.000Z</published>
+    <updated>2020-05-25T01:45:49.060Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
