@@ -2,8 +2,8 @@
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  color: #abb2bf;
-  background: rgba(0,0,0,0.5);
+  color: #333;
+  background: rgba(248,248,248,0.314);
 }
 .hljs-comment,
 .hljs-quote {
@@ -13,7 +13,7 @@
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-subst {
-  color: #c678dd;
+  color: #333;
   font-weight: bold;
 }
 .hljs-number,
@@ -25,12 +25,12 @@
 }
 .hljs-string,
 .hljs-doctag {
-  color: #98c379;
+  color: #d14;
 }
 .hljs-title,
 .hljs-section,
 .hljs-selector-id {
-  color: #61afef;
+  color: #900;
   font-weight: bold;
 }
 .hljs-subst {
