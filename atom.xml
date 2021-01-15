@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://frg2089.github.io/"/>
-  <updated>2020-06-15T14:52:55.624Z</updated>
+  <updated>2021-01-15T05:03:50.624Z</updated>
   <id>http://frg2089.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>修改手机开机Logo界面</title>
+    <link href="http://frg2089.github.io/post/f8f48ab9/"/>
+    <id>http://frg2089.github.io/post/f8f48ab9/</id>
+    <published>2021-01-15T04:26:43.000Z</published>
+    <updated>2021-01-15T05:03:50.624Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term=".Net" scheme="http://frg2089.github.io/categories/Net/"/>
+    
+      <category term=".Net 5" scheme="http://frg2089.github.io/categories/Net/Net-5/"/>
+    
+    
+      <category term="C#" scheme="http://frg2089.github.io/tags/C/"/>
+    
+      <category term="MIUI" scheme="http://frg2089.github.io/tags/MIUI/"/>
+    
+      <category term=".NET" scheme="http://frg2089.github.io/tags/NET/"/>
+    
+  </entry>
   
   <entry>
     <title>WPF 捕获系统主题改变</title>

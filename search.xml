@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>修改手机开机Logo界面</title>
+      <link href="/post/f8f48ab9/"/>
+      <url>/post/f8f48ab9/</url>
+      
+        <content type="html"><![CDATA[<h1 id="修改小米手机开机logo界面"><a class="markdownIt-Anchor" href="#修改小米手机开机logo界面"></a> 修改小米手机开机Logo界面</h1><h2 id="准备工作"><a class="markdownIt-Anchor" href="#准备工作"></a> 准备工作</h2><h3 id="准备工具"><a class="markdownIt-Anchor" href="#准备工具"></a> 准备工具:</h3><ul><li><a href="//github.com/ReFirmLabs/binwalk" target="_blank" rel="noopener">binwalk</a> 用于分析img镜像, 若不需要分析可忽略</li><li><a href="//github.com/frg2089/Splash.Patcher" target="_blank" rel="noopener">Splash.Patcher</a> img镜像修补工具</li></ul><h3 id="软件运行环境"><a class="markdownIt-Anchor" href="#软件运行环境"></a> 软件运行环境:</h3><ul><li><a href="//www.python.org/" target="_blank" rel="noopener">Python</a>(<a href="//github.com/ReFirmLabs/binwalk" target="_blank" rel="noopener">binwalk</a>推荐使用python3, 若不使用<a href="//github.com/ReFirmLabs/binwalk" target="_blank" rel="noopener">binwalk</a>可不配置)</li><li><a href="//dotnet.microsoft.com/" target="_blank" rel="noopener">.Net</a>(<a href="//github.com/frg2089/Splash.Patcher" target="_blank" rel="noopener">Splash.Patcher</a>工具运行环境, 程序源代码可移植到任何 .Net 环境上)</li></ul><h3 id="准备splashimg"><a class="markdownIt-Anchor" href="#准备splashimg"></a> 准备splash.img</h3><p>根据厂商不同, 这个文件也可能会叫做logo.img</p><p>这个文件可以从完整的系统更新包中取得<br />也可以直接用dd或nanddump工具取得</p><h3 id="获取原始图片"><a class="markdownIt-Anchor" href="#获取原始图片"></a> 获取原始图片</h3><p>使用<a href="//github.com/ReFirmLabs/binwalk" target="_blank" rel="noopener">binwalk</a>工具获取图片的偏移值<br />如果你知道图片的偏移位置的话 这个步骤可以跳过</p><ol start="0"><li><p>使用binwalk工具解析splash.img</p><pre class="highlight"><code class="bash">binwalk --dd=<span class="hljs-string">'.*'</span> splash.img</code></pre><p><img src="//github.com/frg2089/Splash.Patcher/raw/master/docs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-11-25%20154749.png" alt="运行结果" /></p></li><li><p>取出所有bmp文件</p><ol><li><p>进入&quot;_splash.img.extracted&quot;目录, 将步骤0中’DESCRIPTION’为’PC bitmap, Windows 3.x format’的’HEXADECIMAL’值相等的文件添加.bmp扩展名<br /><img src="//github.com/frg2089/Splash.Patcher/raw/master/docs/%E6%97%A0%E6%A0%87%E9%A2%98.png" alt="重命名" /></p></li><li><p>移除非.bmp扩展名的文件</p><pre class="highlight"><code class="powershell"><span class="hljs-variable">$fs</span> = ls;<span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$f</span> <span class="hljs-keyword">in</span> <span class="hljs-variable">$fs</span>){    <span class="hljs-keyword">if</span>(<span class="hljs-operator">-not</span> <span class="hljs-variable">$f</span>.Extension.Equals(<span class="hljs-string">".bmp"</span>,[<span class="hljs-type">System.StringComparison</span>]::OrdinalIgnoreCase)){        <span class="hljs-variable">$f</span>.Delete();    }}</code></pre><p><img src="//github.com/frg2089/Splash.Patcher/raw/master/docs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-11-25%20154749.png" alt="删掉无关文件" /></p></li></ol></li></ol><h3 id="准备替换图片"><a class="markdownIt-Anchor" href="#准备替换图片"></a> 准备替换图片</h3><p><strong>注意</strong>: 请确保准备要替换的图片大小与格式与原始图片一致<br />bitmap(bmp)图片只要图像大小一致的话文件大小也会一致</p><p><a href="//github.com/frg2089/Splash.Patcher" target="_blank" rel="noopener">Splash.Patcher</a>程序是修补工具, 不需要替换的图片可以不随镜像放在一起 不会影响修补结果</p><h2 id="修补文件"><a class="markdownIt-Anchor" href="#修补文件"></a> 修补文件</h2><ol start="0"><li>将图片和splash.img文件放在同一目录下</li><li>在目录下执行工具或将目录作为参数传递<br /><img src="//github.com/frg2089/Splash.Patcher/raw/master/docs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-11-25%20160416.png" alt="运行截图" /></li></ol><h2 id="写入"><a class="markdownIt-Anchor" href="#写入"></a> 写入</h2><p>把修补后的splash_new.img刷入即可</p><pre class="highlight"><code class="cmd"># 重启进入fastbootadb reboot fastboot# 刷入新的splashfastboot flash splash splash_new.img# 重启进入系统fastboot reboot</code></pre><hr /><h1 id="关于splashpatcher"><a class="markdownIt-Anchor" href="#关于splashpatcher"></a> 关于<a href="//github.com/frg2089/Splash.Patcher" target="_blank" rel="noopener">Splash.Patcher</a></h1><p><a href="//github.com/frg2089/Splash.Patcher" target="_blank" rel="noopener">Splash.Patcher</a>是我想改开机logo但是找不到工具之后自己写出来的…</p><p>至于为什么不用<a href="//github.com/moonheart/sagit-logo-gen" target="_blank" rel="noopener">sagit-logo-gen</a>…是因为…</p><blockquote><p>我不会用<br />我那时候不知道logo.img是什么东西<br />我没有那种东西<br />我把用这个工具直接生成的logo_new.img文件刷到splash分区之后就不显示logo了<br />试图把img刷到logo分区可fastboot工具提示我没有logo分区…<br />看了下源代码发现我可能要改源代码来编译生成一个适配自己手机的程序…<br />好麻烦…<br />不想用…</p></blockquote><p>那只能自己写了嘛…</p><p>虽然好像这样更麻烦了</p><p>为什么项目仓库名写的是Splash.Patcher但程序叫Splash.Generator?<br />那个是我当时创建项目的时候起错名字了…不影响使用的</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> .Net </category>
+          
+          <category> .Net 5 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C# </tag>
+            
+            <tag> MIUI </tag>
+            
+            <tag> .NET </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>WPF 捕获系统主题改变</title>
       <link href="/post/3867e2db/"/>
       <url>/post/3867e2db/</url>
