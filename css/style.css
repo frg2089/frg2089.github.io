@@ -1224,7 +1224,7 @@
 }
 #post .pjax article .article-meta {
   font-size: 0.9em;
-  color: #cdd3d5;
+  color: #555;
   border-left: 3px solid #b4b4b4;
   padding-left: 10px;
 }
@@ -1885,7 +1885,7 @@ img.pswp__img {
   .nav-left .left-bottom a.friends {
     border-top: none;
     display: inline;
-    margin-left: 68px;
+    margin-left: 168px;
   }
   .nav-left .left-bottom a.friends:before {
     content: '·';
