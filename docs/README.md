@@ -7,11 +7,11 @@ heroImage: https://cravatar.cn/avatar/8aa3a373ab407b250e866cc7ed5deea8?s=400
 heroText: 岛风窝
 heroFullScreen: true
 tagline: 这里是岛风的博客
-# projects:
-  # - icon: project
-  #   name: 项目名称
-  #   desc: 项目详细描述
-  #   link: https://你的项目链接
+projects:
+  - icon: project
+    name: Shimakaze.SDK
+    desc: 致力于为RA2模组开发带来现代开发模式
+    link: https://github.com/ShimakazeProject/Shimakaze-SDK
 
   # - icon: link
   #   name: 链接名称

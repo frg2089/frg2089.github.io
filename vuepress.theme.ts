@@ -64,7 +64,7 @@ export default hopeTheme({
       // QQ: "https://example.com",
       // Qzone: "https://example.com",
       // Reddit: "https://example.com",
-      // Rss: "https://example.com",
+      Rss: "/rss.xml",
       // Steam: "https://example.com",
       // Twitter: "https://example.com",
       // Wechat: "https://example.com",
@@ -87,12 +87,20 @@ export default hopeTheme({
   plugins: {
     blog: true,
 
+    copyCode: {},
+
     comment: {
       provider: "Giscus",
       repo: "frg2089/frg2089.github.io",
       repoId: "MDEwOlJlcG9zaXRvcnkyNDg0MzQzMTY",
       category: "Comment",
       categoryId: "DIC_kwDODs7OjM4CTRvB",
+    },
+
+    feed: {
+      atom: true,
+      json: true,
+      rss: true,
     },
 
     mdEnhance: {
@@ -144,6 +152,7 @@ export default hopeTheme({
       cacheHTML: true,
       cachePic: true,
       appendBase: true,
+      themeColor: '#744da9',
       apple: {
         icon: "/assets/icon/apple-icon-152.png",
         statusBarColor: "black",
