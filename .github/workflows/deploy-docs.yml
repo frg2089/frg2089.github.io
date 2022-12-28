@@ -28,9 +28,7 @@ jobs:
       - name: 构建文档
         env:
           NODE_OPTIONS: --max_old_space_size=8192
-        run: |-
-          npm run build
-          > src/.vuepress/dist/.nojekyll
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v2
@@ -39,7 +37,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: 'src/.vuepress/dist'
+          path: 'dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
