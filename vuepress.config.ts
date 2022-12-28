@@ -19,5 +19,7 @@ export default defineUserConfig({
 
   theme,
 
+  templateBuild: 'index.html',
+
   shouldPrefetch: false,
 });
