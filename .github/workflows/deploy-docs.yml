@@ -13,7 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 1
+          lfs: true
           # submodules: true
 
       - name: 设置 Node.js
@@ -29,7 +30,7 @@ jobs:
         env:
           NODE_OPTIONS: --max_old_space_size=8192
         run: npm run build
-      
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
