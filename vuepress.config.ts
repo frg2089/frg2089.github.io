@@ -1,5 +1,8 @@
-import { defineUserConfig, viteBundler } from "vuepress";
+import { defineUserConfig, } from "vuepress";
+import { getDirname, path } from "@vuepress/utils";
 import theme from "./vuepress.theme";
+
+const __dirname = getDirname(import.meta.url);
 
 export default defineUserConfig({
   base: "/",
@@ -22,4 +25,8 @@ export default defineUserConfig({
   templateBuild: 'index.html',
 
   shouldPrefetch: false,
+
+  alias: {
+    "@theme-hope/components/MarkdownContent": path.resolve(__dirname, 'src', 'components', 'MarkdownContent', 'index.vue'),
+  }
 });
