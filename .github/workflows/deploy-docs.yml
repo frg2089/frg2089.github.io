@@ -5,6 +5,14 @@ on:
   push:
     branches:
       - master
+    paths:
+      - .github/**
+      - docs/**
+      - src/**
+      - public/**
+      - vuepress.*.ts
+      - index.html
+      - package.json
 
 jobs:
   build:
