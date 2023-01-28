@@ -1,4 +1,5 @@
 import { hopeTheme } from "vuepress-theme-hope";
+import { friends } from "./vuepress.friends";
 import navbar from "./vuepress.navbar";
 import sidebar from "./vuepress.sidebar";
 
@@ -37,12 +38,18 @@ export default hopeTheme({
     editLink: "在 GitHub 上编辑此页",
   },
 
+  blogLocales: {
+    friends: '友链'
+  },
+
   blog: {
     description: '咱又来丢人啦!~',
 
     intro: "/intro.html",
 
     roundAvatar: true,
+
+    friends,
 
     medias: {
       // Baidu: "https://example.com",
