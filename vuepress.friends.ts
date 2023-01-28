@@ -12,5 +12,11 @@ export const friends: FriendLink[] = [
     logo: "https://dkrain.com/assets/img/auther.jpg",
     desc: "MWX!",
     link: "https://dkrain.com"
+  },
+  {
+    name: "ControlNet Blog",
+    logo: "https://controlnet.space/images/avatar.jpg",
+    desc: "永远13岁~",
+    link: "https://controlnet.space/"
   }
 ]
