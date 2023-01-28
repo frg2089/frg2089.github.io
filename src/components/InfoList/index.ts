@@ -45,10 +45,12 @@ const FriendList = defineComponent({
           h(
             'div',
             {
+              class: 'blogger-info',
               style: css`
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                padding: 0.25rem;
               `,
             },
             [
@@ -98,13 +100,7 @@ const FriendList = defineComponent({
               )
             ])
         ])
-      ).reduce((r, e, i) => {
-        if (i !== 0)
-          r.push(h('hr'));
-
-        r.push(e);
-        return r;
-      }, new Array<VNode>)
+      )
     )
   }
 })
