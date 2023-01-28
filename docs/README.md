@@ -6,7 +6,7 @@ title: 首页
 heroImage: https://cravatar.cn/avatar/8aa3a373ab407b250e866cc7ed5deea8?s=400
 heroText: 岛风窝
 heroFullScreen: true
-tagline: 这里是岛风的博客
+tagline: 岛风都已经建了一个博客了，岛风难道还要花时间去写吗？
 projects:
   - icon: project
     name: Shimakaze.SDK
