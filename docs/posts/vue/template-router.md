@@ -1,3 +1,16 @@
+---
+category:
+    - 前端
+    - Vue
+    - Vue3
+tag:
+    - 前端
+    - Vue
+    - Vue3
+    - Vite
+    - vue-router
+---
+
 不知道各位前端人有没有因为添加页面需要去修改router.ts而烦恼过？
 
 咱在这里隆重推荐一款vite插件，它可以使你从切换.vue和router.ts中解放出来，您只需要在.vue文件中编写路由即可
