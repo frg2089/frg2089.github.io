@@ -1,3 +1,11 @@
+---
+category:
+    - ai
+tag:
+    - ai
+    - stable-diffusion
+---
+
 # 部署 stable-diffusion-webui-docker
 
 ## 前置条件
