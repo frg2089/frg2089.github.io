@@ -18,10 +18,10 @@ projects:
   #   desc: 链接详细描述
   #   link: https://链接地址
 
-  # - icon: book
-  #   name: 书籍名称
-  #   desc: 书籍详细描述
-  #   link: https://你的书籍链接
+  - icon: book
+    name: FTL-Guide
+    desc: 汇集各种各样开发时用到的工具的源和(或)代理配置方法
+    link: https://frg2089.github.io/FTL-Guide/
 
   # - icon: article
   #   name: 文章名称
@@ -40,3 +40,5 @@ projects:
 
 ---
 
+欢迎来到岛风的博客，这里什么也没有！
+因为这个笨蛋根本不写博客的！
