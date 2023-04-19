@@ -1,5 +1,4 @@
 ---
-date: 2022-12-30
 category:
     - .Net
     - RA2
