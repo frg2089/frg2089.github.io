@@ -28,6 +28,5 @@ export default defineUserConfig({
 
   alias: {
     '@theme-hope/components/MarkdownContent': path.resolve(dirname, 'src', 'components', 'MarkdownContent', 'index.vue'),
-    '@theme-hope/modules/blog/components/InfoList': path.resolve(dirname, 'src', 'components', 'InfoList', 'index.ts')
   }
 })

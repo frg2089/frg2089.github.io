@@ -1,5 +1,4 @@
 import { hopeTheme } from 'vuepress-theme-hope'
-import { friends } from './vuepress.friends'
 import navbar from './vuepress.navbar'
 import sidebar from './vuepress.sidebar'
 
@@ -48,8 +47,6 @@ export default hopeTheme({
     intro: 'https://github.com/frg2089',
 
     roundAvatar: true,
-
-    friends,
 
     medias: {
       Email: 'mailto:frg2089@outlook.com',
