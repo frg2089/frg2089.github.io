@@ -65,6 +65,11 @@ export default hopeTheme({
       license: 'CC-BY-NC-SA 4.0'
     },
 
+    prismjs: {
+      light: 'vs',
+      dark: 'vsc-dark-plus'
+    },
+
     comment: {
       provider: 'Giscus',
       repo: 'frg2089/frg2089.github.io',
@@ -90,8 +95,8 @@ export default hopeTheme({
       figure: true,
       flowchart: true,
       gfm: true,
-      imageLazyload: true,
-      imageSize: true,
+      imgLazyload: true,
+      imgSize: true,
       include: true,
       katex: true,
       mark: true,
@@ -154,4 +159,6 @@ export default hopeTheme({
       }
     }
   }
+},{
+  custom: true
 })
