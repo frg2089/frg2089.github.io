@@ -29,15 +29,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 19
-          cache: npm
+          cache: yarn
 
       - name: 安装依赖
-        run: npm ci
+        run: yarn install
 
       - name: 构建文档
-        env:
-          NODE_OPTIONS: --max_old_space_size=8192
-        run: npm run build
+        run: yarn build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
