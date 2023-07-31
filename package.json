@@ -7,10 +7,12 @@
   "scripts": {
     "build": "vuepress build docs",
     "clean-dev": "vuepress dev docs --clean-cache",
-    "dev": "vuepress dev docs"
+    "dev": "vuepress dev docs",
+    "update-package": "yarn dlx vp-update"
   },
   "devDependencies": {
-    "vuepress": "^2.0.0-beta.61",
-    "vuepress-theme-hope": "^2.0.0-beta.208"
-  }
+    "vuepress": "next",
+    "vuepress-theme-hope": "^2.0.0-beta.234"
+  },
+  "packageManager": "yarn@3.6.1"
 }
