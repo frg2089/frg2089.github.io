@@ -18,6 +18,10 @@ projects:
     icon: https://controlnet.space/images/avatar.jpg
     desc: 永远13岁~
     link: https://controlnet.space/
+  - name: 扑克博客
+    icon: https://poker-sang.github.io/img/avatar.png
+    desc: 太帅了
+    link: https://poker-sang.github.io/
 
 ---
 
