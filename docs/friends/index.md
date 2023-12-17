@@ -1,9 +1,11 @@
 ---
 layout: FriendsHome
 icon: link
+index: false
 title: 友链
 heroText: 岛风的朋友们
 heroFullScreen: true
+article: false
 ---
 
 > [!tip]
