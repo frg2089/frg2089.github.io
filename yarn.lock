@@ -5052,6 +5052,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"husky@npm:^8.0.3":
+  version: 8.0.3
+  resolution: "husky@npm:8.0.3"
+  bin:
+    husky: lib/bin.js
+  checksum: 6722591771c657b91a1abb082e07f6547eca79144d678e586828ae806499d90dce2a6aee08b66183fd8b085f19d20e0990a2ad396961746b4c8bd5bdb619d668
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:0.6, iconv-lite@npm:^0.6.2":
   version: 0.6.3
   resolution: "iconv-lite@npm:0.6.3"
@@ -6597,6 +6606,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pinst@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "pinst@npm:3.0.0"
+  bin:
+    pinst: bin.js
+  checksum: abb1ed62ea2acb2207a7a860715bdb26ecbde74ede8fad5f6200194f3e22db25e2b7a49af05e5cc7fc05384709c651e0000323f0077d7239060c4b68c8acd428
+  languageName: node
+  linkType: hard
+
 "pngjs@npm:^5.0.0":
   version: 5.0.0
   resolution: "pngjs@npm:5.0.0"
@@ -6637,6 +6655,24 @@ __metadata:
     picocolors: "npm:^1.0.0"
     source-map-js: "npm:^1.0.2"
   checksum: 39308a9195fa34d4dbdd7b58a896cff0c7809f84f7a4ac1b95b68ca86c9138a395addff33075668ed3983d41b90aac05754c445237a9365eb1c3a5602ebd03ad
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-pkg@npm:^0.18.0":
+  version: 0.18.0
+  resolution: "prettier-plugin-pkg@npm:0.18.0"
+  peerDependencies:
+    prettier: ^3.0.0
+  checksum: 01b7e5e74f4446e99718ffb6ab9528d6a1a6922d8092c9c1b9e3af1d85ee96312256d6416a608666944ef858f06701c0a080821b97b5cbe7d66d916ddc0f1675
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "prettier@npm:3.1.1"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: facc944ba20e194ff4db765e830ffbcb642803381f0d2033ed397e79904fa4ccc877dc25ad68f42d36985c01d051c990ca1b905fb83d2d7d65fe69e4386fa1a3
   languageName: node
   linkType: hard
 
@@ -7114,7 +7150,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "shimakaze-blog@workspace:."
   dependencies:
+    husky: "npm:^8.0.3"
     mermaid: "npm:^10.6.1"
+    pinst: "npm:^3.0.0"
+    prettier: "npm:^3.1.1"
+    prettier-plugin-pkg: "npm:^0.18.0"
     vuepress: "npm:2.0.0-rc.0"
     vuepress-theme-hope: "npm:2.0.0-rc.5"
   languageName: unknown
