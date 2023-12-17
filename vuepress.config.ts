@@ -1,8 +1,12 @@
 import { defineUserConfig } from 'vuepress'
 import { getDirname, path } from '@vuepress/utils'
 import theme from './vuepress.theme'
+import friends from './vuepress.friends'
 
 const dirname = getDirname(import.meta.url)
+
+const component = (component: string) =>
+  path.resolve(dirname, 'src', 'components', component)
 
 export default defineUserConfig({
   base: '/',
@@ -27,12 +31,10 @@ export default defineUserConfig({
   shouldPrefetch: false,
 
   alias: {
-    '@theme-hope/components/MarkdownContent': path.resolve(
-      dirname,
-      'src',
-      'components',
-      'MarkdownContent',
-      'index.vue',
-    ),
+    '@theme-hope/components/MarkdownContent': component('MarkdownContent.vue'),
+  },
+
+  define: {
+    しまかぜのともだち: friends,
   },
 })
