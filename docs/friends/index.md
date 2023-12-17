@@ -1,4 +1,4 @@
----
+<!-- ---
 home: true
 layout: FriendsHome
 icon: link
@@ -23,6 +23,6 @@ projects:
     desc: 太帅了
     link: https://poker-sang.github.io/
 
----
+--- -->
 
 [要互相加个友联吗?](https://github.com/frg2089/frg2089.github.io/edit/master/docs/friends/index.md)
