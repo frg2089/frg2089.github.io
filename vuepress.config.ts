@@ -11,8 +11,8 @@ export default defineUserConfig({
     '/': {
       lang: 'zh-CN',
       title: '岛风的港区',
-      description: '这里是岛风的个人博客网站'
-    }
+      description: '这里是岛风的个人博客网站',
+    },
   },
 
   temp: '.temp',
@@ -27,6 +27,12 @@ export default defineUserConfig({
   shouldPrefetch: false,
 
   alias: {
-    '@theme-hope/components/MarkdownContent': path.resolve(dirname, 'src', 'components', 'MarkdownContent', 'index.vue'),
-  }
+    '@theme-hope/components/MarkdownContent': path.resolve(
+      dirname,
+      'src',
+      'components',
+      'MarkdownContent',
+      'index.vue',
+    ),
+  },
 })

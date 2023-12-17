@@ -16,7 +16,6 @@ projects:
     name: FTL-Guide
     desc: 汇集各种各样开发时用到的工具的源和(或)代理配置方法
     link: https://frg2089.github.io/FTL-Guide/
-
 ---
 
 欢迎参观我的港区，希望你能在这里找到需要的东西！

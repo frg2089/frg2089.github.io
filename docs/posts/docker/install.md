@@ -1,8 +1,8 @@
 ---
 category:
-    - docker
+  - docker
 tag:
-    - docker
+  - docker
 ---
 
 # Docker Desktop for Windows 安装方法
