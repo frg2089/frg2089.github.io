@@ -1,14 +1,14 @@
 ---
 category:
-    - 前端
-    - Vue
-    - Vue3
+  - 前端
+  - Vue
+  - Vue3
 tag:
-    - 前端
-    - Vue
-    - Vue3
-    - Vite
-    - vue-router
+  - 前端
+  - Vue
+  - Vue3
+  - Vite
+  - vue-router
 ---
 
 不知道各位前端人有没有因为添加页面需要去修改router.ts而烦恼过？
@@ -26,6 +26,7 @@ tag:
 您可以在[这里](https://github.com/ShimakazeProject/Shimakaze.Client/tree/develop/src/Shimakaze.Client.UI/plugins/InlineRouter)找到这个扩展
 
 您可以将这个文件复制到您自己的项目中使用，但您需要注明此代码的来源。
+
 ```ts
 // vue-plugin-template-router
 // Author: @frg2089

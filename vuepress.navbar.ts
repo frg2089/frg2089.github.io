@@ -7,5 +7,5 @@ export default navbar([
   '/category/',
   '/star/',
   '/tag/',
-  '/timeline/'
+  '/timeline/',
 ])

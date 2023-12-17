@@ -7,7 +7,7 @@ export default sidebar({
       text: '文章',
       icon: 'note',
       prefix: 'posts/',
-      children: 'structure'
-    }
-  ]
+      children: 'structure',
+    },
+  ],
 })

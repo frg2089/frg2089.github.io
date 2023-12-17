@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ lang }}" data-theme="light">
   <head>
     <meta charset="utf-8" />
@@ -6,29 +6,40 @@
     <meta name="generator" content="VuePress {{ version }}" />
     <meta name="theme" content="VuePress Theme Hope" />
     <meta name="author" content="frg2089" />
-    <link rel="preconnect" crossorigin href="https://cravatar.cn/">
-    <link rel="preconnect" crossorigin href="https://www.clarity.ms/">
-    <link rel="preconnect" crossorigin href="https://l.clarity.ms/">
-    <link rel="preconnect" crossorigin href="https://licensebuttons.net/">
-    <link rel="dns-prefetch" href="https://cravatar.cn/">
-    <link rel="dns-prefetch" href="https://licensebuttons.net/">
-    <link rel="dns-prefetch" href="https://www.clarity.ms/">
-    <link rel="dns-prefetch" href="https://l.clarity.ms/">
+    <link rel="preconnect" crossorigin href="https://cravatar.cn/" />
+    <link rel="preconnect" crossorigin href="https://www.clarity.ms/" />
+    <link rel="preconnect" crossorigin href="https://l.clarity.ms/" />
+    <link rel="preconnect" crossorigin href="https://licensebuttons.net/" />
+    <link rel="dns-prefetch" href="https://cravatar.cn/" />
+    <link rel="dns-prefetch" href="https://licensebuttons.net/" />
+    <link rel="dns-prefetch" href="https://www.clarity.ms/" />
+    <link rel="dns-prefetch" href="https://l.clarity.ms/" />
     <script type="text/javascript">
-      (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-      })(window, document, "clarity", "script", "f5b1hgvtl2");
+      ;(function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            ;(c[a].q = c[a].q || []).push(arguments)
+          }
+        t = l.createElement(r)
+        t.async = 1
+        t.src = 'https://www.clarity.ms/tag/' + i
+        y = l.getElementsByTagName(r)[0]
+        y.parentNode.insertBefore(t, y)
+      })(window, document, 'clarity', 'script', 'f5b1hgvtl2')
     </script>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQ5QWRZZHH"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-JQ5QWRZZHH"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
 
-      gtag('config', 'G-JQ5QWRZZHH');
+      gtag('config', 'G-JQ5QWRZZHH')
     </script>
     <!--vuepress-ssr-head-->
     <style>
@@ -36,7 +47,7 @@
         --bg-color: #fff;
       }
 
-      html[data-theme="dark"] {
+      html[data-theme='dark'] {
         --bg-color: #1d2025;
       }
 
@@ -46,13 +57,13 @@
       }
     </style>
     <script>
-      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const userMode = localStorage.getItem('vuepress-theme-hope-scheme')
       const systemDarkMode =
         window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+        window.matchMedia('(prefers-color-scheme: dark)').matches
 
-      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
-        document.querySelector("html").setAttribute("data-theme", "dark");
+      if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+        document.querySelector('html').setAttribute('data-theme', 'dark')
       }
     </script>
     <!--vuepress-ssr-styles-->

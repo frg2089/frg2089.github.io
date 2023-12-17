@@ -1,9 +1,9 @@
 ---
 category:
-    - ai
+  - ai
 tag:
-    - ai
-    - stable-diffusion
+  - ai
+  - stable-diffusion
 ---
 
 # 部署 stable-diffusion-webui-docker
@@ -15,21 +15,21 @@ tag:
 ## 步骤
 
 1. 克隆项目 [stable-diffusion-webui-docker](https://github.com/AbdBarho/stable-diffusion-webui-docker)
-    ```powershell
-    git clone https://github.com/AbdBarho/stable-diffusion-webui-docker --depth=1
-    cd stable-diffusion-webui-docker
-    ```
+   ```powershell
+   git clone https://github.com/AbdBarho/stable-diffusion-webui-docker --depth=1
+   cd stable-diffusion-webui-docker
+   ```
 2. 运行命令
-    ```powershell
-    docker compose --profile download up --build
-    ```
+   ```powershell
+   docker compose --profile download up --build
+   ```
 3. 全部下载完成后运行
-  你可以在项目的readme那里看到不同的ui界面
-    ```powershell
-    # where [ui] is one of: invoke | auto | auto-cpu | sygil | sygil-sl
-    $ui = 'auto'
-    docker compose --profile $ui up --build
-    ```
+   你可以在项目的readme那里看到不同的ui界面
+   ```powershell
+   # where [ui] is one of: invoke | auto | auto-cpu | sygil | sygil-sl
+   $ui = 'auto'
+   docker compose --profile $ui up --build
+   ```
 
 ## 附加
 

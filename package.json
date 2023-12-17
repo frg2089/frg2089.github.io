@@ -10,9 +10,9 @@
     "clean-dev": "vuepress dev docs --clean-cache",
     "dev": "vuepress dev docs",
     "format": "prettier --write --config prettier.config.yaml .",
-    "prepack": "pinst --disable",
-    "postpack": "pinst --enable",
     "postinstall": "husky install",
+    "postpack": "pinst --enable",
+    "prepack": "pinst --disable",
     "update-package": "yarn dlx vp-update"
   },
   "devDependencies": {
