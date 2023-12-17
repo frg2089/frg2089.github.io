@@ -14,5 +14,5 @@
     "vuepress": "next",
     "vuepress-theme-hope": "^2.0.0-beta.234"
   },
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@4.0.2"
 }
