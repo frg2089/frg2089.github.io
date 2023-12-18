@@ -3,7 +3,7 @@ import { ThemeBlogHomeProjectOptions } from 'vuepress-theme-hope'
 const friends: ThemeBlogHomeProjectOptions[] = [
   {
     name: "Dylech30th's Blog",
-    icon: 'https://sora.ink/wp-content/uploads/2021/04/icon.png',
+    icon: 'https://sora.ink/wp-content/uploads/2023/12/6aba06f93d5e08829cd4bb19c0782349fced359f.jpg@120w_120h_1c.png',
     desc: '是DC姐姐',
     link: 'https://sora.ink/',
   },
