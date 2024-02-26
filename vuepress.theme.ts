@@ -13,7 +13,7 @@ export default hopeTheme(
 
     iconAssets: 'iconfont',
 
-    logo: 'https://cravatar.cn/avatar/8aa3a373ab407b250e866cc7ed5deea8?s=400',
+    logo: 'https://gravatar.loli.net/avatar/8aa3a373ab407b250e866cc7ed5deea8?s=400',
 
     repo: 'frg2089/frg2089.github.io',
 
