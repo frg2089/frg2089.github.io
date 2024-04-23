@@ -10,10 +10,7 @@
         </template>
       </BlogHero>
       <div class="blog-page-wrapper">
-        <main
-          id="main-content"
-          class="vp-blog-main friends"
-          :class="{ 'round-avatar': config.roundAvatar }">
+        <main id="main-content" class="vp-blog-main friends round-avatar">
           <DropTransition appear :delay="0.16">
             <div class="theme-hope-content">
               <ProjectPanel :items="friends" />
@@ -38,16 +35,13 @@ import BlogWrapper from 'vuepress-theme-hope/blog/components/BlogWrapper.js'
 import InfoPanel from 'vuepress-theme-hope/blog/components/InfoPanel.js'
 import ProjectPanel from 'vuepress-theme-hope/blog/components/ProjectPanel.js'
 import MarkdownContent from 'vuepress-theme-hope/components/MarkdownContent.js'
-import DropTransition from 'vuepress-theme-hope/components/transitions/DropTransition.js'
-import { useBlogOptions } from 'vuepress-theme-hope/modules/blog/composables/index.js'
+import { DropTransition } from 'vuepress-theme-hope/components/transitions/DropTransition.js'
 import BingHeroBackground from 'vuepress-theme-hope/presets/BingHeroBackground.js'
 import HitokotoBlogHero from 'vuepress-theme-hope/presets/HitokotoBlogHero.js'
 
 import 'vuepress-theme-hope/modules/blog/styles/home.scss'
 
 const friends = しまかぜのともだち
-
-const config = useBlogOptions()
 </script>
 
 <style lang="scss">

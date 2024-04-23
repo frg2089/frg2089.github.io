@@ -1,7 +1,8 @@
 import { defineUserConfig } from 'vuepress'
-import { getDirname, path } from '@vuepress/utils'
+import { getDirname, path } from 'vuepress/utils'
 import theme from './vuepress.theme'
 import friends from './vuepress.friends'
+import { viteBundler } from '@vuepress/bundler-vite'
 
 const dirname = getDirname(import.meta.url)
 
@@ -9,6 +10,11 @@ const component = (component: string) =>
   path.resolve(dirname, 'src', 'components', component)
 
 export default defineUserConfig({
+  bundler: viteBundler({
+    viteOptions: {},
+    vuePluginOptions: {},
+  }),
+
   base: '/',
 
   locales: {

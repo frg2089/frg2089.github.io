@@ -11,7 +11,7 @@ export default hopeTheme(
       url: 'https://frg2089.github.io',
     },
 
-    iconAssets: 'iconfont',
+    iconAssets: 'iconify',
 
     logo: 'https://gravatar.loli.net/avatar/8aa3a373ab407b250e866cc7ed5deea8?s=400',
 
@@ -56,8 +56,6 @@ export default hopeTheme(
 
       intro: 'https://github.com/frg2089',
 
-      roundAvatar: true,
-
       medias: {
         Email: 'mailto:frg2089@outlook.com',
         GitHub: 'https://github.com/frg2089',
@@ -97,10 +95,8 @@ export default hopeTheme(
       mdEnhance: {
         gfm: true,
         alert: true,
-        container: true,
-        checkLinks: {
-          status: 'always',
-        },
+        hint: true,
+        linkify: true,
         tabs: true,
         codetabs: true,
         align: true,
@@ -143,7 +139,7 @@ export default hopeTheme(
       pwa: {
         favicon: '/favicon.ico',
         cacheHTML: true,
-        cachePic: true,
+        cacheImage: true,
         appendBase: true,
         themeColor: '#744da9',
         apple: {

@@ -1,4 +1,4 @@
-import { defineClientConfig } from '@vuepress/client'
+import { defineClientConfig } from 'vuepress/client'
 import FriendsHome from './src/layouts/FriendsHome.vue'
 
 export default defineClientConfig({
