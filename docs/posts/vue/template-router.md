@@ -9,7 +9,11 @@ tag:
   - Vue3
   - Vite
   - vue-router
+sitemap: false
 ---
+
+> [!important]
+> 文章已经过期了，留在这凑数的
 
 不知道各位前端人有没有因为添加页面需要去修改router.ts而烦恼过？
 
