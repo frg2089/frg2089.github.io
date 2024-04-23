@@ -27,7 +27,7 @@ jobs:
       - name: 设置 Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 19
+          node-version: lts
           cache: yarn
 
       - name: 安装依赖
