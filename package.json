@@ -4,7 +4,7 @@
   "type": "module",
   "description": "岛风的博客",
   "license": "MIT",
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.1.1",
   "scripts": {
     "build": "vuepress build docs",
     "clean-dev": "vuepress dev docs --clean-cache",
