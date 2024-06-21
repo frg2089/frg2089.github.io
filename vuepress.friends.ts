@@ -25,5 +25,11 @@ const friends: ThemeBlogHomeProjectOptions[] = [
     desc: '太笨了！',
     link: 'https://poker-sang.github.io/',
   },
+  {
+    name: 'ChlorideP（氯喵）',
+    icon: 'https://chloridep.github.io/beibei.webp',
+    desc: '「有点追求，但不多。」',
+    link: 'https://chloridep.github.io/',
+  },
 ]
 export default friends
