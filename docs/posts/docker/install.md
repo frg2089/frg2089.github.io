@@ -31,3 +31,18 @@ wsl --unregister docker-desktop-data
 wsl --import docker-desktop .\desktop .\docker-desktop.tar --version 2
 wsl --import docker-desktop-data .\data .\docker-desktop-data.tar --version 2
 ```
+
+<!--
+```json
+{
+  "registry-mirrors": [
+    "https://docker.anyhub.us.kg",
+    "https://dockerhub.jobcher.com",
+    "https://dockerhub.icu",
+    "https://docker.awsl9527.cn",
+    "https://noohub.ru",
+    "https://docker.m.daocloud.io"
+  ]
+}
+```
+-->
