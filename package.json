@@ -17,20 +17,20 @@
   },
   "devDependencies": {
     "@types/markdown-it": "^14",
-    "@vuepress/bundler-vite": "^2.0.0-rc.9",
-    "@vuepress/plugin-feed": "^2.0.0-rc.26",
-    "@vuepress/plugin-pwa": "^2.0.0-rc.26",
-    "husky": "^9.0.11",
+    "@vuepress/bundler-vite": "^2.0.0-rc.14",
+    "@vuepress/plugin-feed": "^2.0.0-rc.40",
+    "@vuepress/plugin-pwa": "^2.0.0-rc.40",
+    "husky": "^9.1.4",
     "markdown-it": "^14.1.0",
-    "mermaid": "^10.9.0",
+    "mermaid": "^10.9.1",
     "pinst": "^3.0.0",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.3",
     "prettier-plugin-pkg": "^0.18.1",
-    "sass": "^1.75.0",
-    "typescript": "^5.4.5",
-    "vue": "^3.4.24",
-    "vue-router": "^4.3.2",
-    "vuepress": "^2.0.0-rc.9",
-    "vuepress-theme-hope": "^2.0.0-rc.37"
+    "sass": "^1.77.8",
+    "typescript": "^5.5.4",
+    "vue": "^3.4.37",
+    "vue-router": "^4.4.3",
+    "vuepress": "^2.0.0-rc.14",
+    "vuepress-theme-hope": "^2.0.0-rc.52"
   }
 }

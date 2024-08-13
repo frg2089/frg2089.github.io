@@ -73,9 +73,14 @@ export default hopeTheme(
         license: 'CC-BY-NC-SA 4.0',
       },
 
-      prismjs: {
-        light: 'vs',
-        dark: 'vsc-dark-plus',
+      shiki: {
+        themes: {
+          dark: 'dark-plus',
+          light: 'light-plus',
+        },
+        notationDiff: true,
+        lineNumbers: true,
+        preWrapper: true,
       },
 
       comment: {

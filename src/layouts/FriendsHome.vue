@@ -2,10 +2,10 @@
   <BlogWrapper>
     <div class="vp-page vp-blog">
       <BlogHero>
-        <template #heroInfo="{ tagline, isFullScreen, text, alt }">
+        <template #info="{ tagline, isFullScreen, text, alt }">
           <HitokotoBlogHero v-if="text" :text="text" :alt="alt" />
         </template>
-        <template #heroBg>
+        <template #bg>
           <BingHeroBackground />
         </template>
       </BlogHero>
