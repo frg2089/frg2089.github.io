@@ -1,16 +1,22 @@
 // place your custom styles here
 
+$width: 48rem;
+$height: 25rem;
+
 .vp-page.vp-blog-home {
   & .vp-blog-mask:before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 48rem;
-    height: 25rem;
+    width: min($width, calc(100vw - 2rem));
+    height: min($height, 100vh);
     z-index: 2;
     display: block;
-    transform: translate(-24rem, -12rem);
+    transform: translate(
+      max(calc(min($width, calc(100vw - 2rem)) / -2), -50vw),
+      calc(min($height, 100vh) / -2 + 1rem)
+    );
     backdrop-filter: blur(1rem);
     /* 边框模糊效果 */
     /* filter: blur(.25rem); */
@@ -35,7 +41,11 @@
     }
   }
 
-  html[data-theme='light'] & .vp-blog-hero {
-    color: var(--grey-darker);
+  & .vp-blog-hero {
+    padding: 2rem;
+
+    & html[data-theme='light'] {
+      color: var(--grey-darker);
+    }
   }
 }
