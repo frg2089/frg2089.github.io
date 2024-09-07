@@ -3,6 +3,8 @@ home: true
 layout: BlogHome
 icon: home
 title: 港区大门
+# using public anime wallpaper API
+bgImage: https://www.loliapi.com/acg/
 heroImage: https://cravatar.cn/avatar/8aa3a373ab407b250e866cc7ed5deea8?s=400
 heroText: 岛风的港区
 heroFullScreen: true
