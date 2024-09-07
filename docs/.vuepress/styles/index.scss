@@ -1,1 +1,41 @@
 // place your custom styles here
+
+.vp-page.vp-blog-home {
+  & .vp-blog-mask:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 48rem;
+    height: 25rem;
+    z-index: 2;
+    display: block;
+    transform: translate(-24rem, -12rem);
+    backdrop-filter: blur(1rem);
+    /* 边框模糊效果 */
+    /* filter: blur(.25rem); */
+    border-radius: 1rem;
+
+    html[data-theme='dark'] & {
+      background: #3333337f;
+      box-shadow: 0.25rem 0.25rem #0000007f;
+    }
+    html[data-theme='light'] & {
+      background: #cccccc7f;
+      box-shadow: 0.25rem 0.25rem #6666667f;
+    }
+  }
+
+  & .vp-blog-mask::after {
+    opacity: unset;
+    background: unset;
+
+    html[data-theme='dark'] & {
+      background: #0000007f;
+    }
+  }
+
+  html[data-theme='light'] & .vp-blog-hero {
+    color: var(--grey-darker);
+  }
+}
