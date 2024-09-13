@@ -4,7 +4,7 @@
   "type": "module",
   "description": "岛风的博客",
   "license": "MIT",
-  "packageManager": "yarn@4.1.1",
+  "packageManager": "yarn@4.4.1",
   "scripts": {
     "build": "vuepress build docs",
     "clean-dev": "vuepress dev docs --clean-cache",
@@ -13,7 +13,7 @@
     "postinstall": "husky install",
     "postpack": "pinst --enable",
     "prepack": "pinst --disable",
-    "update-package": "yarn dlx vp-update"
+    "update-package": "yarn dlx vp-update@next"
   },
   "devDependencies": {
     "@types/markdown-it": "^14",
