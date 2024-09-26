@@ -20,6 +20,7 @@
     "@vuepress/bundler-vite": "2.0.0-rc.15",
     "@vuepress/plugin-feed": "2.0.0-rc.47",
     "@vuepress/plugin-pwa": "2.0.0-rc.47",
+    "@vuepress/plugin-redirect": "2.0.0-rc.8",
     "husky": "^9.1.6",
     "markdown-it": "^14.1.0",
     "mermaid": "^11.2.1",
