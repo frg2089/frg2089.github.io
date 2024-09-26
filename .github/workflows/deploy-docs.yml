@@ -16,6 +16,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      HUSKY: 0
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -24,17 +26,20 @@ jobs:
           lfs: true
           # submodules: true
 
+      - name: 设置 pnpm
+        uses: pnpm/action-setup@v4
+
       - name: 设置 Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: yarn
+          node-version: latest
+          cache: pnpm
 
       - name: 安装依赖
-        run: yarn install
+        run: pnpm install
 
       - name: 构建文档
-        run: yarn build
+        run: pnpm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

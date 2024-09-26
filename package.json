@@ -4,33 +4,33 @@
   "type": "module",
   "description": "岛风的博客",
   "license": "MIT",
-  "packageManager": "yarn@4.4.1",
+  "packageManager": "pnpm@9.11.0+sha256.1c0e33f70e5df9eede84a357bdfa0b1f9dba6e58194628d48a1055756f553754",
   "scripts": {
     "build": "vuepress build docs",
     "clean-dev": "vuepress dev docs --clean-cache",
     "dev": "vuepress dev docs",
     "format": "prettier --write --config prettier.config.yaml .",
-    "postinstall": "husky install",
     "postpack": "pinst --enable",
     "prepack": "pinst --disable",
-    "update-package": "yarn dlx vp-update@next"
+    "prepare": "husky",
+    "update-package": "pnpm dlx vp-update@next"
   },
   "devDependencies": {
-    "@types/markdown-it": "^14",
-    "@vuepress/bundler-vite": "^2.0.0-rc.14",
-    "@vuepress/plugin-feed": "^2.0.0-rc.40",
-    "@vuepress/plugin-pwa": "^2.0.0-rc.40",
-    "husky": "^9.1.4",
+    "@types/markdown-it": "^14.1.2",
+    "@vuepress/bundler-vite": "2.0.0-rc.15",
+    "@vuepress/plugin-feed": "2.0.0-rc.47",
+    "@vuepress/plugin-pwa": "2.0.0-rc.47",
+    "husky": "^9.1.6",
     "markdown-it": "^14.1.0",
-    "mermaid": "^10.9.1",
+    "mermaid": "^11.2.1",
     "pinst": "^3.0.0",
     "prettier": "^3.3.3",
     "prettier-plugin-pkg": "^0.18.1",
-    "sass": "^1.77.8",
-    "typescript": "^5.5.4",
-    "vue": "^3.4.37",
-    "vue-router": "^4.4.3",
-    "vuepress": "^2.0.0-rc.14",
-    "vuepress-theme-hope": "^2.0.0-rc.52"
+    "sass": "^1.79.3",
+    "typescript": "^5.6.2",
+    "vue": "^3.5.8",
+    "vue-router": "^4.4.5",
+    "vuepress": "2.0.0-rc.15",
+    "vuepress-theme-hope": "2.0.0-rc.56"
   }
 }
