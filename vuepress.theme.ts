@@ -78,6 +78,8 @@ export default hopeTheme(
           light: 'light-plus',
           dark: 'dark-plus',
         },
+        lineNumbers: true,
+        removeLastLine: true,
         collapsedLines: true,
         notationDiff: true,
         notationFocus: true,
