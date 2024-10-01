@@ -75,12 +75,16 @@ export default hopeTheme(
 
       shiki: {
         themes: {
-          dark: 'dark-plus',
           light: 'light-plus',
+          dark: 'dark-plus',
         },
+        collapsedLines: true,
         notationDiff: true,
-        lineNumbers: true,
-        preWrapper: true,
+        notationFocus: true,
+        notationHighlight: true,
+        notationErrorLevel: true,
+        notationWordHighlight: true,
+        whitespace: true,
       },
 
       comment: {
@@ -129,7 +133,26 @@ export default hopeTheme(
           // 'XiGua',
         ],
       },
-
+      markdownHint: {
+        hint: true,
+        alert: true,
+      },
+      markdownImage: {
+        // 启用 figure
+        figure: true,
+        // 启用图片懒加载
+        lazyload: true,
+        // 启用图片标记
+        mark: true,
+        // 启用图片大小
+        size: true,
+      },
+      markdownTab: {
+        // 启用代码选项卡
+        codeTabs: true,
+        // 启用选项卡
+        tabs: true,
+      },
       // uncomment these if you want a PWA
       pwa: {
         favicon: '/favicon.ico',
