@@ -1,1 +1,1 @@
-pnpm prettier --check --config prettier.config.yaml .
+pnpm prettier --check  .
