@@ -57,7 +57,7 @@ export default hopeTheme(
       intro: 'https://github.com/frg2089',
 
       medias: {
-        Email: 'mailto:frg2089@outlook.com',
+        Email: 'mailto:i@shimakaze.dev',
         GitHub: 'https://github.com/frg2089',
         Rss: '/rss.xml',
       },
