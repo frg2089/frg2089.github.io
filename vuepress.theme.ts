@@ -4,11 +4,11 @@ import sidebar from './vuepress.sidebar'
 
 export default hopeTheme(
   {
-    hostname: 'https://frg2089.github.io',
+    hostname: 'https://blog.shimakaze.dev',
 
     author: {
       name: '舰队的偶像-岛风酱!',
-      url: 'https://frg2089.github.io',
+      url: 'https://blog.shimakaze.dev',
     },
 
     iconAssets: 'iconify',
