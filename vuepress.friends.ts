@@ -27,7 +27,7 @@ const friends: ThemeBlogHomeProjectOptions[] = [
   },
   {
     name: 'ChlorideP（氯喵）',
-    icon: 'https://chloridep.github.io/assets/images/beibei.webp',
+    icon: 'https://chloridep.github.io/assets/images/avatar.webp',
     desc: '「有点追求，但不多。」',
     link: 'https://chloridep.github.io/',
   },
