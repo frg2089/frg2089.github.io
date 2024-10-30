@@ -27,9 +27,9 @@ const friends: ThemeBlogHomeProjectOptions[] = [
   },
   {
     name: 'ChlorideP（氯喵）',
-    icon: 'https://chloridep.github.io/assets/images/avatar.webp',
+    icon: 'https://chloridep.github.io/blogs/assets/images/avatar.webp',
     desc: '「有点追求，但不多。」',
-    link: 'https://chloridep.github.io/',
+    link: 'https://chloridep.github.io/blogs/',
   },
 ].sort((a, b) => (a.name > b.name ? 1 : -1))
 export default friends
