@@ -31,5 +31,11 @@ const friends: ThemeBlogHomeProjectOptions[] = [
     desc: '「有点追求，但不多。」',
     link: 'https://chloridep.github.io/blogs/',
   },
+  {
+    name: '红枫',
+    icon: 'https://hongfengrm.github.io/MapleLeaf.webp',
+    desc: '知名（大概）模组作者',
+    link: 'https://hongfengrm.github.io/',
+  },
 ].sort((a, b) => (a.name > b.name ? 1 : -1))
 export default friends
