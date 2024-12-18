@@ -14,10 +14,6 @@ projects:
     name: Shimakaze.SDK
     desc: 致力于为RA2模组开发带来现代开发模式
     link: https://github.com/ShimakazeProject/Shimakaze-SDK
-  - icon: book
-    name: FTL-Guide
-    desc: 汇集各种各样开发时用到的工具的源和(或)代理配置方法
-    link: https://ftl.guide.shimakaze.dev/
 ---
 
 欢迎参观我的港区，希望你能在这里找到需要的东西！
