@@ -22,9 +22,9 @@ tag:
 
 > [!IMPORTANT]
 > 在更新版本的 Docker Desktop 中已经提供了一种方便的迁移方式：
-> 
+>
 > Settings > Resources > Advanced > Disk image location
-> 
+>
 > 此处的方式已过时
 
 ```powershell
