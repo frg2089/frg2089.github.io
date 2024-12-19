@@ -42,6 +42,50 @@ export default hopeTheme(
     footer:
       '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。',
 
+    markdown: {
+      gfm: true,
+      hint: true,
+      alert: true,
+      align: true,
+      attrs: true,
+      sup: true,
+      sub: true,
+      footnote: true,
+      mark: true,
+      tasklist: true,
+      component: true,
+      mermaid: true,
+      spoiler: true,
+      breaks: true,
+      tabs: true,
+      codeTabs: true,
+      figure: true,
+      highlighter: {
+        type: 'shiki',
+        lineNumbers: true,
+        removeLastLine: true,
+        preWrapper: true,
+        collapsedLines: true,
+        themes: {
+          light: 'light-plus',
+          dark: 'dark-plus',
+        },
+        notationDiff: true,
+        notationFocus: true,
+        notationHighlight: true,
+        notationErrorLevel: true,
+        notationWordHighlight: true,
+        whitespace: true,
+      },
+      imgLazyload: true,
+      imgMark: true,
+      imgSize: true,
+      obsidianImgSize: true,
+      include: true,
+      linkify: true,
+      linksCheck: true,
+    },
+
     // page meta
     metaLocales: {
       editLink: '在 GitHub 上编辑此页',
@@ -89,22 +133,6 @@ export default hopeTheme(
         license: 'CC-BY-NC-SA 4.0',
       },
 
-      shiki: {
-        themes: {
-          light: 'light-plus',
-          dark: 'dark-plus',
-        },
-        lineNumbers: true,
-        removeLastLine: true,
-        collapsedLines: true,
-        notationDiff: true,
-        notationFocus: true,
-        notationHighlight: true,
-        notationErrorLevel: true,
-        notationWordHighlight: true,
-        whitespace: true,
-      },
-
       comment: {
         provider: 'Giscus',
         repo: 'frg2089/frg2089.github.io',
@@ -119,21 +147,6 @@ export default hopeTheme(
         rss: true,
       },
 
-      mdEnhance: {
-        gfm: true,
-        align: true,
-        attrs: true,
-        sup: true,
-        sub: true,
-        footnote: true,
-        mark: true,
-        tasklist: true,
-        component: true,
-        chart: false,
-        echarts: false,
-        mermaid: true,
-        spoiler: true,
-      },
       components: {
         components: [
           // 'ArtPlayer',
@@ -151,26 +164,6 @@ export default hopeTheme(
           // 'XiGua',
         ],
       },
-      markdownHint: {
-        hint: true,
-        alert: true,
-      },
-      markdownImage: {
-        // 启用 figure
-        figure: true,
-        // 启用图片懒加载
-        lazyload: true,
-        // 启用图片标记
-        mark: true,
-        // 启用图片大小
-        size: true,
-      },
-      markdownTab: {
-        // 启用代码选项卡
-        codeTabs: true,
-        // 启用选项卡
-        tabs: true,
-      },
       // uncomment these if you want a PWA
       pwa: {
         favicon: '/favicon.ico',
@@ -181,10 +174,6 @@ export default hopeTheme(
         apple: {
           icon: '/assets/icon/apple-icon-152.png',
           statusBarColor: 'black',
-        },
-        msTile: {
-          image: '/assets/icon/ms-icon-144.png',
-          color: '#ffffff',
         },
         manifest: {
           icons: [
