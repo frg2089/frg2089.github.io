@@ -2,6 +2,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { getDirname, path } from 'vuepress/utils'
 import friends from './vuepress.friends'
+import head from './vuepress.head'
 import theme from './vuepress.theme'
 
 const dirname = getDirname(import.meta.url)
@@ -16,6 +17,7 @@ export default defineUserConfig({
   }),
 
   base: '/',
+  head,
 
   locales: {
     '/': {
@@ -31,8 +33,6 @@ export default defineUserConfig({
   dest: 'dist',
 
   theme,
-
-  templateBuild: 'index.html',
 
   shouldPrefetch: false,
 

@@ -23,6 +23,9 @@ importers:
       '@vuepress/plugin-redirect':
         specifier: 2.0.0-rc.66
         version: 2.0.0-rc.66(typescript@5.7.2)(vuepress@2.0.0-rc.19(@vuepress/bundler-vite@2.0.0-rc.19(@types/node@22.10.2)(sass-embedded@1.83.0)(sass@1.83.0)(terser@5.37.0)(typescript@5.7.2))(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2)))
+      htmlparser2:
+        specifier: ^9.1.0
+        version: 9.1.0
       husky:
         specifier: ^9.1.7
         version: 9.1.7
