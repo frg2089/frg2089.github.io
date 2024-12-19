@@ -66,6 +66,22 @@ export default hopeTheme(
     plugins: {
       blog: true,
 
+      git: {
+        createdTime: true,
+        updatedTime: true,
+        contributors: true,
+        transformContributors: contributors =>
+          Object.values(
+            contributors.reduce(
+              (a, b) => {
+                a[b.email] = b
+                return a
+              },
+              {} as Record<string, (typeof contributors)[0]>,
+            ),
+          ),
+      },
+
       copyCode: {},
 
       copyright: {
@@ -196,6 +212,10 @@ export default hopeTheme(
             },
           ],
         },
+      },
+
+      sitemap: {
+        changefreq: 'weekly',
       },
     },
   },
