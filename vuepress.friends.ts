@@ -27,9 +27,9 @@ const friends: ThemeBlogHomeProjectOptions[] = [
   },
   {
     name: 'ChlorideP（氯喵）',
-    icon: 'https://nyacl.shimakaze.org/blogs/assets/images/avatar.webp',
+    icon: 'https://nyacl.shimakaze.org/assets/images/avatar.webp',
     desc: '「有点追求，但不多。」',
-    link: 'https://nyacl.shimakaze.org/blogs/',
+    link: 'https://nyacl.shimakaze.org/',
   },
   {
     name: '红枫',
