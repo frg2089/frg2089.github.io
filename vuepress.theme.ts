@@ -110,6 +110,12 @@ export default hopeTheme(
     plugins: {
       blog: true,
 
+      docsearch: {
+        appId: 'L43QG2V2U8',
+        apiKey: '82d617ee1fa8605102743b15f144d589',
+        indexName: 'shimakaze',
+      },
+
       git: {
         createdTime: true,
         updatedTime: true,
