@@ -10,7 +10,7 @@ heroText: 岛风的港区
 heroFullScreen: true
 tagline: 这里是岛风的港区，这里充满了自然的气息（破败且杂草丛生）。
 projects:
-  - icon: project
+  - icon: tabler:sdk
     name: Shimakaze.SDK
     desc: 致力于为RA2模组开发带来现代开发模式
     link: https://github.com/ShimakazeProject/Shimakaze-SDK

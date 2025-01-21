@@ -11,8 +11,6 @@ export default hopeTheme(
       url: 'https://blog.shimakaze.dev',
     },
 
-    iconAssets: 'iconify',
-
     logo: 'https://gravatar.loli.net/avatar/8aa3a373ab407b250e866cc7ed5deea8?s=400',
 
     repo: 'frg2089/frg2089.github.io',
@@ -110,6 +108,10 @@ export default hopeTheme(
     plugins: {
       blog: true,
 
+      icon: {
+        assets: 'iconify',
+      },
+
       docsearch: {
         appId: 'L43QG2V2U8',
         apiKey: 'bb9041ad518048e7d6a9974f39d7bcb8',
@@ -159,7 +161,7 @@ export default hopeTheme(
           'Badge',
           'BiliBili',
           // 'CodePen',
-          'FontIcon',
+
           'PDF',
           'Share',
           // 'StackBlitz',
