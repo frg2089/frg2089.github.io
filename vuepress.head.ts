@@ -18,6 +18,10 @@ const document = html`
   <link rel="dns-prefetch" href="https://licensebuttons.net/" />
   <link rel="preconnect" crossorigin href="https://gravatar.loli.net" />
   <link rel="preconnect" crossorigin href="https://licensebuttons.net/" />
+  <link
+    rel="preconnect"
+    href="https://L43QG2V2U8-dsn.algolia.net"
+    crossorigin />
   ${notOnDev(html`
     <!-- Microsoft Clarity -->
     <link rel="dns-prefetch" href="https://www.clarity.ms/" />

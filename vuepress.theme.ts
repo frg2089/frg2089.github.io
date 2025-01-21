@@ -112,7 +112,7 @@ export default hopeTheme(
 
       docsearch: {
         appId: 'L43QG2V2U8',
-        apiKey: '82d617ee1fa8605102743b15f144d589',
+        apiKey: 'bb9041ad518048e7d6a9974f39d7bcb8',
         indexName: 'shimakaze',
       },
 
