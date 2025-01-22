@@ -79,9 +79,6 @@ $bezier: cubic-bezier(0.175, 0.885, 0.32, 1);
   0% {
     transform: rotate(-90deg);
   }
-  50% {
-    transform: rotate(0deg);
-  }
   100% {
     transform: rotate(270deg);
   }
