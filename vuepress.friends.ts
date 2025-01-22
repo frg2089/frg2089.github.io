@@ -26,9 +26,9 @@ const friends: ThemeBlogHomeProjectOptions[] = [
     link: 'https://poker-sang.github.io/',
   },
   {
-    name: 'ChlorideP（氯喵）',
+    name: 'NyaCL',
     icon: 'https://nyacl.shimakaze.org/assets/images/avatar.webp',
-    desc: '「有点追求，但不多。」',
+    desc: '致敬传奇改名王',
     link: 'https://nyacl.shimakaze.org/',
   },
   {
