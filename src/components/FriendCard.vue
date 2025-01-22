@@ -169,6 +169,7 @@ $bezier: cubic-bezier(0.175, 0.885, 0.32, 1);
       @include step1;
       opacity: 1;
       width: 16rem;
+      height: 6rem;
       transform: scale(2);
 
       .friend-hover-logo {
