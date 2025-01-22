@@ -1,5 +1,9 @@
 <template>
-  <a class="vp-project-card" :href="friend.link" :title="friend.name">
+  <a
+    class="vp-project-card"
+    :href="friend.link"
+    :title="friend.name"
+    target="_blank">
     <div class="friend-card-container">
       <img
         class="friend-logo"
