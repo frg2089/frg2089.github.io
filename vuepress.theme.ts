@@ -110,6 +110,7 @@ export default hopeTheme(
 
       icon: {
         assets: 'iconify',
+        prefix: 'fa6-solid:',
       },
 
       docsearch: {

@@ -5,7 +5,7 @@ export default sidebar({
     '',
     {
       text: '文章',
-      icon: 'note',
+      icon: 'file-lines',
       prefix: 'posts/',
       children: 'structure',
     },
