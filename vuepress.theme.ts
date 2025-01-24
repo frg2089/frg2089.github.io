@@ -11,7 +11,9 @@ export default hopeTheme(
       url: 'https://blog.shimakaze.dev',
     },
 
-    logo: 'https://gravatar.loli.net/avatar/8aa3a373ab407b250e866cc7ed5deea8?s=400',
+    favicon: '/avatar.webp',
+
+    logo: '/avatar.webp',
 
     repo: 'frg2089/frg2089.github.io',
 
@@ -175,38 +177,38 @@ export default hopeTheme(
       },
       // uncomment these if you want a PWA
       pwa: {
-        favicon: '/favicon.ico',
+        favicon: '/avatar.webp',
         cacheHTML: true,
         cacheImage: true,
         appendBase: true,
         themeColor: '#744da9',
         apple: {
-          icon: '/assets/icon/apple-icon-152.png',
+          icon: '/assets/icon/chrome-192.webp',
           statusBarColor: 'black',
         },
         manifest: {
           icons: [
             {
-              src: '/assets/icon/chrome-mask-512.png',
+              src: '/assets/icon/chrome-mask-512.webp',
               sizes: '512x512',
               purpose: 'maskable',
-              type: 'image/png',
+              type: 'image/webp',
             },
             {
-              src: '/assets/icon/chrome-mask-192.png',
+              src: '/assets/icon/chrome-mask-192.webp',
               sizes: '192x192',
               purpose: 'maskable',
-              type: 'image/png',
+              type: 'image/webp',
             },
             {
-              src: '/assets/icon/chrome-512.png',
+              src: '/assets/icon/chrome-512.webp',
               sizes: '512x512',
-              type: 'image/png',
+              type: 'image/webp',
             },
             {
-              src: '/assets/icon/chrome-192.png',
+              src: '/assets/icon/chrome-192.webp',
               sizes: '192x192',
-              type: 'image/png',
+              type: 'image/webp',
             },
           ],
         },

@@ -5,7 +5,7 @@ icon: house
 title: 港区大门
 # using public anime wallpaper API
 bgImage: https://www.loliapi.com/acg/
-heroImage: https://cravatar.cn/avatar/8aa3a373ab407b250e866cc7ed5deea8?s=400
+heroImage: /avatar.webp
 heroText: 岛风的港区
 heroFullScreen: true
 tagline: 这里是岛风的港区，这里充满了自然的气息（破败且杂草丛生）。

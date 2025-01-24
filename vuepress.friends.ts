@@ -21,7 +21,7 @@ const friends: ThemeBlogHomeProjectOptions[] = [
   },
   {
     name: '扑克博客',
-    icon: 'https://poker-sang.github.io/img/avatar.png',
+    icon: 'https://poker-sang.github.io/imgs/avatar.png',
     desc: '太笨了！',
     link: 'https://poker-sang.github.io/',
   },

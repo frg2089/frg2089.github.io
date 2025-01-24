@@ -3,49 +3,67 @@
 $width: 48rem;
 $height: 25rem;
 
-.vp-page.vp-blog-home {
-  & .vp-blog-mask:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: min($width, calc(100vw - 2rem));
-    height: min($height, 100vh);
-    z-index: 2;
-    display: block;
-    transform: translate(
-      max(calc(min($width, calc(100vw - 2rem)) / -2), -50vw),
-      calc(min($height, 100vh) / -2 + 1rem)
-    );
-    backdrop-filter: blur(1rem);
-    /* 边框模糊效果 */
-    /* filter: blur(.25rem); */
-    border-radius: 1rem;
-
-    html[data-theme='dark'] & {
-      background: #3333337f;
-      box-shadow: 0.25rem 0.25rem #0000007f;
-    }
-    html[data-theme='light'] & {
-      background: #cccccc7f;
-      box-shadow: 0.25rem 0.25rem #6666667f;
+.vp-page {
+  .blog-page-wrapper {
+    .vp-blogger-info {
+      .vp-blogger {
+        .vp-blogger-avatar {
+          border-radius: 50%;
+        }
+      }
     }
   }
 
-  & .vp-blog-mask::after {
-    opacity: unset;
-    background: unset;
+  &.vp-blog-home {
+    .vp-blog-mask {
+      &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: min($width, calc(100vw - 2rem));
+        height: min($height, 100vh);
+        z-index: 2;
+        display: block;
+        transform: translate(
+          max(calc(min($width, calc(100vw - 2rem)) / -2), -50vw),
+          calc(min($height, 100vh) / -2 + 1rem)
+        );
+        backdrop-filter: blur(1rem);
+        /* 边框模糊效果 */
+        /* filter: blur(.25rem); */
+        border-radius: 1rem;
 
-    html[data-theme='dark'] & {
-      background: #0000007f;
+        html[data-theme='dark'] & {
+          background: #3333337f;
+          box-shadow: 0.25rem 0.25rem #0000007f;
+        }
+        html[data-theme='light'] & {
+          background: #cccccc7f;
+          box-shadow: 0.25rem 0.25rem #6666667f;
+        }
+      }
+
+      &::after {
+        opacity: unset;
+        background: unset;
+
+        html[data-theme='dark'] & {
+          background: #0000007f;
+        }
+      }
     }
-  }
 
-  & .vp-blog-hero {
-    padding: 2rem;
+    .vp-blog-hero {
+      padding: 2rem;
 
-    & html[data-theme='light'] {
-      color: var(--grey-darker);
+      .vp-blog-hero-image {
+        border-radius: 50%;
+      }
+
+      html[data-theme='light'] {
+        color: var(--grey-darker);
+      }
     }
   }
 }
