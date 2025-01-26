@@ -6,9 +6,13 @@ tag:
   - Hexo
   - Blog
   - SSG
+sitemap: false
 ---
 
 # 构建扑克的博客
+
+> [!important]
+> 笨蛋扑克已经改用 vuepress 2 了，这个文章也过期了，留着凑个数
 
 前几天，笨蛋扑克([@Poker-sang](https://github.com/poker-sang))突然找到我说他建好了一个个人博客网站。
 他想将这个放到 [Github Actions](https://github.com/features/actions) 中自动化部署，问我有没有什么方案。
