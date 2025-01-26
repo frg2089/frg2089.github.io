@@ -4,13 +4,15 @@ category:
 tag:
   - ai
   - stable-diffusion
+redirectFrom:
+  - /posts/sd-web-ui/index.html
 ---
 
 # 部署 stable-diffusion-webui-docker
 
 ## 前置条件
 
-- docker [安装 Docker Desktop for Windows](../docker/install.md)
+- docker [安装 Docker Desktop for Windows](../../docker/install.md)
 
 ## 步骤
 

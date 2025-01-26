@@ -6,11 +6,13 @@ tag:
   - .Net
   - WPF
   - C#
+redirectFrom:
+  - /posts/3867e2db.html
 ---
 
-Language Version: C# 8.0
-
 # WPF 捕获系统主题改变
+
+Language Version: C# 8.0
 
 通过System.Windows.Interop
 
