@@ -66,7 +66,7 @@ AppHost 的主要目的是：
 
 > [!note]
 > 直接复制 AppHost 文件是无法启动程序集的，程序集的路径是硬编码在 AppHost 文件中的。
-> 详见我的另一篇文章 <还没写呢 占位>
+> 详见我的[另一篇文章](./PatchAppHost.md)
 
 > [!important]
 > 对于 TFM 使用了 -windows 的时候可能会出问题。
