@@ -8,6 +8,7 @@ tag:
   - C#
 redirectFrom:
   - /posts/3867e2db.html
+date: 2020-06-15
 ---
 
 # WPF 捕获系统主题改变事件
