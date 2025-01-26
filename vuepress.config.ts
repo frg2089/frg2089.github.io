@@ -22,7 +22,7 @@ export default defineUserConfig({
   locales: {
     '/': {
       lang: 'zh-CN',
-      title: '岛风的港区',
+      title: '岛风的船坞',
       description: '这里是岛风的个人博客网站',
     },
   },
