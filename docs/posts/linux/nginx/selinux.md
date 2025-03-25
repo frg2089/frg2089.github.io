@@ -1,3 +1,13 @@
+---
+category:
+  - Linux
+tag:
+  - Linux
+  - Nginx
+  - SELinux
+date: 2025-03-25
+---
+
 # 由 SELinux 引发的问题
 
 在启用了 SELinux 的情况下，使用 Nginx 时可能会遇到一些问题。
