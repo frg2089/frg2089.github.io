@@ -15,7 +15,7 @@ export default hopeTheme(
 
     logo: '/avatar.webp',
 
-    repo: 'frg2089/frg2089.github.io',
+    repo: 'frg2089/blog',
 
     docsDir: 'docs',
 
@@ -146,7 +146,7 @@ export default hopeTheme(
 
       comment: {
         provider: 'Giscus',
-        repo: 'frg2089/frg2089.github.io',
+        repo: 'frg2089/blog',
         repoId: 'MDEwOlJlcG9zaXRvcnkyNDg0MzQzMTY',
         category: 'Comment',
         categoryId: 'DIC_kwDODs7OjM4CTRvB',
