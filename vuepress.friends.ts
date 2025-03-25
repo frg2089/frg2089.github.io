@@ -26,10 +26,10 @@ const friends: ThemeBlogHomeProjectOptions[] = [
     link: 'https://poker-sang.github.io/',
   },
   {
-    name: 'NyaCL',
-    icon: 'https://nyacl.shimakaze.org/assets/images/avatar.webp',
+    name: 'AgxCOy',
+    icon: 'https://agxcoy.shimakaze.org/assets/images/avatar.webp',
     desc: '致敬传奇改名王',
-    link: 'https://nyacl.shimakaze.org/',
+    link: 'https://agxcoy.shimakaze.org/',
   },
   {
     name: '红枫',
