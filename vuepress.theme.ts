@@ -181,43 +181,43 @@ export default hopeTheme(
         ],
       },
       // uncomment these if you want a PWA
-      pwa: {
-        favicon: '/avatar.webp',
-        cacheHTML: true,
-        cacheImage: true,
-        appendBase: true,
-        themeColor: '#744da9',
-        apple: {
-          icon: '/assets/icon/chrome-192.webp',
-          statusBarColor: 'black',
-        },
-        manifest: {
-          icons: [
-            {
-              src: '/assets/icon/chrome-mask-512.webp',
-              sizes: '512x512',
-              purpose: 'maskable',
-              type: 'image/webp',
-            },
-            {
-              src: '/assets/icon/chrome-mask-192.webp',
-              sizes: '192x192',
-              purpose: 'maskable',
-              type: 'image/webp',
-            },
-            {
-              src: '/assets/icon/chrome-512.webp',
-              sizes: '512x512',
-              type: 'image/webp',
-            },
-            {
-              src: '/assets/icon/chrome-192.webp',
-              sizes: '192x192',
-              type: 'image/webp',
-            },
-          ],
-        },
-      },
+      // pwa: {
+      //   favicon: '/avatar.webp',
+      //   cacheHTML: true,
+      //   cacheImage: true,
+      //   appendBase: true,
+      //   themeColor: '#744da9',
+      //   apple: {
+      //     icon: '/assets/icon/chrome-192.webp',
+      //     statusBarColor: 'black',
+      //   },
+      //   manifest: {
+      //     icons: [
+      //       {
+      //         src: '/assets/icon/chrome-mask-512.webp',
+      //         sizes: '512x512',
+      //         purpose: 'maskable',
+      //         type: 'image/webp',
+      //       },
+      //       {
+      //         src: '/assets/icon/chrome-mask-192.webp',
+      //         sizes: '192x192',
+      //         purpose: 'maskable',
+      //         type: 'image/webp',
+      //       },
+      //       {
+      //         src: '/assets/icon/chrome-512.webp',
+      //         sizes: '512x512',
+      //         type: 'image/webp',
+      //       },
+      //       {
+      //         src: '/assets/icon/chrome-192.webp',
+      //         sizes: '192x192',
+      //         type: 'image/webp',
+      //       },
+      //     ],
+      //   },
+      // },
 
       sitemap: {
         changefreq: 'weekly',
