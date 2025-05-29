@@ -21,6 +21,7 @@ jobs:
     env:
       HUSKY: 0
       INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+      EDGEONE_PAGES_API_TOKEN: ${{ secrets.EDGEONE_PAGES_API_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -48,39 +49,13 @@ jobs:
         if: ${{ env.INDEXNOW_KEY != '' }}
         run: echo $INDEXNOW_KEY > dist/$INDEXNOW_KEY.txt
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: 'dist'
-
-  deploy:
-    # Add a dependency to the build job
-    needs: build
-
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write # to deploy to Pages
-      id-token: write # to verify the deployment originates from an appropriate source
-
-    env:
-      INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
-
-    # Specify runner + deployment step
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy to EdgeOne Pages
+        run: pnpm dlx edgeone pages deploy ./dist --name shimakaze-blog --token $EDGEONE_PAGES_API_TOKEN
 
       - name: IndexNow
         uses: bojieyang/indexnow-action@v2
         if: ${{ env.INDEXNOW_KEY != '' }}
         with:
-          sitemap-location: '${{ steps.deployment.outputs.page_url }}sitemap.xml'
+          sitemap-location: https://blog.shimakaze.dev/sitemap.xml
           key: ${{ secrets.INDEXNOW_KEY }}
+          key-location: https://blog.shimakaze.dev/${{ secrets.INDEXNOW_KEY }}.txt
