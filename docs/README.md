@@ -1,6 +1,6 @@
 ---
 home: true
-layout: BlogHome
+layout: Blog
 icon: house
 title: 首页
 # using public anime wallpaper API
