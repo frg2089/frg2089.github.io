@@ -1,6 +1,6 @@
 // place your custom styles here
 
-$width: 48rem;
+$width: 50rem;
 $height: 25rem;
 
 @mixin overflow {
@@ -10,44 +10,6 @@ $height: 25rem;
 }
 
 .vp-page {
-  .blog-page-wrapper {
-    .vp-blog-info-wrapper {
-      @include overflow;
-      gap: 1rem;
-      max-height: calc(100vh - 60px - 1.5rem);
-
-      .vp-blogger-info {
-        margin: unset;
-        .vp-blogger {
-          .vp-blogger-avatar {
-            border-radius: 50%;
-          }
-        }
-      }
-      .vp-blog-infos {
-        @include overflow;
-        margin: unset;
-        width: -moz-available;
-        width: -webkit-fill-available;
-
-        .vp-star-article-wrapper,
-        .vp-category-wrapper,
-        .vp-tag-wrapper,
-        .timeline-list-wrapper {
-          @include overflow;
-
-          .vp-star-article,
-          .vp-category-list,
-          .vp-tag-list,
-          .timeline-content {
-            overflow-y: auto;
-            flex-grow: 1;
-          }
-        }
-      }
-    }
-  }
-
   &.vp-blog-home {
     .vp-blog-mask {
       &:before {
