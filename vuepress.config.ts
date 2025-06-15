@@ -37,7 +37,9 @@ export default defineUserConfig({
   shouldPrefetch: false,
 
   alias: {
-    '@theme-hope/components/MarkdownContent': component('MarkdownContent.vue'),
+    '@theme-hope/components/base/MarkdownContent': component(
+      'MarkdownContent.vue',
+    ),
   },
 
   define: {

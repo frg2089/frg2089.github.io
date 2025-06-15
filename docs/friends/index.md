@@ -1,4 +1,5 @@
 ---
+home: true
 layout: FriendsHome
 icon: link
 index: false

@@ -1,14 +1,12 @@
 <template>
-  <BlogWrapper>
-    <div class="vp-page vp-blog">
-      <BlogHero>
-        <template #info="{ tagline, isFullScreen, text, alt }">
-          <HitokotoBlogHero v-if="text" :text="text" :alt="alt" />
-        </template>
-        <template #bg>
-          <BingHeroBackground />
-        </template>
-      </BlogHero>
+  <Layout>
+    <template #heroInfo="{ text, tagline, style, isFullScreen }">
+      <HitokotoBlogHero v-if="text" :text="text" :alt="text" />
+    </template>
+    <template #heroBg>
+      <BingHeroBackground />
+    </template>
+    <template #content>
       <div class="blog-page-wrapper">
         <main id="main-content" class="vp-blog-main">
           <DropTransition appear :delay="0.16">
@@ -38,21 +36,18 @@
           <InfoPanel />
         </DropTransition>
       </div>
-    </div>
-  </BlogWrapper>
+    </template>
+  </Layout>
 </template>
 
 <script lang="ts" setup>
-import BlogHero from 'vuepress-theme-hope/blog/components/BlogHero.js'
-import BlogWrapper from 'vuepress-theme-hope/blog/components/BlogWrapper.js'
-import InfoPanel from 'vuepress-theme-hope/blog/components/InfoPanel.js'
-import MarkdownContent from 'vuepress-theme-hope/components/MarkdownContent.js'
-import { DropTransition } from 'vuepress-theme-hope/components/transitions/DropTransition.js'
+import InfoPanel from 'vuepress-theme-hope/components/blog/InfoPanel'
+import DropTransition from 'vuepress-theme-hope/components/transitions/DropTransition'
+import Layout from 'vuepress-theme-hope/layouts/base/Layout.js'
 import BingHeroBackground from 'vuepress-theme-hope/presets/BingHeroBackground.js'
 import HitokotoBlogHero from 'vuepress-theme-hope/presets/HitokotoBlogHero.js'
 import FriendCard from '../components/FriendCard.vue'
-
-import 'vuepress-theme-hope/modules/blog/styles/home.scss'
+import MarkdownContent from '../components/MarkdownContent.vue'
 
 const placeholderCalc = (group: unknown[]) => {
   let i = 3
@@ -86,6 +81,10 @@ const friends = しまかぜのともだち.reduce(
 </script>
 
 <style lang="scss">
+.vp-hero-info {
+  flex-direction: column;
+}
+
 .friend-card-panel {
   h4 {
     margin: 0 0.5rem;
