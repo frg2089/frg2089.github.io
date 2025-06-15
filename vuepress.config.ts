@@ -1,4 +1,5 @@
 import { viteBundler } from '@vuepress/bundler-vite'
+import { removePwaPlugin } from '@vuepress/plugin-remove-pwa'
 import { defineUserConfig } from 'vuepress'
 import { getDirname, path } from 'vuepress/utils'
 import friends from './vuepress.friends'
@@ -45,4 +46,10 @@ export default defineUserConfig({
   define: {
     しまかぜのともだち: friends,
   },
+
+  plugins: [
+    removePwaPlugin({
+      // options
+    }),
+  ],
 })

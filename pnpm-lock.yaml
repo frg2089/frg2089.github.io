@@ -26,6 +26,9 @@ importers:
       '@vuepress/plugin-redirect':
         specifier: 2.0.0-rc.108
         version: 2.0.0-rc.108(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.30)(sass-embedded@1.89.1)(terser@5.41.0)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.16(typescript@5.8.3)))
+      '@vuepress/plugin-remove-pwa':
+        specifier: 2.0.0-rc.103
+        version: 2.0.0-rc.103(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.30)(sass-embedded@1.89.1)(terser@5.41.0)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.16(typescript@5.8.3)))
       htmlparser2:
         specifier: ^9.1.0
         version: 9.1.0
@@ -1743,6 +1746,11 @@ packages:
   '@vuepress/plugin-redirect@2.0.0-rc.108':
     resolution: {integrity: sha512-TRqEINJKFdpJo5JR9XhIj/B2qbNSW2nhfHVl59RfwQOtZSiB3CXgA5EubW4ZrxZfM6iwqee3CdO75iKaMUg8PA==}
     hasBin: true
+    peerDependencies:
+      vuepress: 2.0.0-rc.23
+
+  '@vuepress/plugin-remove-pwa@2.0.0-rc.103':
+    resolution: {integrity: sha512-lyfdK8M6yd0IQpkL465x78nB73J5H72t/k8Psx+DATPDCwsefIiMBF4TceCyug10zlCmWaSMi2t9Nnxwsg+Z3A==}
     peerDependencies:
       vuepress: 2.0.0-rc.23
 
@@ -6148,6 +6156,10 @@ snapshots:
       vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.30)(sass-embedded@1.89.1)(terser@5.41.0)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.16(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript
+
+  '@vuepress/plugin-remove-pwa@2.0.0-rc.103(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.30)(sass-embedded@1.89.1)(terser@5.41.0)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.16(typescript@5.8.3)))':
+    dependencies:
+      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.30)(sass-embedded@1.89.1)(terser@5.41.0)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.16(typescript@5.8.3))
 
   '@vuepress/plugin-rtl@2.0.0-rc.108(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.30)(sass-embedded@1.89.1)(terser@5.41.0)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.16(typescript@5.8.3)))':
     dependencies:
