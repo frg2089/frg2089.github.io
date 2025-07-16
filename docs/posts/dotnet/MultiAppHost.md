@@ -76,56 +76,95 @@ AppHost 的主要目的是：
 
 ## 实现
 
-通过分析 .Net SDK 的代码可知， AppHost 的文件系统路径是通过一个叫做 `ResolveAppHosts` 的 MSBuild Task 得到的，原本的生成 AppHost 的逻辑是由一个开关 `UseAppHost` 控制的。
-
-那么我们只需要停用原本的逻辑，再实现一个我们自己的逻辑即可。
+由于我们可能不需要所有受支持的 AppHost，我们可以列一个 RID 列表来表示需要的 AppHost。
 
 ```xml
 <Project>
-  <PropertyGroup>
-    <!-- 停用原本的 AppHost 生成逻辑 -->
-    <UseAppHost>false</UseAppHost>
-  </PropertyGroup>
-</Project>
-```
 
-我们可能不需要直接生成所有受支持的 AppHost，所以我们可以列一个 RID 列表
+  <!-- ... -->
 
-```xml
-<Project>
   <PropertyGroup>
     <!-- RID 列表 -->
-    <UseMultiAppHostRuntimeIdentifiers>
+    <MultiAppHostRuntimeIdentifiers>
       win-x64;win-x86;win-arm64;
-      linux-x64;linux-musl-x64;
-      linux-arm64;linux-musl-arm64;
+      linux-x64;linux-arm64;
+      linux-musl-x64;linux-musl-arm64;
       osx-x64;osx-arm64
-    </UseMultiAppHostRuntimeIdentifiers>
+    </MultiAppHostRuntimeIdentifiers>
   </PropertyGroup>
+
+  <!-- ... -->
+
 </Project>
 ```
 
-由于这是一个属性，我们需要把它转换成项，所以需要写一个 Target
+由于需要用于批处理，我们需要通过一个 Target 来将属性转换成项。
+并且，因为我们已经使用了自己的逻辑来生成 AppHost ，原本的工作流里的 AppHost 生成逻辑就没有用了。
+通过查阅 .Net SDK 的代码可知，原本的生成 AppHost 的逻辑是由一个开关 `UseAppHost` 控制的，
+所以只要设置它为 `false` 就可以了。
 
 ```xml
 <Project>
-  <Target Name="_ResolveMultiAppHostRuntimeIdentifier" Condition="'$(UseAppHost)' != 'true'">
+
+  <!-- ... -->
+
+  <Target
+    Name="_ResolveMultiAppHostRuntimeIdentifier"
+    BeforeTargets="_ResolveMultiAppHost"
+    Condition="'$(MultiAppHostRuntimeIdentifiers)' != ''">
+    <PropertyGroup>
+      <!-- 停用原本的 AppHost 生成逻辑 -->
+      <UseAppHost>false</UseAppHost>
+    </PropertyGroup>
+
     <ItemGroup>
-      <MultiAppHostRuntimeIdentifier Include="$(UseMultiAppHostRuntimeIdentifiers)" />
+      <!-- 转换 Property 为 Item -->
+      <MultiAppHostRuntimeIdentifier Include="$(MultiAppHostRuntimeIdentifiers)" />
     </ItemGroup>
   </Target>
+
+  <!-- ... -->
+
 </Project>
 ```
 
-接下来需要获取 AppHost 的文件系统路径
+接下来需要获取 AppHost 的文件系统路径。
+我们先定义一个 Target。
 
 ```xml
 <Project>
+
+  <!-- ... -->
+
   <Target
     Name="_ResolveMultiAppHost"
-    DependsOnTargets="_ResolveMultiAppHostRuntimeIdentifier"
     Outputs="%(MultiAppHostRuntimeIdentifier.Identity)"
-    Condition="'$(UseAppHost)' != 'true'">
+    Condition="'$(MultiAppHostRuntimeIdentifiers)' != ''">
+
+    <!-- TODO: 获取 AppHost 的文件系统路径。 -->
+
+  </Target>
+
+  <!-- ... -->
+
+</Project>
+```
+
+通过分析 .Net SDK 的代码可知， AppHost 的文件系统路径是通过一个叫做 `ResolveAppHosts` 的 MSBuild Task 得到的，我们直接照抄代码。
+
+注意要修改 `ResolveAppHosts` 的 `AppHostRuntimeIdentifier` 属性。
+注意要修改 `ResolveAppHosts` 的 `PackagesToDownload` 输出，给它重命名一下。
+
+```xml
+<Project>
+
+  <!-- ... -->
+
+  <Target
+    Name="_ResolveMultiAppHost"
+    Outputs="%(MultiAppHostRuntimeIdentifier.Identity)"
+    Condition="'$(MultiAppHostRuntimeIdentifiers)' != ''">
+
     <ResolveAppHosts
       TargetFrameworkIdentifier="$(TargetFrameworkIdentifier)"
       TargetFrameworkVersion="$(_TargetFrameworkVersionWithoutV)"
@@ -143,32 +182,116 @@ AppHost 的主要目的是：
       NuGetRestoreSupported="$(_NuGetRestoreSupported)"
       EnableAppHostPackDownload="$(EnableAppHostPackDownload)"
       NetCoreTargetingPackRoot="$(NetCoreTargetingPackRoot)">
-      <Output TaskParameter="PackagesToDownload" ItemName="_MultiPackageToDownload" />
-      <Output TaskParameter="AppHost" ItemName="_MultiAppHostPack" />
+
+      <Output TaskParameter="PackagesToDownload" ItemName="_MPackageToDownload" />
+      <Output TaskParameter="AppHost" ItemName="AppHostPack" />
+      <Output TaskParameter="SingleFileHost" ItemName="SingleFileHostPack" />
+      <Output TaskParameter="ComHost" ItemName="ComHostPack" />
+      <Output TaskParameter="IjwHost" ItemName="IjwHostPack" />
+      <Output TaskParameter="PackAsToolShimAppHostPacks" ItemName="PackAsToolShimAppHostPack" />
+
     </ResolveAppHosts>
 
-    <PropertyGroup>
-      <_AppHostSourcePath>%(_MultiAppHostPack.Path)</_AppHostSourcePath>
+  </Target>
+
+  <!-- ... -->
+
+</Project>
+```
+
+此时需要注意一件事：并非所有的 AppHost 都在本地的文件系统上，一部分 AppHost 需要从 Nuget.Org 上下载，所以需要添加一些额外的下载包的内容。
+
+可以通过 [PackageDownload](https://learn.microsoft.com/nuget/consume-packages/packagedownload-functionality) 功能来下载包，或者在不支持此特性时使用 PackageReference 来下载包。
+
+> [!WARNING]
+> 由于涉及到包还原，这个 Target 必须在 `CollectPackageReferences` 和 `CollectPackageDownloads` 之前运行。
+> 所以需要添加 `BeforeTargets`
+
+```xml
+<Project>
+
+  <!-- ... -->
+
+  <Target
+    Name="_ResolveMultiAppHost"
+    BeforeTargets="CollectPackageReferences;CollectPackageDownloads"
+    Outputs="%(MultiAppHostRuntimeIdentifier.Identity)"
+    Condition="'$(MultiAppHostRuntimeIdentifiers)' != ''">
+
+    <!-- ... -->
+
+    <!-- 当包不存在时下载包 -->
+    <PropertyGroup Condition="'$(UsePackageDownload)' == ''">
+      <UsePackageDownload Condition="'$(MSBuildRuntimeType)' == 'Core'">true</UsePackageDownload>
+      <UsePackageDownload Condition="'$(PackageDownloadSupported)' == 'true'">true</UsePackageDownload>
+      <UsePackageDownload Condition="'$(UsePackageDownload)' == ''">false</UsePackageDownload>
     </PropertyGroup>
 
-    <!-- 由于 AppHost 可能是从 Nuget.Org 中现下载的，此时 _MultiAppHostPack.Path 为空，需要特殊处理。 -->
-    <PropertyGroup Condition="'$(_AppHostSourcePath)' == ''">
-      <_AppHostSourcePath>%(_MultiAppHostPack.NuGetPackageId)</_AppHostSourcePath>
-      <_AppHostSourcePath>$(_AppHostSourcePath.ToLower())\%(_MultiAppHostPack.NuGetPackageVersion)\%(_MultiAppHostPack.PathInPackage)</_AppHostSourcePath>
-      <_AppHostSourcePath>$(NuGetPackageRoot)\$(_AppHostSourcePath)</_AppHostSourcePath>
+    <ItemGroup Condition="'$(UsePackageDownload)' == 'true'">
+      <PackageDownload Include="@(_MPackageToDownload)">
+        <Version>[%(_MPackageToDownload.Version)]</Version>
+      </PackageDownload>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(UsePackageDownload)' != 'true'">
+      <PackageReference Include="@(_MPackageToDownload)"
+        IsImplicitlyDefined="true"
+        PrivateAssets="all"
+        ExcludeAssets="all" />
+    </ItemGroup>
+
+    <!-- Add implicit package references that don't already exist in PackageReference. -->
+    <ItemGroup>
+      <_ImplicitPackageReference Remove="@(PackageReference)" />
+      <PackageReference Include="@(_ImplicitPackageReference)"
+        IsImplicitlyDefined="true"
+        PrivateAssets="all" />
+    </ItemGroup>
+
+  </Target>
+
+  <!-- ... -->
+
+</Project>
+```
+
+在下载完 Nuget 包之后，我们需要拼出所有的 AppHost 的文件系统路径，并写到一个项中备用。
+
+```xml
+<Project>
+
+  <!-- ... -->
+
+  <Target
+    Name="_ResolveMultiAppHost"
+    BeforeTargets="CollectPackageReferences;CollectPackageDownloads"
+    Outputs="%(MultiAppHostRuntimeIdentifier.Identity)"
+    Condition="'$(MultiAppHostRuntimeIdentifiers)' != ''">
+
+    <!-- ... -->
+
+    <PropertyGroup>
+      <_AppHostSourcePath Condition="'%(AppHostPack.Path)' != ''">%(AppHostPack.Path)</_AppHostSourcePath>
+      <!-- 由于 AppHost 可能是从 Nuget.Org 中现下载的，此时 AppHostPack.Path 为空，需要特殊处理。 -->
+      <_AppHostSourcePath Condition="'%(AppHostPack.Path)' == ''">$(NuGetPackageRoot)\%(AppHostPack.NuGetPackageId)\%(AppHostPack.NuGetPackageVersion)\%(AppHostPack.PathInPackage)</_AppHostSourcePath>
     </PropertyGroup>
 
     <ItemGroup>
-      <MultiAppHost Include="@(MultiAppHostRuntimeIdentifier -> '$(IntermediateOutputPath)AppHosts\%(Identity)$([System.IO.Path]::GetExtension($(_AppHostSourcePath)))')">
+      <MultiAppHost
+        Include="@(MultiAppHostRuntimeIdentifier -> '$(IntermediateOutputPath)AppHosts\%(Identity)$([System.IO.Path]::GetExtension($(_AppHostSourcePath)))')">
         <AppHostSourcePath>$(_AppHostSourcePath)</AppHostSourcePath>
         <AppHostRuntimeIdentifier>%(Identity)</AppHostRuntimeIdentifier>
       </MultiAppHost>
     </ItemGroup>
+
   </Target>
+
+  <!-- ... -->
+
 </Project>
 ```
 
-最后，我们需要处理这些 AppHost ，用实际的程序集路径替换占位符
+最后，我们需要处理上一步中的项，将实际的AppHost文件复制到 obj 文件夹中。
 
 ```xml
 <Project>
