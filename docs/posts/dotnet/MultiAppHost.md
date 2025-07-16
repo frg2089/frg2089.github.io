@@ -152,8 +152,9 @@ AppHost 的主要目的是：
 
 通过分析 .Net SDK 的代码可知， AppHost 的文件系统路径是通过一个叫做 `ResolveAppHosts` 的 MSBuild Task 得到的，我们直接照抄代码。
 
-注意要修改 `ResolveAppHosts` 的 `AppHostRuntimeIdentifier` 属性。
-注意要修改 `ResolveAppHosts` 的 `PackagesToDownload` 输出，给它重命名一下。
+> [!WARNING]
+> 记得修改 `ResolveAppHosts` 的 `AppHostRuntimeIdentifier` 属性。
+> 记得修改 `ResolveAppHosts` 的 `PackagesToDownload` 输出，给它重命名一下。
 
 ```xml
 <Project>
@@ -257,6 +258,11 @@ AppHost 的主要目的是：
 
 在下载完 Nuget 包之后，我们需要拼出所有的 AppHost 的文件系统路径，并写到一个项中备用。
 
+> [!WARNING]
+> 在 restore 阶段，NuGetPackageRoot 属性不存在，可以通过依赖目标 \_GetRestoreSettings 后使用属性 \_OutputPackagesPath 获取
+>
+> 在一些区分大小写的系统中直接使用 NuGetPackageId 可能会出现问题，这里需要处理一下，让它变成小写的包名
+
 ```xml
 <Project>
 
@@ -265,6 +271,7 @@ AppHost 的主要目的是：
   <Target
     Name="_ResolveMultiAppHost"
     BeforeTargets="CollectPackageReferences;CollectPackageDownloads"
+    DependsOnTargets="_GetRestoreSettings"
     Outputs="%(MultiAppHostRuntimeIdentifier.Identity)"
     Condition="'$(MultiAppHostRuntimeIdentifiers)' != ''">
 
@@ -273,7 +280,8 @@ AppHost 的主要目的是：
     <PropertyGroup>
       <_AppHostSourcePath Condition="'%(AppHostPack.Path)' != ''">%(AppHostPack.Path)</_AppHostSourcePath>
       <!-- 由于 AppHost 可能是从 Nuget.Org 中现下载的，此时 AppHostPack.Path 为空，需要特殊处理。 -->
-      <_AppHostSourcePath Condition="'%(AppHostPack.Path)' == ''">$(NuGetPackageRoot)\%(AppHostPack.NuGetPackageId)\%(AppHostPack.NuGetPackageVersion)\%(AppHostPack.PathInPackage)</_AppHostSourcePath>
+      <_AppHostSourcePath Condition="'%(AppHostPack.Path)' == ''">%(AppHostPack.NuGetPackageId)</_AppHostSourcePath>
+      <_AppHostSourcePath Condition="'%(AppHostPack.Path)' == ''">$(_OutputPackagesPath)\$(_AppHostSourcePath.ToLower())\%(AppHostPack.NuGetPackageVersion)\%(AppHostPack.PathInPackage)</_AppHostSourcePath>
     </PropertyGroup>
 
     <ItemGroup>
