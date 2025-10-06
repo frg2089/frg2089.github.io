@@ -43,7 +43,6 @@ date: 2020-11-25
    ```
 
 1. 取出所有bmp文件
-
    1. 进入"\_splash.img.extracted"目录, 将步骤0中'DESCRIPTION'为'PC bitmap, Windows 3.x format'的'HEXADECIMAL'值相等的文件添加.bmp扩展名
 
    2. 移除非.bmp扩展名的文件
