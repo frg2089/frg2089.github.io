@@ -1,5 +1,6 @@
 ---
 category:
+  - Windows
   - WSL
 tag:
   - WSL
