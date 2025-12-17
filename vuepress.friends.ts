@@ -9,7 +9,7 @@ const friends: ThemeBlogHomeProjectOptions[] = [
   },
   {
     name: 'MWXの花田',
-    icon: 'https://dkrain.com/assets/img/auther.jpg',
+    icon: 'https://avatars.githubusercontent.com/u/146726100',
     desc: 'MWX!',
     link: 'https://dkrain.com',
   },
