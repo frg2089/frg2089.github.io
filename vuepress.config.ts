@@ -13,7 +13,15 @@ const component = (component: string) =>
 
 export default defineUserConfig({
   bundler: viteBundler({
-    viteOptions: {},
+    viteOptions: {
+      css: {
+        preprocessorOptions: {
+          scss: {
+            silenceDeprecations: ['if-function'],
+          },
+        },
+      },
+    },
     vuePluginOptions: {},
   }),
 

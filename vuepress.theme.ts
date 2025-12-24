@@ -67,6 +67,9 @@ export default hopeTheme(
       figure: true,
       highlighter: {
         type: 'shiki',
+        langAlias: {
+          pwsh: 'powershell',
+        },
         lineNumbers: true,
         removeLastLine: true,
         preWrapper: true,
