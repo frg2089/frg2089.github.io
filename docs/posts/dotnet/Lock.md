@@ -1,7 +1,7 @@
 ---
-category:
+categories:
   - .Net
-tag:
+tags:
   - .Net
 ---
 

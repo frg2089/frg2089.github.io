@@ -1,9 +1,9 @@
 ---
-category:
+categories:
   - 前端
   - Vue
   - Vue3
-tag:
+tags:
   - 前端
   - Vue
   - Vue3

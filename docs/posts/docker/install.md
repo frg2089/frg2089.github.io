@@ -1,7 +1,7 @@
 ---
-category:
+categories:
   - docker
-tag:
+tags:
   - docker
 ---
 

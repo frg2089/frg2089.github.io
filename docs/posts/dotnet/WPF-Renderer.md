@@ -1,8 +1,8 @@
 ---
-category:
+categories:
   - .Net
   - WPF
-tag:
+tags:
   - .Net
   - WPF
   - C#

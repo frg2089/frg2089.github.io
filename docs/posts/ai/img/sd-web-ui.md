@@ -1,11 +1,9 @@
 ---
-category:
+categories:
   - ai
-tag:
+tags:
   - ai
   - stable-diffusion
-redirectFrom:
-  - /posts/sd-web-ui/index.html
 ---
 
 # 部署 stable-diffusion-webui-docker

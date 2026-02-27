@@ -1,8 +1,8 @@
 ---
-category:
+categories:
   - Windows
   - WSL
-tag:
+tags:
   - WSL
   - Registry
 date: 2020-07-10

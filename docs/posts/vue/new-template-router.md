@@ -1,15 +1,18 @@
 ---
-category:
+categories:
   - 前端
   - Vue
   - Vue3
-tag:
+tags:
   - 前端
   - Vue
   - Vue3
   - Vite
   - vue-router
 ---
+
+> [!important]
+> 文章又过期了，留在这凑数的 vue-router 5 以后自带了这个功能，可以直接使用
 
 我觉得有必要在这里提一嘴这个好用的插件
 

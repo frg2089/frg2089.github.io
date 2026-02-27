@@ -1,8 +1,8 @@
 ---
-category:
+categories:
   - .Net
   - RA2
-tag:
+tags:
   - .Net
   - C#
   - RA2

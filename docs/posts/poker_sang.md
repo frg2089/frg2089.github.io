@@ -1,8 +1,8 @@
 ---
-category:
+categories:
   - Blog
   - Hexo
-tag:
+tags:
   - Hexo
   - Blog
   - SSG

@@ -1,8 +1,8 @@
 ---
-category:
+categories:
   - .Net
   - ASP.Net
-tag:
+tags:
   - .Net
   - ASP.Net
 ---

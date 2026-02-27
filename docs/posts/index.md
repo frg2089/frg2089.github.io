@@ -1,8 +1,8 @@
 ---
 title: 文章
-index: false
+catalogue: true
+layout: page
+path: posts
 article: false
 sitemap: false
 ---
-
-<Catalog/>

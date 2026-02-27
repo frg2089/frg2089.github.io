@@ -1,9 +1,9 @@
 ---
-category:
+categories:
   - SHP
   - Blender
   - RA2
-tag:
+tags:
   - .Net
   - C#
   - RA2
