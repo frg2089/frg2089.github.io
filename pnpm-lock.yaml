@@ -11,6 +11,12 @@ importers:
       '@giscus/vue':
         specifier: ^3.1.1
         version: 3.1.1(vue@3.5.29(typescript@5.9.3))
+      '@types/node':
+        specifier: ^25.3.2
+        version: 25.3.2
+      htmlparser2:
+        specifier: ^10.1.0
+        version: 10.1.0
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -25,10 +31,10 @@ importers:
         version: 0.21.2(prettier@3.8.1)
       vitepress:
         specifier: 2.0.0-alpha.16
-        version: 2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3)
+        version: 2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3)
       vitepress-theme-teek:
         specifier: ^1.5.4
-        version: 1.5.4(vitepress@2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3))(vue@3.5.29(typescript@5.9.3))
+        version: 1.5.4(vitepress@2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3))(vue@3.5.29(typescript@5.9.3))
 
 packages:
 
@@ -422,6 +428,9 @@ packages:
   '@types/mdurl@2.0.0':
     resolution: {integrity: sha512-RGdgjQUZba5p6QEFAVx2OGb8rQDL/cPRG7GiedRzMcJ1tYnUANBncjbSB1NRGwbvjcPeikRABz2nshyPk1bhWg==}
 
+  '@types/node@25.3.2':
+    resolution: {integrity: sha512-RpV6r/ij22zRRdyBPcxDeKAzH43phWVKEjL2iksqo1Vz3CuBUrgmPpPhALKiRfU7OMCmeeO9vECBMsV0hMTG8Q==}
+
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
 
@@ -584,6 +593,23 @@ packages:
   devlop@1.1.0:
     resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
 
+  dom-serializer@2.0.0:
+    resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
+
+  domelementtype@2.3.0:
+    resolution: {integrity: sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw==}
+
+  domhandler@5.0.3:
+    resolution: {integrity: sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==}
+    engines: {node: '>= 4'}
+
+  domutils@3.2.2:
+    resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
+
+  entities@4.5.0:
+    resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
+    engines: {node: '>=0.12'}
+
   entities@7.0.1:
     resolution: {integrity: sha512-TWrgLOFUQTH994YUyl1yT4uyavY5nNB5muff+RtWaqNVCAK408b5ZnnbNAUEWLTCpum9w6arT70i1XdQ4UeOPA==}
     engines: {node: '>=0.12'}
@@ -640,6 +666,9 @@ packages:
 
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
+
+  htmlparser2@10.1.0:
+    resolution: {integrity: sha512-VTZkM9GWRAtEpveh7MSF6SjjrpNVNNVJfFup7xTY3UpFtm67foy9HDVXneLtFVt4pMz5kZtgNcvCniNFb1hlEQ==}
 
   husky@9.1.7:
     resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
@@ -826,6 +855,9 @@ packages:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  undici-types@7.18.2:
+    resolution: {integrity: sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==}
 
   unist-util-is@6.0.1:
     resolution: {integrity: sha512-LsiILbtBETkDz8I9p1dQ0uyRUWuaQzd/cuEeS1hoRSyW5E5XGmTzlwY1OrNzzakGowI9Dr/I8HVaw4hTtnxy8g==}
@@ -1212,6 +1244,10 @@ snapshots:
 
   '@types/mdurl@2.0.0': {}
 
+  '@types/node@25.3.2':
+    dependencies:
+      undici-types: 7.18.2
+
   '@types/trusted-types@2.0.7': {}
 
   '@types/unist@3.0.3': {}
@@ -1220,10 +1256,10 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vitejs/plugin-vue@6.0.4(vite@7.3.1)(vue@3.5.29(typescript@5.9.3))':
+  '@vitejs/plugin-vue@6.0.4(vite@7.3.1(@types/node@25.3.2))(vue@3.5.29(typescript@5.9.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-rc.2
-      vite: 7.3.1
+      vite: 7.3.1(@types/node@25.3.2)
       vue: 3.5.29(typescript@5.9.3)
 
   '@volar/language-core@2.4.28':
@@ -1376,6 +1412,26 @@ snapshots:
     dependencies:
       dequal: 2.0.3
 
+  dom-serializer@2.0.0:
+    dependencies:
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+      entities: 4.5.0
+
+  domelementtype@2.3.0: {}
+
+  domhandler@5.0.3:
+    dependencies:
+      domelementtype: 2.3.0
+
+  domutils@3.2.2:
+    dependencies:
+      dom-serializer: 2.0.0
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+
+  entities@4.5.0: {}
+
   entities@7.0.1: {}
 
   esbuild@0.27.3:
@@ -1458,6 +1514,13 @@ snapshots:
   hookable@5.5.3: {}
 
   html-void-elements@3.0.0: {}
+
+  htmlparser2@10.1.0:
+    dependencies:
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+      domutils: 3.2.2
+      entities: 7.0.1
 
   husky@9.1.7: {}
 
@@ -1665,6 +1728,8 @@ snapshots:
 
   typescript@5.9.3: {}
 
+  undici-types@7.18.2: {}
+
   unist-util-is@6.0.1:
     dependencies:
       '@types/unist': 3.0.3
@@ -1698,7 +1763,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite@7.3.1:
+  vite@7.3.1(@types/node@25.3.2):
     dependencies:
       esbuild: 0.27.3
       fdir: 6.5.0(picomatch@4.0.3)
@@ -1707,6 +1772,7 @@ snapshots:
       rollup: 4.59.0
       tinyglobby: 0.2.15
     optionalDependencies:
+      '@types/node': 25.3.2
       fsevents: 2.3.3
 
   vitepress-plugin-auto-frontmatter@1.0.13:
@@ -1725,47 +1791,47 @@ snapshots:
       gray-matter: 4.0.3
       picocolors: 1.1.1
 
-  vitepress-plugin-file-content-loader@1.0.13(vitepress@2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3)):
+  vitepress-plugin-file-content-loader@1.0.13(vitepress@2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3)):
     dependencies:
       gray-matter: 4.0.3
       picocolors: 1.1.1
       tinyglobby: 0.2.15
-      vitepress: 2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3)
+      vitepress: 2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3)
 
   vitepress-plugin-md-h1@1.0.11:
     dependencies:
       gray-matter: 4.0.3
 
-  vitepress-plugin-permalink@1.2.1(vitepress@2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3)):
+  vitepress-plugin-permalink@1.2.1(vitepress@2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3)):
     dependencies:
       gray-matter: 4.0.3
       picocolors: 1.1.1
-      vitepress: 2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3)
+      vitepress: 2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3)
 
-  vitepress-plugin-sidebar-resolve@1.2.1(vitepress@2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3)):
+  vitepress-plugin-sidebar-resolve@1.2.1(vitepress@2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3)):
     dependencies:
       gray-matter: 4.0.3
       picocolors: 1.1.1
-      vitepress: 2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3)
+      vitepress: 2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3)
 
-  vitepress-theme-teek@1.5.4(vitepress@2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3))(vue@3.5.29(typescript@5.9.3)):
+  vitepress-theme-teek@1.5.4(vitepress@2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3))(vue@3.5.29(typescript@5.9.3)):
     dependencies:
       '@iconify/vue': 4.3.0(vue@3.5.29(typescript@5.9.3))
       gray-matter: 4.0.3
       js-yaml: 4.1.1
       markdown-it-container: 4.0.0
-      vitepress: 2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3)
+      vitepress: 2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3)
       vitepress-plugin-auto-frontmatter: 1.0.13
       vitepress-plugin-catalogue: 1.1.2
       vitepress-plugin-doc-analysis: 1.0.13
-      vitepress-plugin-file-content-loader: 1.0.13(vitepress@2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3))
+      vitepress-plugin-file-content-loader: 1.0.13(vitepress@2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3))
       vitepress-plugin-md-h1: 1.0.11
-      vitepress-plugin-permalink: 1.2.1(vitepress@2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3))
-      vitepress-plugin-sidebar-resolve: 1.2.1(vitepress@2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3))
+      vitepress-plugin-permalink: 1.2.1(vitepress@2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3))
+      vitepress-plugin-sidebar-resolve: 1.2.1(vitepress@2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3))
     transitivePeerDependencies:
       - vue
 
-  vitepress@2.0.0-alpha.16(postcss@8.5.6)(typescript@5.9.3):
+  vitepress@2.0.0-alpha.16(@types/node@25.3.2)(postcss@8.5.6)(typescript@5.9.3):
     dependencies:
       '@docsearch/css': 4.6.0
       '@docsearch/js': 4.6.0
@@ -1775,7 +1841,7 @@ snapshots:
       '@shikijs/transformers': 3.23.0
       '@shikijs/types': 3.23.0
       '@types/markdown-it': 14.1.2
-      '@vitejs/plugin-vue': 6.0.4(vite@7.3.1)(vue@3.5.29(typescript@5.9.3))
+      '@vitejs/plugin-vue': 6.0.4(vite@7.3.1(@types/node@25.3.2))(vue@3.5.29(typescript@5.9.3))
       '@vue/devtools-api': 8.0.6
       '@vue/shared': 3.5.29
       '@vueuse/core': 14.2.1(vue@3.5.29(typescript@5.9.3))
@@ -1784,7 +1850,7 @@ snapshots:
       mark.js: 8.11.1
       minisearch: 7.2.0
       shiki: 3.23.0
-      vite: 7.3.1
+      vite: 7.3.1(@types/node@25.3.2)
       vue: 3.5.29(typescript@5.9.3)
     optionalDependencies:
       postcss: 8.5.6

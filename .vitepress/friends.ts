@@ -1,0 +1,42 @@
+import { FriendLinkItem } from 'vitepress-theme-teek'
+
+const friends: FriendLinkItem[] = [
+  {
+    name: "Dylech30th's Blog",
+    avatar: 'https://sora.ink/wp-content/uploads/avatar.jpg',
+    desc: '是DC姐姐',
+    link: 'https://sora.ink/',
+  },
+  {
+    name: 'MWXの花田',
+    avatar: 'https://avatars.githubusercontent.com/u/146726100',
+    desc: 'MWX!',
+    link: 'https://dkrain.com',
+  },
+  {
+    name: 'ControlNet Blog',
+    avatar: 'https://controlnet.space/images/avatar.jpg',
+    desc: '永远13岁~',
+    link: 'https://controlnet.space/',
+  },
+  {
+    name: '扑克博客',
+    avatar: 'https://poker-sang.github.io/imgs/avatar.png',
+    desc: '太笨了！',
+    link: 'https://poker-sang.github.io/',
+  },
+  {
+    name: 'AgxCOy',
+    avatar: 'https://agxcoy.shimakaze.org/assets/images/avatar.webp',
+    desc: '致敬传奇改名王',
+    link: 'https://agxcoy.shimakaze.org/',
+  },
+  {
+    name: '红枫',
+    avatar: 'https://rm.shimakaze.org/MapleLeaf.webp',
+    desc: '知名（大概）模组作者',
+    link: 'https://rm.shimakaze.org/',
+  },
+]
+
+export default friends.sort((a, b) => (a.name > b.name ? 1 : -1))
