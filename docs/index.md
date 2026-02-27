@@ -1,14 +1,13 @@
 ---
-home: true
-layout: Blog
-icon: house
+layout: home
+teekHome: true
 title: 首页
-# using public anime wallpaper API
+
+icon: house
 bgImage: https://www.loliapi.com/acg/
 heroImage: /avatar.webp
 heroText: 岛风的船坞
 heroFullScreen: true
-tagline: 这里是岛风的船坞，这里充满了自然的气息（杂乱、破败且杂草丛生）。
 projects:
   - icon: tabler:sdk
     name: Shimakaze.SDK

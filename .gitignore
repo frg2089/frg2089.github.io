@@ -1,4 +1,3 @@
 /node_modules/
-/.cache/
-/.temp/
 /dist/
+.vitepress/cache/
