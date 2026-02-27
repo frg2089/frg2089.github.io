@@ -17,6 +17,8 @@ export default defineConfig({
   head,
   // https://vitepress.dev/reference/default-theme-config
   themeConfig: {
+    logo: 'avatar.webp',
+
     nav,
 
     sidebar,
@@ -29,5 +31,25 @@ export default defineConfig({
         indexName: 'shimakaze',
       },
     },
+
+    lastUpdated: {
+      text: '最后更新时间',
+    },
+
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/frg2089',
+      },
+    ],
+
+    editLink: {
+      pattern:
+        'https://github.com/frg2089/frg2089.github.io/edit/master/docs/:path',
+      text: '在 GitHub 上编辑此页',
+    },
+  },
+  sitemap: {
+    hostname: 'https://blog.shimakaze.dev',
   },
 })

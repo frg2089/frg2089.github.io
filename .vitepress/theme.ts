@@ -112,9 +112,12 @@ export default defineTeekConfig({
   vitePlugins: {
     sidebarOption: {
       titleFormMd: true,
+      ignoreIndexMd: true,
+      collapsed: true,
     },
     catalogueOption: {
       titleFormMd: true,
+      ignoreIndexMd: true,
     },
     autoFrontmatterOption: {
       permalink: false,
