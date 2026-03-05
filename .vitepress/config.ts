@@ -1,8 +1,18 @@
+import HolidayGlobal from 'holiday-calendar/data/index.json' with { type: 'json' }
 import { defineConfig } from 'vitepress'
 import head from './head'
 import nav from './navbar'
 import sidebar from './sidebar'
 import teekConfig from './theme'
+
+const currentYear = new Date().getFullYear()
+const endYear = HolidayGlobal.regions.find(i => i.name === 'CN')?.endYear
+if (!endYear) throw '假日数据不可用'
+if (endYear < currentYear) throw '假日数据未更新'
+const holidayCalendar = await import(
+  `holiday-calendar/data/CN/${new Date().getFullYear()}.json`,
+  { with: { type: 'json' } }
+)
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -51,5 +61,11 @@ export default defineConfig({
   },
   sitemap: {
     hostname: 'https://blog.shimakaze.dev',
+  },
+
+  vite: {
+    define: {
+      __HOLIDAY__: holidayCalendar.default,
+    },
   },
 })
