@@ -1,6 +1,15 @@
 <template>
   <TkPageCard>
     <div class="card-widget" id="card-widget-calendar">
+      <div id="calendar-controls">
+        <button class="control-btn" @click="prevYear" title="上一年">«</button>
+        <button class="control-btn" @click="prevMonth" title="上一月">‹</button>
+        <span class="current-date">
+          {{ displayYear }}年 {{ displayMonth }}月
+        </span>
+        <button class="control-btn" @click="nextMonth" title="下一月">›</button>
+        <button class="control-btn" @click="nextYear" title="下一年">»</button>
+      </div>
       <div class="item-headline">
         <i class="icon-calendar"></i>
       </div>
@@ -76,14 +85,57 @@ const formater = new Intl.DateTimeFormat('zh-CN', {
 // 星期几中文映射
 const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
 
-// 当前日期
+// 当前日期（实际日期，用于判断今天）
 const today = ref(new Date())
+// 显示的日期（用于日历显示）
+const displayDate = ref(new Date())
 const holidayCalendar = __HOLIDAY__
+
+// 显示的年份和月份
+const displayYear = computed(() => displayDate.value.getFullYear())
+const displayMonth = computed(() => displayDate.value.getMonth() + 1)
+
+// 切换到当前月份
+const goToToday = () => {
+  displayDate.value = new Date(today.value)
+}
+
+// 上一年
+const prevYear = () => {
+  displayDate.value = new Date(
+    displayDate.value.getFullYear() - 1,
+    displayDate.value.getMonth(),
+    1,
+  )
+}
+
+// 下一年
+const nextYear = () => {
+  displayDate.value = new Date(
+    displayDate.value.getFullYear() + 1,
+    displayDate.value.getMonth(),
+    1,
+  )
+}
+
+// 上一月
+const prevMonth = () => {
+  const newDate = new Date(displayDate.value)
+  newDate.setMonth(newDate.getMonth() - 1)
+  displayDate.value = newDate
+}
+
+// 下一月
+const nextMonth = () => {
+  const newDate = new Date(displayDate.value)
+  newDate.setMonth(newDate.getMonth() + 1)
+  displayDate.value = newDate
+}
 
 // 生成当前月份的日历数据
 const calendarWeeks = computed(() => {
-  const year = today.value.getFullYear()
-  const month = today.value.getMonth()
+  const year = displayDate.value.getFullYear()
+  const month = displayDate.value.getMonth()
 
   // 当月第一天
   const firstDay = new Date(year, month, 1)
@@ -364,7 +416,7 @@ onMounted(() => {
   align-items: center;
   display: flex;
   position: absolute;
-  top: calc(50% - 2.1rem);
+  top: calc(50% - 0.6rem);
 }
 
 #calendar-solar {
@@ -386,6 +438,56 @@ onMounted(() => {
 
 #calendar-area-right {
   width: 55%;
+}
+
+#calendar-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.current-date {
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 90px;
+  text-align: center;
+}
+
+.control-btn {
+  background: transparent;
+  border: unset;
+  color: var(--vp-c-text-1);
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s;
+  padding: 0;
+}
+
+.control-btn:hover {
+  background: var(--vp-c-brand-1);
+  color: #fff;
+  border-color: var(--vp-c-brand-1);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+.dark .control-btn {
+  border-color: var(--vp-c-divider-dark);
+}
+
+.dark .control-btn:hover {
+  background: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
 }
 
 #calendar-main {
