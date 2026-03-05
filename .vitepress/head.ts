@@ -55,13 +55,10 @@ const document = html`
 
 const head: HeadConfig[] = parseDocument(document)
   .children.filter(i => 'name' in i && 'tagName' in i)
-  .map(i => {
+  .map<HeadConfig>(i => {
     const tag = i.tagName
     const attributes = Object.fromEntries(
-      i.attributes.map(({ name, value }) => [
-        name,
-        value === '' ? true : value,
-      ]),
+      i.attributes.map(({ name, value }) => [name, value]),
     )
 
     const context = i.children
@@ -71,6 +68,6 @@ const head: HeadConfig[] = parseDocument(document)
       .trim()
 
     return [tag, attributes, context]
-  }) as any
+  })
 
 export default head
