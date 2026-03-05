@@ -1,4 +1,3 @@
-import HolidayGlobal from 'holiday-calendar/data/index.json' with { type: 'json' }
 import { defineConfig } from 'vitepress'
 import friends from './friends'
 import head from './head'
@@ -6,14 +5,28 @@ import nav from './navbar'
 import sidebar from './sidebar'
 import teekConfig from './theme'
 
-const currentYear = new Date().getFullYear()
-const endYear = HolidayGlobal.regions.find(i => i.name === 'CN')?.endYear
-if (!endYear) throw '假日数据不可用'
-if (endYear < currentYear) throw '假日数据未更新'
-const holidayCalendar = await import(
-  `holiday-calendar/data/CN/${new Date().getFullYear()}.json`,
-  { with: { type: 'json' } }
-)
+const holidayCalendar: Record<number, any> = {}
+try {
+  const { default: HolidayGlobal } = await import(
+    'holiday-calendar/data/index.json',
+    { with: { type: 'json' } }
+  )
+  const cn = HolidayGlobal.regions.find(i => i.name === 'CN')
+  if (!cn) throw '假日数据不可用'
+  if (cn.endYear < new Date().getFullYear()) console.warn('假日数据未更新')
+  for (let year = cn.startYear; year <= cn.endYear; year++) {
+    const data = await import(`holiday-calendar/data/CN/${year}.json`, {
+      with: { type: 'json' },
+    })
+    holidayCalendar[year] = data.default
+  }
+} catch (error) {
+  if (error instanceof Error) {
+    console.warn(`未能成功加载调休数据\r\n    ${error.message}`)
+  } else {
+    console.warn(`未能成功加载调休数据\r\n    ${error}`)
+  }
+}
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -66,7 +79,7 @@ export default defineConfig({
 
   vite: {
     define: {
-      __HOLIDAY__: holidayCalendar.default,
+      __HOLIDAY__: holidayCalendar,
       しまかぜのともだち: friends,
     },
   },

@@ -136,6 +136,7 @@ const nextMonth = () => {
 const calendarWeeks = computed(() => {
   const year = displayDate.value.getFullYear()
   const month = displayDate.value.getMonth()
+  const currentHolidayCalendar = holidayCalendar[year]
 
   // 当月第一天
   const firstDay = new Date(year, month, 1)
@@ -161,7 +162,9 @@ const calendarWeeks = computed(() => {
     for (let i = 0; i < 7; i++) {
       const formattedDate = formater.format(currentDay).replaceAll('/', '-')
 
-      const holiday = holidayCalendar.dates.find(i => i.date === formattedDate)
+      const holiday = currentHolidayCalendar?.dates.find(
+        i => i.date === formattedDate,
+      )
 
       const date = currentDay.getDate()
       const isToday = currentDay.toDateString() === today.value.toDateString()
