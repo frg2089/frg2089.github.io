@@ -14,6 +14,7 @@ const notOnDev = (text: string) =>
   process.env.NODE_ENV === 'development' ? '' : text
 
 const document = html`
+  <link rel="icon" href="/avatar.webp" type="image/webp" />
   <link rel="dns-prefetch" href="https://gravatar.loli.net" />
   <link rel="dns-prefetch" href="https://licensebuttons.net/" />
   <link rel="preconnect" crossorigin href="https://gravatar.loli.net" />

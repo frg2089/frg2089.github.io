@@ -1,5 +1,6 @@
 import HolidayGlobal from 'holiday-calendar/data/index.json' with { type: 'json' }
 import { defineConfig } from 'vitepress'
+import friends from './friends'
 import head from './head'
 import nav from './navbar'
 import sidebar from './sidebar'
@@ -66,6 +67,7 @@ export default defineConfig({
   vite: {
     define: {
       __HOLIDAY__: holidayCalendar.default,
+      しまかぜのともだち: friends,
     },
   },
 })
