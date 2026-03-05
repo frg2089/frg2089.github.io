@@ -126,13 +126,5 @@ export default defineTeekConfig({
 
   markdown: {},
 
-  siteAnalytics: [
-    {
-      provider: 'google',
-      options: {
-        id: 'G-JQ5QWRZZHH',
-        production: true,
-      },
-    },
-  ],
+  siteAnalytics: [],
 })

@@ -51,6 +51,18 @@ const document = html`
       rel="preconnect"
       crossorigin
       href="https://www.googletagmanager.com" />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-JQ5QWRZZHH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'G-JQ5QWRZZHH')
+    </script>
   `)}
 `
 
