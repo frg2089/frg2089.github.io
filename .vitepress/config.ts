@@ -42,6 +42,7 @@ export default defineConfig({
 
   title: '岛风的船坞',
   description: '这里是岛风的个人博客网站',
+  lang: 'zh-CN',
 
   head,
   // https://vitepress.dev/reference/default-theme-config
