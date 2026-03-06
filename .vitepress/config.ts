@@ -106,9 +106,9 @@ export default defineConfig({
       // 页面上却是
       // <a title="创建时间" class="hover-color" aria-label="2025-03-23 16:54:19">2025-03-23 16:54:19</a>
       // 所以此处需要修补时区偏移使其与 VitePress 行为一致
-      const patchDate = date.getTime() - date.getTimezoneOffset() * 60000
+      // const patchDate = date.getTime() - date.getTimezoneOffset() * 60000
 
-      pageData.frontmatter['date'] = patchDate
+      pageData.frontmatter['date'] = date.getTime()
     }
 
     await teekConfig.transformPageData?.(pageData, ctx)
