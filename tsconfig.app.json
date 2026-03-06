@@ -12,8 +12,16 @@
     "jsx": "preserve",
     "strict": true,
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": false
   },
-  "include": [".vitepress/theme/**/*"],
+  "vueCompilerOptions": {
+    "vitePressExtensions": [".md"]
+  },
+  "include": [
+    ".vitepress/theme/**/*",
+    "docs/**/*",
+    "docs/**/*.md",
+    "docs/**/*.vue"
+  ],
   "exclude": ["node_modules", "dist"]
 }
