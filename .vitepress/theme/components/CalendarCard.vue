@@ -73,14 +73,8 @@
 </template>
 
 <script lang="ts" setup>
-import { TkPageCard } from 'vitepress-theme-teek'
+import { formatDate, TkPageCard } from 'vitepress-theme-teek'
 import { computed, onMounted, ref } from 'vue'
-
-const formater = new Intl.DateTimeFormat('zh-CN', {
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-})
 
 // 星期几中文映射
 const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
@@ -155,12 +149,12 @@ const calendarWeeks = computed(() => {
 
   // 生成日历数据
   const weeks = []
-  let currentDay = new Date(startDay)
+  const currentDay = new Date(startDay)
 
   while (currentDay <= endDay) {
     const week = []
     for (let i = 0; i < 7; i++) {
-      const formattedDate = formater.format(currentDay).replaceAll('/', '-')
+      const formattedDate = formatDate(currentDay, 'yyyy-MM-dd', false)
 
       const holiday = currentHolidayCalendar?.dates.find(
         i => i.date === formattedDate,
