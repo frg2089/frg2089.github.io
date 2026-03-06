@@ -88,25 +88,10 @@ export default defineConfig({
       const fullPath = path.resolve(ctx.siteConfig.srcDir, pageData.filePath)
 
       const process = await exec(
-        `git log --reverse -1 --pretty="%ai" "${fullPath}"`,
+        `git log --reverse --pretty="%ai" "${fullPath}"`,
       )
 
-      const date = new Date(process.stdout)
-
-      // Note: 需要对时间进行修补才能使创建时间和 VitePress@1.6.4 更新时间一致
-      // VitePress 获取更新时间的逻辑是
-      // > git log -1 --pretty="%ai" a.md
-      // 2025-03-24 00:54:19 +0800
-      // 在页面上显示的更新时间是
-      // <a title="更新时间" class="hover-color" aria-label="2025-03-24 00:54:19">2025-03-24 00:54:19</a>
-      // 但如果直接将最早提交时间写入 pageData.frontmatter.date
-      // 其结果是不准确的
-      // > git log --reverse -1 --pretty="%ai" a.md
-      // 2025-03-24 00:54:19 +0800
-      // 页面上却是
-      // <a title="创建时间" class="hover-color" aria-label="2025-03-23 16:54:19">2025-03-23 16:54:19</a>
-      // 所以此处需要修补时区偏移使其与 VitePress 行为一致
-      // const patchDate = date.getTime() - date.getTimezoneOffset() * 60000
+      const date = new Date(process.stdout.split(/\n/)[0])
 
       pageData.frontmatter['date'] = date.getTime()
     }
