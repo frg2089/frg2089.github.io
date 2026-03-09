@@ -93,7 +93,7 @@ export default defineTeekConfig({
   },
   riskLink: {
     enabled: true,
-    whitelist: ['https://learn.microsoft.com'],
+    whitelist: ['https://learn.microsoft.com', 'https://github.com/frg2089/'],
   },
   breadcrumb: {
     showCurrentName: true,
