@@ -1,7 +1,9 @@
 <template>
   <Teek.Layout>
     <template #teek-home-card-my-after>
-      <CalendarCard />
+      <ClientOnly>
+        <CalendarCard />
+      </ClientOnly>
     </template>
   </Teek.Layout>
 </template>
