@@ -13,6 +13,6 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": [".vitepress/**/*"],
+  "include": [".vitepress/**/*", "src/**/*"],
   "exclude": [".vitepress/theme/**/*", "node_modules", "dist"]
 }
