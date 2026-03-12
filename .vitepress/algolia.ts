@@ -12,8 +12,8 @@ const translations: DefaultTheme.AlgoliaSearchOptions['translations'] = {
       clearButtonAriaLabel: '清除查询',
       closeButtonText: '关闭',
       closeButtonAriaLabel: '关闭',
-      placeholderText: undefined, // 回退值：'搜索文档' 或 '搜索文档或向岛风提问'
-      placeholderTextAskAi: undefined, // 回退值：'再问岛风一个问题...'
+      placeholderText: '搜索文档或向岛风提问', // fallback: 'Search docs' or 'Search docs or ask AI a question'
+      placeholderTextAskAi: '再问岛风一个问题...', // fallback: 'Ask another question...'
       placeholderTextAskAiStreaming: '正在让岛风做！出！回！答！...',
       // 只能是以下值之一
       // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint#value
