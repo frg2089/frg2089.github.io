@@ -23,6 +23,7 @@ declare namespace Crawler {
 
   export interface IndexData extends Record<string, any> {
     objectID: string
+    url: string
   }
   export interface Index {
     name: string

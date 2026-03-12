@@ -13,6 +13,7 @@ export const markdown = (options: MarkdownOptions): Crawler.Processor => {
 
   return context => {
     if (!context.content) return
+    if (context.frontmatter.article === false) return
 
     const part = 0
     const objectID = `${context.url}#${part}`
@@ -25,6 +26,8 @@ export const markdown = (options: MarkdownOptions): Crawler.Processor => {
     }
 
     const lang = typeof language === 'function' ? language(context) : language
+    const tags = context.frontmatter.tags
+    const categories = context.frontmatter.categories
 
     return {
       name: indexName,
@@ -34,6 +37,8 @@ export const markdown = (options: MarkdownOptions): Crawler.Processor => {
         title,
         text: context.content,
         lang,
+        tags,
+        categories,
         url: context.url,
         part,
       },
