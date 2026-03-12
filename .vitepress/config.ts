@@ -2,6 +2,7 @@ import * as child_process from 'node:child_process'
 import * as path from 'node:path'
 import * as util from 'node:util'
 import { defineConfig } from 'vitepress'
+import algolia from './algolia'
 import friends from './friends'
 import head from './head'
 import nav from './navbar'
@@ -55,16 +56,7 @@ export default defineConfig({
 
     search: {
       provider: 'algolia',
-      options: {
-        appId: 'L43QG2V2U8',
-        apiKey: 'bb9041ad518048e7d6a9974f39d7bcb8',
-        indexName: 'shimakaze',
-        // @ts-ignore
-        askAi: {
-          indexName: 'shimakaze-markdown',
-          assistantId: 'GxqX8NzLrReM',
-        },
-      },
+      options: algolia,
     },
 
     lastUpdated: {
