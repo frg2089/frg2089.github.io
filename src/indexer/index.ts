@@ -139,13 +139,13 @@ class Indexer {
 
       // 批量添加新数据
       for (const [objectID, body] of Object.entries(indexes)) {
-        const response = this.client.addOrUpdateObject({
+        const response = await this.client.addOrUpdateObject({
           indexName,
           objectID,
           body,
         })
 
-        console.log(response)
+        console.info(response)
       }
     }
   }
