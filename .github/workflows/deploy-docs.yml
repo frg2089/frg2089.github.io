@@ -44,13 +44,13 @@ jobs:
       - name: Deploy to EdgeOne Pages
         env:
           EDGEONE_PAGES_API_TOKEN: ${{ secrets.EDGEONE_PAGES_API_TOKEN }}
-        run: pnpm dlx edgeone pages deploy ./dist --name shimakaze-blog --token $EDGEONE_PAGES_API_TOKEN
+        run: pnpm edgeone pages deploy ./dist --name shimakaze-blog --token $EDGEONE_PAGES_API_TOKEN
 
       - name: Index Algolia
         if: env.ALGOLIA_API_KEY
         env:
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-        run: pnpm dlx tsx .\src\index.ts --api-key $ALGOLIA_API_KEY
+        run: pnpm tsx .\src\index.ts --api-key $ALGOLIA_API_KEY
 
       - name: IndexNow
         uses: bojieyang/indexnow-action@v2
