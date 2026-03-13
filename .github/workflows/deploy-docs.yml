@@ -50,7 +50,7 @@ jobs:
         if: env.ALGOLIA_API_KEY
         env:
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-        run: pnpm tsx .\src\index.ts --api-key $ALGOLIA_API_KEY
+        run: pnpm tsx ./src/index.ts --api-key $ALGOLIA_API_KEY
 
       - name: IndexNow
         uses: bojieyang/indexnow-action@v2
