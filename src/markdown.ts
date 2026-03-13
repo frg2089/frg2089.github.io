@@ -2,8 +2,19 @@ interface MarkdownOptions {
   indexName: string
   lang?: string | ((context: Crawler.PageContext) => string)
 }
+interface MarkdownData extends Crawler.IndexData {
+  title: string
+  text: string
+  lang: string
+  tags?: any
+  categories?: any
+  url: string
+  part: number
+}
 
-export const markdown = (options: MarkdownOptions): Crawler.Processor => {
+export const markdown = (
+  options: MarkdownOptions,
+): Crawler.Processor<MarkdownData> => {
   const indexName = options.indexName
   const language = options.lang ?? 'en-US'
 

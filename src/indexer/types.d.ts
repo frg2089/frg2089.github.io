@@ -25,15 +25,15 @@ declare namespace Crawler {
     objectID: string
     url: string
   }
-  export interface Index {
+  export interface Index<TData extends IndexData> {
     name: string
     objectID: string
-    data: IndexData
+    data: TData
   }
 
-  export interface Processor {
+  export interface Processor<TData extends IndexData> {
     (
       context: PageContext,
-    ): PromiseOr<Nullable<Index>[]> | PromiseOr<Nullable<Index>>
+    ): PromiseOr<Nullable<Index<TData>>[]> | PromiseOr<Nullable<Index<TData>>>
   }
 }

@@ -4,7 +4,7 @@ import * as Url from 'node:url'
 import { createMarkdownRenderer } from 'vitepress'
 
 interface TreeNode {
-  level: number
+  level: 0 | 1 | 2 | 3 | 4 | 5 | 6
   parent?: TreeNode
   children?: TreeNode[]
   title?: string
@@ -16,6 +16,36 @@ interface ContentOptions {
   indexName: string
   lang?: string | ((context: Crawler.PageContext) => string)
   lvl0?: string | ((context: Crawler.PageContext) => string)
+}
+
+interface ContentData extends Crawler.IndexData {
+  weight: {
+    pageRank: number
+    level: number
+    position: number
+  }
+  lang: string
+  language: string
+  version: string
+  content?: string
+  type: string
+  hierarchy: {
+    lvl0: string
+    lvl1?: string
+    lvl2?: string
+    lvl3?: string
+    lvl4?: string
+    lvl5?: string
+    lvl6?: string
+  }
+  tags?: string[]
+  categories?: string[]
+  url_without_variables: string
+  url_without_anchor: string
+  anchor?: string
+  content_camel?: string
+  no_variables: boolean
+  recordVersion: string
 }
 
 const getRenderer = async (vitepressConfig: string) => {
@@ -48,7 +78,7 @@ const getText = (html: string) => {
 
 export const content = async (
   options: ContentOptions,
-): Promise<Crawler.Processor> => {
+): Promise<Crawler.Processor<ContentData>> => {
   const indexName = options.indexName
   const language = options.lang ?? 'en-US'
 
@@ -64,9 +94,9 @@ export const content = async (
       objectID: string,
       content: Nullable<string>,
       node: TreeNode,
-      parent: Partial<Crawler.Index['data']>,
+      parent: Partial<ContentData>,
       i: number,
-    ): Crawler.Index => {
+    ): Crawler.Index<ContentData> => {
       const lang = typeof language === 'function' ? language(context) : language
       const tags = context.frontmatter.tags
       const categories = context.frontmatter.categories
@@ -75,7 +105,7 @@ export const content = async (
         ? `${context.url}#${encodeURIComponent(anchor)}`
         : context.url
 
-      const common = {
+      const common: Crawler.Index<ContentData> = {
         name: indexName,
         objectID,
         data: {
@@ -90,9 +120,9 @@ export const content = async (
           language: lang,
           version: '',
           content: undefined,
-          type: undefined,
+          type: undefined!,
           hierarchy: {
-            lvl0: undefined,
+            lvl0: undefined!,
             lvl1: undefined,
             lvl2: undefined,
             lvl3: undefined,
@@ -143,8 +173,8 @@ export const content = async (
     function* build(
       node: TreeNode,
       i: number,
-      parent: Partial<Crawler.Index['data']>,
-    ): Generator<Crawler.Index> {
+      parent: Partial<ContentData>,
+    ): Generator<Crawler.Index<ContentData>> {
       if (node.level !== 0 && node.title) {
         const objectID = `${i}-${context.url}`
         yield buildIndex(indexName, objectID, undefined, node, parent, i)
@@ -186,7 +216,7 @@ export const content = async (
         // 标题
         const space = line.indexOf(' ')
         const title = line.substring(space + 1)
-        const level = line.substring(0, space).length
+        const level = Math.min(line.substring(0, space).length, 6)
 
         while (level < current.level) {
           current = current.parent!
@@ -195,7 +225,7 @@ export const content = async (
           const parent = current
           current = {
             parent,
-            level: parent.level + 1,
+            level: (parent.level + 1) as any,
           }
           parent.children ??= []
           parent.children.push(current)
@@ -203,7 +233,7 @@ export const content = async (
         const parent = current.parent ?? tree
         current = {
           parent,
-          level: parent.level + 1,
+          level: (parent.level + 1) as any,
         }
 
         parent.children ??= []
@@ -216,7 +246,8 @@ export const content = async (
       }
     }
 
-    const lvl0 = typeof _lvl0 === 'function' ? _lvl0(context) : _lvl0
+    const lvl0 =
+      (typeof _lvl0 === 'function' ? _lvl0(context) : _lvl0) ?? 'Document'
     return await Array.fromAsync(build(tree, 0, { hierarchy: { lvl0 } }))
   }
 }
