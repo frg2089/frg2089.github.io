@@ -1,8 +1,11 @@
 import { program } from 'commander'
 import * as path from 'node:path'
+import * as util from 'node:util'
 import { content } from './content'
 import crawler from './indexer'
 import { markdown } from './markdown'
+
+util.inspect.defaultOptions.depth = 5
 
 program
   .option('-k, --api-key <apiKey>', 'algolia write key')

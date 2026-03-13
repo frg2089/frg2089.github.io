@@ -70,25 +70,26 @@ const run = async (
     )
 
   if (dryRun) {
-    console.info(indices)
+    console.info(JSON.stringify(indices, null, 2))
     return
   }
 
   const client = algoliasearch(options.appId, apiKey)
+
   const responses = await Promise.all(
-    Object.entries(indices).map(
-      async ([indexName, indexes]) =>
-        await Promise.all(
-          indexes.map(
-            async index =>
-              await client.addOrUpdateObject({
-                indexName,
-                objectID: index.objectID,
-                body: index,
-              }),
-          ),
+    Object.entries(indices).map(async ([indexName, indexes]) => {
+      await client.clearObjects({ indexName })
+      return await Promise.all(
+        indexes.map(
+          async index =>
+            await client.addOrUpdateObject({
+              indexName,
+              objectID: index.objectID,
+              body: index,
+            }),
         ),
-    ),
+      )
+    }),
   )
 
   return responses.flat()
