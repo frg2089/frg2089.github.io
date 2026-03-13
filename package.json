@@ -18,7 +18,6 @@
     "@types/node": "latest",
     "algoliasearch": "^5.49.2",
     "commander": "^14.0.3",
-    "edgeone": "1.2.29-beta.2",
     "gray-matter": "^4.0.3",
     "holiday-calendar": "latest",
     "htmlparser2": "^10.1.0",

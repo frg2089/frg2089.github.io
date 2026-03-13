@@ -44,7 +44,7 @@ jobs:
       - name: Deploy to EdgeOne Pages
         env:
           EDGEONE_PAGES_API_TOKEN: ${{ secrets.EDGEONE_PAGES_API_TOKEN }}
-        run: pnpm edgeone pages deploy ./dist --name shimakaze-blog --token $EDGEONE_PAGES_API_TOKEN
+        run: pnpm dlx edgeone pages deploy ./dist --name shimakaze-blog --token $EDGEONE_PAGES_API_TOKEN
 
       - name: Index Algolia
         if: env.ALGOLIA_API_KEY
