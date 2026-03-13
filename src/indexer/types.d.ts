@@ -10,7 +10,7 @@ declare namespace Crawler {
 
     appId: string
 
-    processors: Array<Processor>
+    processors: Array<PromiseOr<Processor>>
   }
 
   export interface PageContext {

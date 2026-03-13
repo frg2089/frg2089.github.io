@@ -3,9 +3,11 @@ import matter from 'gray-matter'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 
-const run = async (options: Crawler.CrawlerOptions, apiKey: string) => {
-  const client = algoliasearch(options.appId, apiKey)
-
+const run = async (
+  options: Crawler.CrawlerOptions,
+  apiKey: string,
+  dryRun: boolean,
+) => {
   const src = path.resolve(options.src)
   const baseUrl = new URL(`https://${options.host}`)
 
@@ -46,7 +48,8 @@ const run = async (options: Crawler.CrawlerOptions, apiKey: string) => {
 
       return await Promise.all(
         options.processors.map(async i => {
-          const index = await i(context)
+          const processor = await i
+          const index = await processor(context)
           return Array.isArray(index) ? index : [index]
         }),
       )
@@ -66,6 +69,12 @@ const run = async (options: Crawler.CrawlerOptions, apiKey: string) => {
       {} as Record<string, Crawler.IndexData[]>,
     )
 
+  if (dryRun) {
+    console.info(indices)
+    return
+  }
+
+  const client = algoliasearch(options.appId, apiKey)
   const responses = await Promise.all(
     Object.entries(indices).map(
       async ([indexName, indexes]) =>

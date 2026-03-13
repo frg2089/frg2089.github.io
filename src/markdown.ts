@@ -1,11 +1,7 @@
-import MarkdownIt from 'markdown-it'
-
 interface MarkdownOptions {
   indexName: string
   lang?: string | ((context: Crawler.PageContext) => string)
 }
-
-const md = MarkdownIt()
 
 export const markdown = (options: MarkdownOptions): Crawler.Processor => {
   const indexName = options.indexName
@@ -20,9 +16,11 @@ export const markdown = (options: MarkdownOptions): Crawler.Processor => {
     let title = context.frontmatter.title
 
     if (!title) {
-      const tokens = md.parse(context.content, {})
-      const index = tokens.findIndex(i => i.tag === 'h1')
-      title = tokens[index + 1]?.content
+      const lines = context.content.split(/\r?\n|\r/)
+      title = lines
+        .find(i => i.startsWith('# '))
+        ?.substring(2)
+        .trim()
     }
 
     const lang = typeof language === 'function' ? language(context) : language
