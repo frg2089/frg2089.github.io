@@ -1,7 +1,19 @@
+import type { Index, IndexData, PageContext } from '../indexer'
+
+export interface MarkdownData extends IndexData {
+  title: string
+  text: string
+  lang: string
+  tags?: any
+  categories?: any
+  url: string
+  part: number
+}
+
 /** Markdown 索引处理器配置选项 */
 interface MarkdownOptions {
   indexName: string
-  lang?: string | ((context: Indexer.PageContext) => string)
+  lang?: string | ((context: PageContext) => string)
 }
 
 /**
@@ -10,7 +22,7 @@ interface MarkdownOptions {
  */
 export class MarkdownProcessor {
   private readonly indexName: string
-  private readonly language: string | ((context: Indexer.PageContext) => string)
+  private readonly language: string | ((context: PageContext) => string)
 
   constructor(options: MarkdownOptions) {
     this.indexName = options.indexName
@@ -23,7 +35,7 @@ export class MarkdownProcessor {
    * @param context - 页面上下文
    * @returns 标题或 undefined
    */
-  private extractTitle(context: Indexer.PageContext): string | undefined {
+  private extractTitle(context: PageContext): string | undefined {
     const title = context.frontmatter.title
     if (title) return title
 
@@ -37,7 +49,7 @@ export class MarkdownProcessor {
    * @param context - 页面上下文
    * @returns 语言代码
    */
-  private getLanguage(context: Indexer.PageContext): string {
+  private getLanguage(context: PageContext): string {
     return typeof this.language === 'function'
       ? this.language(context)
       : this.language
@@ -48,9 +60,7 @@ export class MarkdownProcessor {
    * @param context - 页面上下文
    * @returns 索引对象或 undefined（如果被跳过）
    */
-  public process(
-    context: Indexer.PageContext,
-  ): Indexer.Index<Indexer.MarkdownData> | undefined {
+  public process(context: PageContext): Index<MarkdownData> | undefined {
     // 跳过空内容和标记为非文章的页面
     if (!context.content) return
     if (context.frontmatter.article === false) return

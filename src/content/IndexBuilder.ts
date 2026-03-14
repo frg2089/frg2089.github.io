@@ -1,11 +1,13 @@
+import type { Index, PageContext } from '../indexer'
+import type { ContentData } from './ContentProcessor'
 import { TreeNode } from './TreeNode'
 
 /** 内容索引处理器配置选项 */
 interface ContentOptions {
   vitepressConfig: string
   indexName: string
-  lang?: string | ((context: Indexer.PageContext) => string)
-  lvl0?: string | ((context: Indexer.PageContext) => string)
+  lang?: string | ((context: PageContext) => string)
+  lvl0?: string | ((context: PageContext) => string)
 }
 
 /**
@@ -14,14 +16,11 @@ interface ContentOptions {
  */
 export class IndexBuilder {
   private readonly indexName: string
-  private readonly language: string | ((context: Indexer.PageContext) => string)
-  private readonly lvl0:
-    | string
-    | ((context: Indexer.PageContext) => string)
-    | undefined
-  private readonly context: Indexer.PageContext
+  private readonly language: string | ((context: PageContext) => string)
+  private readonly lvl0: string | ((context: PageContext) => string) | undefined
+  private readonly context: PageContext
 
-  constructor(options: ContentOptions, context: Indexer.PageContext) {
+  constructor(options: ContentOptions, context: PageContext) {
     this.indexName = options.indexName
     this.language = options.lang ?? 'en-US'
     this.lvl0 = options.lvl0
@@ -72,8 +71,8 @@ export class IndexBuilder {
    */
   private createHierarchy(
     node: TreeNode,
-    parent: Partial<Indexer.ContentData>,
-  ): Indexer.ContentData['hierarchy'] {
+    parent: Partial<ContentData>,
+  ): ContentData['hierarchy'] {
     return {
       lvl0: parent.hierarchy?.lvl0 ?? this.getLvl0(),
       lvl1: undefined,
@@ -86,9 +85,9 @@ export class IndexBuilder {
       [`lvl${node.level}`]:
         node.title ??
         parent?.hierarchy?.[
-          `lvl${node.level}` as keyof Indexer.ContentData['hierarchy']
+          `lvl${node.level}` as keyof ContentData['hierarchy']
         ],
-    } as Indexer.ContentData['hierarchy']
+    } as ContentData['hierarchy']
   }
 
   /**
@@ -102,9 +101,9 @@ export class IndexBuilder {
   public createBaseData(
     objectID: string,
     node: TreeNode,
-    parent: Partial<Indexer.ContentData>,
+    parent: Partial<ContentData>,
     position: number,
-  ): Indexer.ContentData {
+  ): ContentData {
     const anchor = node.title ? this.createAnchor(node.title) : undefined
     const url = this.createUrl(anchor)
 
@@ -147,9 +146,9 @@ export class IndexBuilder {
     objectID: string,
     content: string,
     node: TreeNode,
-    parent: Partial<Indexer.ContentData>,
+    parent: Partial<ContentData>,
     position: number,
-  ): Indexer.Index<Indexer.ContentData> {
+  ): Index<ContentData> {
     const data = this.createBaseData(objectID, node, parent, position)
 
     return {
@@ -175,9 +174,9 @@ export class IndexBuilder {
   public createLevelIndex(
     objectID: string,
     node: TreeNode,
-    parent: Partial<Indexer.ContentData>,
+    parent: Partial<ContentData>,
     position: number,
-  ): Indexer.Index<Indexer.ContentData> {
+  ): Index<ContentData> {
     const data = this.createBaseData(objectID, node, parent, position)
 
     return {
@@ -199,7 +198,7 @@ export class IndexBuilder {
    * 获取根节点的层级结构
    * @returns 包含 lvl0 的层级对象
    */
-  public getRootHierarchy(): Partial<Indexer.ContentData> {
+  public getRootHierarchy(): Partial<ContentData> {
     return {
       hierarchy: {
         lvl0: this.getLvl0(),

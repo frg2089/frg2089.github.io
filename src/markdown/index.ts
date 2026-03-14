@@ -1,3 +1,5 @@
+import type { PageContext, Processor } from '../indexer'
+import type { MarkdownData } from './MarkdownProcessor'
 import { MarkdownProcessor } from './MarkdownProcessor'
 
 /**
@@ -7,7 +9,7 @@ export interface MarkdownOptions {
   /** 索引名称 */
   indexName: string
   /** 语言代码或语言获取函数 */
-  lang?: string | ((context: Indexer.PageContext) => string)
+  lang?: string | ((context: PageContext) => string)
 }
 
 /**
@@ -17,9 +19,7 @@ export interface MarkdownOptions {
  * @param options - 处理器配置选项
  * @returns 处理器函数
  */
-export const markdown = (
-  options: MarkdownOptions,
-): Indexer.Processor<Indexer.MarkdownData> => {
+export const markdown = (options: MarkdownOptions): Processor<MarkdownData> => {
   const processor = new MarkdownProcessor(options)
 
   return context => processor.process(context)

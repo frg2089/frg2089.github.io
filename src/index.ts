@@ -2,6 +2,7 @@ import { program } from 'commander'
 import * as path from 'node:path'
 import * as util from 'node:util'
 import { content } from './content/index'
+import type { PageContext } from './indexer'
 import indexer from './indexer'
 import { markdown } from './markdown/index'
 
@@ -13,7 +14,7 @@ const DIR_NAME_MAP = {
   tools: '工具',
 } as const
 
-const getLvl0 = (context: Indexer.PageContext): string => {
+const getLvl0 = (context: PageContext): string => {
   const base = context.relativePath.split(path.sep, 2)[0]
   return DIR_NAME_MAP[base as keyof typeof DIR_NAME_MAP] ?? '岛风的档案室'
 }

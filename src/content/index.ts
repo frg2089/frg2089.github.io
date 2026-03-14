@@ -1,3 +1,5 @@
+import type { PageContext, Processor } from '../indexer'
+import type { ContentData } from './ContentProcessor'
 import { ContentProcessor } from './ContentProcessor'
 
 /**
@@ -9,9 +11,9 @@ export interface ContentOptions {
   /** 索引名称 */
   indexName: string
   /** 语言代码或语言获取函数 */
-  lang?: string | ((context: Indexer.PageContext) => string)
+  lang?: string | ((context: PageContext) => string)
   /** 顶级分类名称或获取函数 */
-  lvl0?: string | ((context: Indexer.PageContext) => string)
+  lvl0?: string | ((context: PageContext) => string)
 }
 
 /**
@@ -23,7 +25,7 @@ export interface ContentOptions {
  */
 export const content = async (
   options: ContentOptions,
-): Promise<Indexer.Processor<Indexer.ContentData>> => {
+): Promise<Processor<ContentData>> => {
   const processor = new ContentProcessor(options)
 
   return context => processor.process(context)

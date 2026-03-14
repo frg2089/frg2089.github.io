@@ -1,13 +1,44 @@
+import type { Index, IndexData, PageContext } from '../indexer'
 import { IndexBuilder } from './IndexBuilder'
 import { TreeBuilder } from './TreeBuilder'
 import { TreeNode } from './TreeNode'
+
+export interface ContentData extends IndexData {
+  weight: {
+    pageRank: number
+    level: number
+    position: number
+  }
+  lang: string
+  language: string
+  version: string
+  content?: string
+  type: string
+  hierarchy: {
+    lvl0: string
+    lvl1?: string
+    lvl2?: string
+    lvl3?: string
+    lvl4?: string
+    lvl5?: string
+    lvl6?: string
+  }
+  tags?: string[]
+  categories?: string[]
+  url_without_variables: string
+  url_without_anchor: string
+  anchor?: string
+  content_camel?: string
+  no_variables: boolean
+  recordVersion: string
+}
 
 /** 内容索引处理器配置选项 */
 interface ContentOptions {
   vitepressConfig: string
   indexName: string
-  lang?: string | ((context: Indexer.PageContext) => string)
-  lvl0?: string | ((context: Indexer.PageContext) => string)
+  lang?: string | ((context: PageContext) => string)
+  lvl0?: string | ((context: PageContext) => string)
 }
 
 /**
@@ -39,24 +70,22 @@ export class ContentProcessor {
    * @param context - 页面上下文
    * @returns 生成的索引数组
    */
-  public async process(
-    context: Indexer.PageContext,
-  ): Promise<Indexer.Index<Indexer.ContentData>[]> {
+  public async process(context: PageContext): Promise<Index<ContentData>[]> {
     // 将 markdown 内容解析为树结构
     const tree = TreeBuilder.buildTree(context.content)
     const builder = new IndexBuilder(this.options, context)
 
     // 收集所有节点（前序遍历）
     const nodes = this.collectNodes(tree)
-    const results: Indexer.Index<Indexer.ContentData>[] = []
+    const results: Index<ContentData>[] = []
 
     // 为每个节点创建索引
     let counter = 0
-    const parentHierarchyMap = new Map<TreeNode, Partial<Indexer.ContentData>>()
+    const parentHierarchyMap = new Map<TreeNode, Partial<ContentData>>()
 
     for (const node of nodes) {
       // 获取父级层级结构
-      let parentData: Partial<Indexer.ContentData>
+      let parentData: Partial<ContentData>
       if (node.parent) {
         parentData =
           parentHierarchyMap.get(node.parent) ?? builder.getRootHierarchy()

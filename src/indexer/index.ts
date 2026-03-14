@@ -3,16 +3,59 @@ import matter from 'gray-matter'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 
+type PromiseOr<T> = PromiseLike<T> | T
+type Nullable<T> = T | undefined | null
+
+export interface PageContext {
+  relativePath: string
+  absolutePath: string
+  url: string
+  frontmatter: Record<string, any>
+  content: string
+}
+
+export interface IndexData extends Record<string, any> {
+  objectID: string
+  url: string
+}
+
+export interface Index<TData extends IndexData> {
+  name: string
+  objectID: string
+  data: TData
+}
+
+export interface Processor<TData extends IndexData> {
+  (
+    context: PageContext,
+  ): PromiseOr<Nullable<Index<TData>>[]> | PromiseOr<Nullable<Index<TData>>>
+}
+
+export interface IndexerOptions {
+  /** 主机名 */
+  host: string
+  /** markdown 文件夹 */
+  src: string
+
+  appId: string
+  /** Algolia API Key */
+  apiKey?: string
+  /** 干运行模式，不上传到 Algolia */
+  dryRun?: boolean
+
+  processors: Array<PromiseOr<Processor>>
+}
+
 /**
  * 索引构建器类
  * 负责从 markdown 文件中提取内容并构建 Algolia 搜索索引
  */
 class Indexer {
-  private readonly options: Indexer.IndexerOptions
+  private readonly options: IndexerOptions
   private readonly baseUrl: URL
   private readonly client?: ReturnType<typeof algoliasearch>
 
-  constructor(options: Indexer.IndexerOptions) {
+  constructor(options: IndexerOptions) {
     this.options = options
     this.baseUrl = new URL(`https://${options.host}`)
 
@@ -57,9 +100,7 @@ class Indexer {
    * @param relativePath - 相对路径
    * @returns 包含路径、URL、frontmatter 和内容的上下文对象
    */
-  private async createPageContext(
-    relativePath: string,
-  ): Promise<Indexer.PageContext> {
+  private async createPageContext(relativePath: string): Promise<PageContext> {
     const absolutePath = path.resolve(this.options.src, relativePath)
     const url = this.buildUrl(relativePath)
 
@@ -84,11 +125,9 @@ class Indexer {
    * @param relativePath - 相对路径
    * @returns 索引数据数组
    */
-  private async processPage(
-    relativePath: string,
-  ): Promise<Indexer.Index<Indexer.IndexData>[]> {
+  private async processPage(relativePath: string): Promise<Index<IndexData>[]> {
     const context = await this.createPageContext(relativePath)
-    const results: Indexer.Index<Indexer.IndexData>[] = []
+    const results: Index<IndexData>[] = []
 
     // 依次处理所有 processor
     for (const processor of this.options.processors) {
@@ -112,8 +151,8 @@ class Indexer {
    * @returns 按索引名称分组的映射
    */
   private groupByIndexName(
-    indexes: Indexer.Index<Indexer.IndexData>[],
-  ): Record<string, Record<string, Indexer.IndexData>> {
+    indexes: Index<IndexData>[],
+  ): Record<string, Record<string, IndexData>> {
     return indexes.reduce(
       (acc, index) => {
         acc[index.name] ??= {}
@@ -129,7 +168,7 @@ class Indexer {
    * @param indices - 按索引名称分组的数据
    */
   private async uploadToAlgolia(
-    indices: Record<string, Record<string, Indexer.IndexData>>,
+    indices: Record<string, Record<string, IndexData>>,
   ): Promise<void> {
     if (!this.client) return
 
@@ -180,9 +219,7 @@ class Indexer {
  * 索引构建入口函数
  * @param options - 索引器配置选项
  */
-export const indexer = async (
-  options: Indexer.IndexerOptions,
-): Promise<void> => {
+export const indexer = async (options: IndexerOptions): Promise<void> => {
   const instance = new Indexer(options)
   await instance.run()
 }
