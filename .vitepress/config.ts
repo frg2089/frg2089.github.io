@@ -2,6 +2,7 @@ import * as child_process from 'node:child_process'
 import * as path from 'node:path'
 import * as util from 'node:util'
 import { defineConfig } from 'vitepress'
+import { RssPlugin } from 'vitepress-plugin-rss'
 import algolia from './algolia'
 import friends from './friends'
 import head from './head'
@@ -97,6 +98,13 @@ export default defineConfig({
     await teekConfig.transformPageData?.(pageData, ctx)
   },
   vite: {
+    plugins: [
+      RssPlugin({
+        title: '岛风的船坞',
+        baseUrl: 'https://blog.shimakaze.dev',
+        copyright: 'Copyright © 2025-present 舰队的偶像-岛风酱！',
+      }),
+    ],
     define: {
       __HOLIDAY__: holidayCalendar,
       しまかぜのともだち: friends,

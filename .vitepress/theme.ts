@@ -67,7 +67,7 @@ export default defineTeekConfig({
       name: 'GitHub',
       link: 'https://github.com/frg2089',
     },
-    { icon: 'mdi:rss', name: 'Feed', link: '/rss.xml' },
+    { icon: 'mdi:rss', name: 'Feed', link: '/feed.rss' },
   ],
   footerGroup: footer,
   footerInfo: {

@@ -30,6 +30,7 @@
     "typescript": "^5.9.3",
     "vitepress": "1.6.4",
     "vitepress-plugin-legend": "^1.3.0",
+    "vitepress-plugin-rss": "^0.4.3",
     "vitepress-theme-teek": "^1.5.5",
     "vue": "^3.5.30",
     "vue-tsc": "^3.2.5"
