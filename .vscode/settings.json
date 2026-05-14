@@ -8,5 +8,11 @@
   "vue.server.includeLanguages": ["vue", "markdown"],
   "markdown.validate.enabled": true,
   "editor.defaultFormatter": "oxc.oxc-vscode",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "[vue]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  }
 }

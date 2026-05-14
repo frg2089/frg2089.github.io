@@ -6,4 +6,5 @@ export default [
   { text: '分类', link: '/categories' },
   { text: '标签', link: '/tags' },
   { text: '时间线', link: '/timeline' },
+  { text: '朋友们', link: '/friends/' },
 ] satisfies DefaultTheme.NavItem[]

@@ -12,3 +12,5 @@ declare const __HOLIDAY__: Record<
     }>
   }
 >
+
+declare const しまかぜのともだち: import('../friends').FriendInfo[]
