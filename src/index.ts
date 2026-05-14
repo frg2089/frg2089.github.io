@@ -1,6 +1,8 @@
-import { program } from 'commander'
 import * as path from 'node:path'
 import * as util from 'node:util'
+
+import { program } from 'commander'
+
 import { content } from './content/index'
 import type { PageContext } from './indexer'
 import indexer from './indexer'

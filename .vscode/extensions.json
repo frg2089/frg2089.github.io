@@ -1,7 +1,3 @@
 {
-  "recommendations": [
-    "redhat.vscode-yaml",
-    "esbenp.prettier-vscode",
-    "editorconfig.editorconfig"
-  ]
+  "recommendations": ["redhat.vscode-yaml", "oxc.oxc-vscode"]
 }

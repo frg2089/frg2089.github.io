@@ -1,21 +1,26 @@
-import { Parser } from 'htmlparser2'
 import * as path from 'node:path'
 import * as Url from 'node:url'
+
+import { Parser } from 'htmlparser2'
 import type { MarkdownRenderer } from 'vitepress'
 import { createMarkdownRenderer } from 'vitepress'
+
 import { Level, TreeNode } from './TreeNode'
 
 /**
- * 文档树构建器
- * 将 markdown 内容解析为树结构，并渲染为纯文本
+ * @description 文档树构建器 将 markdown 内容解析为树结构，并渲染为纯文本
  */
 export class TreeBuilder {
-  /** Markdown 渲染器实例（单例） */
+  /**
+   * @description Markdown 渲染器实例（单例）
+   */
   private static md: MarkdownRenderer | null = null
 
   /**
-   * 获取 VitePress Markdown 渲染器
+   * @description 获取 VitePress Markdown 渲染器
+   *
    * @param vitepressConfig - VitePress 配置文件路径
+   *
    * @returns Markdown 渲染器实例
    */
   private static async getRenderer(
@@ -37,8 +42,10 @@ export class TreeBuilder {
   }
 
   /**
-   * 从 HTML 中提取纯文本
+   * @description 从 HTML 中提取纯文本
+   *
    * @param html - HTML 字符串
+   *
    * @returns 纯文本
    */
   private static extractHtmlText(html: string): string {
@@ -56,9 +63,11 @@ export class TreeBuilder {
   }
 
   /**
-   * 渲染 markdown 内容为纯文本
-   * @param content - markdown 内容数组
+   * @description 渲染 markdown 内容为纯文本
+   *
+   * @param content - Markdown 内容数组
    * @param vitepressConfig - VitePress 配置文件路径
+   *
    * @returns 渲染后的纯文本
    */
   private static async renderContent(
@@ -73,8 +82,10 @@ export class TreeBuilder {
   }
 
   /**
-   * 解析标题级别
+   * @description 解析标题级别
+   *
    * @param line - 文本行
+   *
    * @returns 标题级别（0-6）
    */
   private static getLevel(line: string): Level {
@@ -85,8 +96,10 @@ export class TreeBuilder {
   }
 
   /**
-   * 从标题行中提取标题文本
+   * @description 从标题行中提取标题文本
+   *
    * @param line - 标题行
+   *
    * @returns 标题文本
    */
   private static getTitle(line: string): string {
@@ -95,8 +108,10 @@ export class TreeBuilder {
   }
 
   /**
-   * 将 markdown 内容解析为树结构
-   * @param content - markdown 内容
+   * @description 将 markdown 内容解析为树结构
+   *
+   * @param content - Markdown 内容
+   *
    * @returns 根节点
    */
   public static buildTree(content: string): TreeNode {
@@ -152,9 +167,11 @@ export class TreeBuilder {
   }
 
   /**
-   * 渲染树节点的内容
+   * @description 渲染树节点的内容
+   *
    * @param node - 树节点
    * @param vitepressConfig - VitePress 配置文件路径
+   *
    * @returns 渲染后的纯文本
    */
   public static async renderNodeContent(

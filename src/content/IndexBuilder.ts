@@ -2,7 +2,9 @@ import type { Index, PageContext } from '../indexer'
 import type { ContentData } from './ContentProcessor'
 import { TreeNode } from './TreeNode'
 
-/** 内容索引处理器配置选项 */
+/**
+ * @description 内容索引处理器配置选项
+ */
 interface ContentOptions {
   vitepressConfig: string
   indexName: string
@@ -11,8 +13,7 @@ interface ContentOptions {
 }
 
 /**
- * 索引构建器
- * 负责将树节点转换为 Algolia 搜索索引数据
+ * @description 索引构建器 负责将树节点转换为 Algolia 搜索索引数据
  */
 export class IndexBuilder {
   private readonly indexName: string
@@ -28,7 +29,7 @@ export class IndexBuilder {
   }
 
   /**
-   * 获取语言代码
+   * @description 获取语言代码
    */
   private getLanguage(): string {
     return typeof this.language === 'function'
@@ -37,7 +38,7 @@ export class IndexBuilder {
   }
 
   /**
-   * 获取顶级分类名称
+   * @description 获取顶级分类名称
    */
   private getLvl0(): string {
     if (!this.lvl0) return 'Document'
@@ -45,8 +46,10 @@ export class IndexBuilder {
   }
 
   /**
-   * 根据标题创建锚点
+   * @description 根据标题创建锚点
+   *
    * @param title - 标题文本
+   *
    * @returns 锚点字符串
    */
   private createAnchor(title: string): string {
@@ -54,8 +57,10 @@ export class IndexBuilder {
   }
 
   /**
-   * 创建完整的 URL（包含锚点）
+   * @description 创建完整的 URL（包含锚点）
+   *
    * @param anchor - 锚点字符串
+   *
    * @returns 完整 URL
    */
   private createUrl(anchor?: string): string {
@@ -64,9 +69,11 @@ export class IndexBuilder {
   }
 
   /**
-   * 创建层级结构
+   * @description 创建层级结构
+   *
    * @param node - 树节点
    * @param parent - 父级数据
+   *
    * @returns 层级结构对象
    */
   private createHierarchy(
@@ -91,11 +98,13 @@ export class IndexBuilder {
   }
 
   /**
-   * 创建基础索引数据
+   * @description 创建基础索引数据
+   *
    * @param objectID - 对象 ID
    * @param node - 树节点
    * @param parent - 父级数据
    * @param position - 位置序号
+   *
    * @returns 索引数据
    */
   public createBaseData(
@@ -134,12 +143,14 @@ export class IndexBuilder {
   }
 
   /**
-   * 创建内容索引（包含实际的文本内容）
+   * @description 创建内容索引（包含实际的文本内容）
+   *
    * @param objectID - 对象 ID
    * @param content - 纯文本内容
    * @param node - 树节点
    * @param parent - 父级数据
    * @param position - 位置序号
+   *
    * @returns 索引对象
    */
   public createContentIndex(
@@ -164,11 +175,13 @@ export class IndexBuilder {
   }
 
   /**
-   * 创建层级索引（不包含内容，仅用于导航）
+   * @description 创建层级索引（不包含内容，仅用于导航）
+   *
    * @param objectID - 对象 ID
    * @param node - 树节点
    * @param parent - 父级数据
    * @param position - 位置序号
+   *
    * @returns 索引对象
    */
   public createLevelIndex(
@@ -195,7 +208,8 @@ export class IndexBuilder {
   }
 
   /**
-   * 获取根节点的层级结构
+   * @description 获取根节点的层级结构
+   *
    * @returns 包含 lvl0 的层级对象
    */
   public getRootHierarchy(): Partial<ContentData> {

@@ -10,15 +10,16 @@ export interface MarkdownData extends IndexData {
   part: number
 }
 
-/** Markdown 索引处理器配置选项 */
+/**
+ * @description Markdown 索引处理器配置选项
+ */
 interface MarkdownOptions {
   indexName: string
   lang?: string | ((context: PageContext) => string)
 }
 
 /**
- * Markdown 索引处理器
- * 将完整的 markdown 文件作为单个搜索索引
+ * @description Markdown 索引处理器 将完整的 markdown 文件作为单个搜索索引
  */
 export class MarkdownProcessor {
   private readonly indexName: string
@@ -30,9 +31,10 @@ export class MarkdownProcessor {
   }
 
   /**
-   * 提取文档标题
-   * 优先使用 frontmatter.title，否则使用第一个一级标题
+   * @description 提取文档标题 优先使用 frontmatter.title，否则使用第一个一级标题
+   *
    * @param context - 页面上下文
+   *
    * @returns 标题或 undefined
    */
   private extractTitle(context: PageContext): string | undefined {
@@ -45,8 +47,10 @@ export class MarkdownProcessor {
   }
 
   /**
-   * 获取语言代码
+   * @description 获取语言代码
+   *
    * @param context - 页面上下文
+   *
    * @returns 语言代码
    */
   private getLanguage(context: PageContext): string {
@@ -56,8 +60,10 @@ export class MarkdownProcessor {
   }
 
   /**
-   * 处理页面，生成索引
+   * @description 处理页面，生成索引
+   *
    * @param context - 页面上下文
+   *
    * @returns 索引对象或 undefined（如果被跳过）
    */
   public process(context: PageContext): Index<MarkdownData> | undefined {

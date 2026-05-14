@@ -1,5 +1,6 @@
 import { vitepressPluginLegend } from 'vitepress-plugin-legend'
 import { defineTeekConfig } from 'vitepress-theme-teek/config'
+
 import footer from './footer'
 import friends from './friends'
 

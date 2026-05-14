@@ -1,7 +1,8 @@
-import { algoliasearch } from 'algoliasearch'
-import matter from 'gray-matter'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
+
+import { algoliasearch } from 'algoliasearch'
+import matter from 'gray-matter'
 
 type PromiseOr<T> = PromiseLike<T> | T
 type Nullable<T> = T | undefined | null
@@ -32,23 +33,30 @@ export interface Processor<TData extends IndexData> {
 }
 
 export interface IndexerOptions {
-  /** 主机名 */
+  /**
+   * @description 主机名
+   */
   host: string
-  /** markdown 文件夹 */
+  /**
+   * @description Markdown 文件夹
+   */
   src: string
 
   appId: string
-  /** Algolia API Key */
+  /**
+   * @description Algolia API Key
+   */
   apiKey?: string
-  /** 干运行模式，不上传到 Algolia */
+  /**
+   * @description 干运行模式，不上传到 Algolia
+   */
   dryRun?: boolean
 
   processors: Array<PromiseOr<Processor>>
 }
 
 /**
- * 索引构建器类
- * 负责从 markdown 文件中提取内容并构建 Algolia 搜索索引
+ * @description 索引构建器类 负责从 markdown 文件中提取内容并构建 Algolia 搜索索引
  */
 class Indexer {
   private readonly options: IndexerOptions
@@ -67,8 +75,10 @@ class Indexer {
   }
 
   /**
-   * 根据相对路径构建完整的 URL
+   * @description 根据相对路径构建完整的 URL
+   *
    * @param relativePath - 相对于 src 目录的文件路径
+   *
    * @returns 完整的 URL
    */
   private buildUrl(relativePath: string): string {
@@ -86,8 +96,9 @@ class Indexer {
   }
 
   /**
-   * 递归获取所有 markdown 文件
-   * @returns markdown 文件的相对路径列表
+   * @description 递归获取所有 markdown 文件
+   *
+   * @returns Markdown 文件的相对路径列表
    */
   private async getMarkdownFiles(): Promise<string[]> {
     const src = path.resolve(this.options.src)
@@ -96,8 +107,10 @@ class Indexer {
   }
 
   /**
-   * 创建页面上下文对象
+   * @description 创建页面上下文对象
+   *
    * @param relativePath - 相对路径
+   *
    * @returns 包含路径、URL、frontmatter 和内容的上下文对象
    */
   private async createPageContext(relativePath: string): Promise<PageContext> {
@@ -121,8 +134,10 @@ class Indexer {
   }
 
   /**
-   * 处理单个页面，通过所有 processor 提取索引数据
+   * @description 处理单个页面，通过所有 processor 提取索引数据
+   *
    * @param relativePath - 相对路径
+   *
    * @returns 索引数据数组
    */
   private async processPage(relativePath: string): Promise<Index<IndexData>[]> {
@@ -146,8 +161,10 @@ class Indexer {
   }
 
   /**
-   * 按索引名称分组索引数据
+   * @description 按索引名称分组索引数据
+   *
    * @param indexes - 所有索引数据
+   *
    * @returns 按索引名称分组的映射
    */
   private groupByIndexName(
@@ -164,7 +181,8 @@ class Indexer {
   }
 
   /**
-   * 将索引数据上传到 Algolia
+   * @description 将索引数据上传到 Algolia
+   *
    * @param indices - 按索引名称分组的数据
    */
   private async uploadToAlgolia(
@@ -190,7 +208,7 @@ class Indexer {
   }
 
   /**
-   * 执行索引构建流程
+   * @description 执行索引构建流程
    */
   public async run(): Promise<void> {
     // 1. 获取所有 markdown 文件
@@ -216,7 +234,8 @@ class Indexer {
 }
 
 /**
- * 索引构建入口函数
+ * @description 索引构建入口函数
+ *
  * @param options - 索引器配置选项
  */
 export const indexer = async (options: IndexerOptions): Promise<void> => {

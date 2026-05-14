@@ -1,8 +1,10 @@
 import * as child_process from 'node:child_process'
 import * as path from 'node:path'
 import * as util from 'node:util'
+
 import { defineConfig } from 'vitepress'
 import { RssPlugin } from 'vitepress-plugin-rss'
+
 import algolia from './algolia'
 import friends from './friends'
 import head from './head'

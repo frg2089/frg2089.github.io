@@ -33,7 +33,9 @@ export interface ContentData extends IndexData {
   recordVersion: string
 }
 
-/** 内容索引处理器配置选项 */
+/**
+ * @description 内容索引处理器配置选项
+ */
 interface ContentOptions {
   vitepressConfig: string
   indexName: string
@@ -42,8 +44,7 @@ interface ContentOptions {
 }
 
 /**
- * 内容索引处理器
- * 将 markdown 内容按标题层级拆分为可搜索的索引
+ * @description 内容索引处理器 将 markdown 内容按标题层级拆分为可搜索的索引
  */
 export class ContentProcessor {
   private readonly options: ContentOptions
@@ -53,7 +54,8 @@ export class ContentProcessor {
   }
 
   /**
-   * 递归收集树节点（前序遍历）
+   * @description 递归收集树节点（前序遍历）
+   *
    * @param node - 当前树节点
    * @param nodes - 收集到的节点数组
    */
@@ -66,8 +68,10 @@ export class ContentProcessor {
   }
 
   /**
-   * 处理页面内容，生成搜索索引
+   * @description 处理页面内容，生成搜索索引
+   *
    * @param context - 页面上下文
+   *
    * @returns 生成的索引数组
    */
   public async process(context: PageContext): Promise<Index<ContentData>[]> {
