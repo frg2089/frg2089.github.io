@@ -1,19 +1,19 @@
 <template>
   <div class="theater">
-    <div class="left">
-      <img class="avatar" :src="current.avatar" :alt="current.name" />
-    </div>
-    <div class="right">
-      <img
-        class="background"
-        :src="current.background ?? current.avatar"
-        :alt="current.name" />
+    <div
+      class="right background"
+      :style="{
+        '--background-url': `url(${current.background ?? current.avatar})`,
+      }">
     </div>
     <div class="line-container">
       <div class="line group1"></div>
       <div class="line group1"></div>
       <div class="line group2"></div>
       <div class="line group2"></div>
+    </div>
+    <div class="left">
+      <img class="avatar" :src="current.avatar" :alt="current.name" />
     </div>
     <div class="right">
       <div class="text">
@@ -52,30 +52,30 @@ $deg: 22deg;
 
 @keyframes left-intro {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-100vw);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
 }
 
 @keyframes right-intro {
   0% {
-    transform: translateX(100%);
+    transform: translateX(100vw);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
 }
 
 @keyframes text-intro {
   0% {
     opacity: 0;
-    transform: translateY(100%);
+    transform: scale(0.5) translateY(8rem);
   }
   100% {
     opacity: 1;
-    transform: translateY(0%);
+    transform: scale(1) translateY(0);
   }
 }
 
@@ -117,19 +117,19 @@ $deg: 22deg;
 
 @keyframes left-leave {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-100vw);
   }
 }
 
 @keyframes right-leave {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(100vw);
   }
 }
 
@@ -152,20 +152,12 @@ $deg: 22deg;
 }
 
 .theater {
-  @include fullscreen;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-
   .left,
   .right {
-    grid-area: 1 / 1;
-
-    height: 100%;
+    @include fullscreen;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1;
 
     animation-duration: 1s;
     animation-delay: 1s;
@@ -173,20 +165,23 @@ $deg: 22deg;
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   }
   .left {
-    grid-column: 1;
     animation-name: left-intro;
+    right: unset;
   }
   .right {
-    grid-column: 2;
     animation-name: right-intro;
-    position: relative;
+    left: unset;
+    height: 100vh;
+    width: 100vh;
   }
 
   .avatar {
     filter: brightness(100%);
     position: relative;
-    left: 5%;
-    height: 80%;
+    margin-left: min(10vh, 10vw);
+    margin-right: min(10vh, 10vw);
+    height: min(80vh, 80vw);
+    width: min(80vh, 80vw);
     object-fit: cover;
     border-radius: 9999px;
 
@@ -198,10 +193,10 @@ $deg: 22deg;
 
   .background {
     filter: brightness(50%);
-    position: absolute;
-    right: 0;
-    height: 100%;
-    object-fit: cover;
+    background-image: var(--background-url);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     mask-image: linear-gradient(-68deg, black 70%, transparent 70%);
   }
 
@@ -209,11 +204,11 @@ $deg: 22deg;
     filter: brightness(120%);
     position: relative;
     width: 100%;
-    right: 0%;
+    height: 100%;
     text-align: center;
-    font-size: 4rem;
 
-    * {
+    .name,
+    .desc {
       animation-name: text-intro;
 
       animation-duration: 1s;
@@ -222,16 +217,24 @@ $deg: 22deg;
       animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 
       white-space: pre-wrap;
+      line-height: 1.2;
     }
 
     .name {
+      position: absolute;
+      right: 4rem;
+      top: 4rem;
       font-size: 6rem;
-      margin-bottom: 8rem;
     }
 
     .desc {
       animation-delay: 1.75s;
       color: var(--vp-c-important-1);
+
+      position: absolute;
+      left: 8rem;
+      bottom: 4rem;
+      font-size: 4rem;
     }
   }
 
@@ -249,7 +252,7 @@ $deg: 22deg;
       background-color: var(--vp-c-important-3);
       position: absolute;
       top: -150%;
-      height: 400%;
+      height: 400vh;
 
       animation-duration: 1s;
       animation-fill-mode: both;
@@ -272,18 +275,15 @@ $deg: 22deg;
 
     .group2 {
       width: 0.5rem;
-      right: 50%;
+      right: calc(100vh);
     }
     .line:nth-child(3) {
       animation-name: line3-intro;
-
       animation-delay: 0.8s;
-      transform: rotate($deg) translateX(11.5rem);
     }
     .line:nth-child(4) {
       animation-name: line4-intro;
       animation-delay: 1s;
-      transform: rotate($deg) translateX(12.5rem);
     }
   }
 

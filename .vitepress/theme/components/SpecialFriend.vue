@@ -117,8 +117,8 @@ const rightGradientAngle = computed(
   .right {
     .name {
       font-size: 6rem;
-      right: 10%;
-      top: 15%;
+      right: 4rem;
+      top: 4rem;
     }
   }
 

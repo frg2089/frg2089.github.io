@@ -11,12 +11,13 @@
     </div>
   </Transition>
 
-  <div class="friends">
-    <div v-for="(friend, i) in friends">
-      <a
-        v-if="friend.avatar"
-        :href="`#${friend.name}`"
-        :class="{ current: friend.name === current?.name }">
+  <div class="friend-panel">
+    <div
+      v-for="(friend, i) in friends"
+      :key="i"
+      class="friend"
+      :class="{ current: friend.name === current?.name }">
+      <a v-if="friend.avatar" :href="`#${friend.name}`">
         <div class="avatar">
           <img :src="friend.avatar" :alt="friend.alt ?? friend.name" />
         </div>
@@ -49,28 +50,33 @@ onMounted(() => {
 <style lang="scss">
 $avatar-size: 4rem;
 // content
-.friends {
+.friend-panel {
   display: flex;
   gap: 1rem;
   position: fixed;
-  bottom: 2rem;
-  left: 2rem;
+  overflow-x: auto;
+  padding: 2rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
-  .current {
-    filter: brightness(110%) drop-shadow(0 0 0.25rem var(--vp-c-important-1))
-      drop-shadow(0 0 1rem var(--vp-c-important-1));
-  }
-
-  :not(.current) {
+  .friend {
     filter: brightness(90%);
-  }
+    flex-shrink: 0;
 
-  .avatar {
-    img {
-      object-fit: cover;
-      width: $avatar-size;
-      height: $avatar-size;
-      border-radius: 9999px;
+    &.current {
+      filter: brightness(110%) contrast(120%)
+        drop-shadow(0 0 0.25rem var(--vp-c-important-1))
+        drop-shadow(0 0 1rem var(--vp-c-important-1));
+    }
+
+    .avatar {
+      img {
+        object-fit: cover;
+        width: $avatar-size;
+        height: $avatar-size;
+        border-radius: 9999px;
+      }
     }
   }
 }
