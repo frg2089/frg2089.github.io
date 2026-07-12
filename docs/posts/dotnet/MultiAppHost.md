@@ -12,6 +12,9 @@ tags:
 > 在继续前，希望您具备一些基本的 MSBuild 相关知识，
 > 因为本文不会解释 MSBuild 基本知识。
 
+> [!note]
+> 代码可以在[此处](https://gist.github.com/frg2089/396467a12d564c895b15452c642b151c)查看
+
 ## 什么是 AppHost
 
 想要运行一个 .Net 程序集，除了程序集中需要有一个 Main 方法以外，
