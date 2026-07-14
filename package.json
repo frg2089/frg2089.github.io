@@ -16,22 +16,35 @@
     "@giscus/vue": "^3.1.1",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "latest",
-    "algoliasearch": "^5.52.1",
-    "commander": "^14.0.3",
+    "algoliasearch": "^5.55.2",
+    "commander": "^15.0.0",
     "gray-matter": "^4.0.3",
     "holiday-calendar": "latest",
     "htmlparser2": "^12.0.0",
     "husky": "^9.1.7",
     "iso-3166-1": "^2.1.1",
-    "oxfmt": "^0.49.0",
+    "oxfmt": "^0.59.0",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vitepress": "1.6.4",
     "vitepress-plugin-legend": "^2.0.0",
     "vitepress-plugin-rss": "^0.4.4",
-    "vitepress-theme-teek": "^1.5.7",
-    "vue": "^3.5.34",
-    "vue-tsc": "^3.2.8"
+    "vitepress-theme-teek": "^1.6.0",
+    "vue": "^3.5.39",
+    "vue-tsc": "^3.3.7"
   },
-  "packageManager": "pnpm@11.1.1+sha512.d1fdf5f73c617b64fa1a56a81c3c8dfe0e966e33a6010aa256b517ae77be21d93e05affc0de1a83b0e4f29d569f68b446ae8f068cd7247c0bb3df0fb4d7bdf9a"
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.13.0",
+      "onFail": "download"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "^26"
+    }
+  },
+  "engines": {
+    "node": "^26"
+  }
 }

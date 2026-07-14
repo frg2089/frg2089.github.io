@@ -14,19 +14,21 @@ jobs:
       HUSKY: 0
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           lfs: true
           # submodules: true
 
       - name: 设置 pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
+        with:
+          cache: true
 
       - name: 设置 Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: latest
+          node-version-file: package.json
           cache: pnpm
 
       - name: 安装依赖
@@ -53,7 +55,7 @@ jobs:
         run: pnpm tsx ./src/index.ts --api-key $ALGOLIA_API_KEY
 
       - name: IndexNow
-        uses: bojieyang/indexnow-action@v2
+        uses: bojieyang/indexnow-action@v3
         if: env.INDEXNOW_KEY
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
