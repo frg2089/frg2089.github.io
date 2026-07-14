@@ -14,6 +14,7 @@ date: 2020-06-14
 ## 系统强调色
 
 系统强调色可通过 DwmGetColorizationColor [^DwmGetColorizationColor] 实现
+
 [^DwmGetColorizationColor]: [DwmGetColorizationColor 函数](https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmgetcolorizationcolor)
 
 ## 颜色模式
