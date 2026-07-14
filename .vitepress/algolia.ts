@@ -94,12 +94,12 @@ const translations: DefaultTheme.AlgoliaSearchOptions['translations'] = {
 
 const options: DefaultTheme.AlgoliaSearchOptions = {
   appId: 'L43QG2V2U8',
-  apiKey: 'bb9041ad518048e7d6a9974f39d7bcb8',
+  apiKey: '305cc25b9087e61962fc25566fa04469',
   indexName: 'shimakaze',
   // @ts-ignore
   askAi: {
-    indexName: 'shimakaze-markdown',
-    assistantId: 'GxqX8NzLrReM',
+    assistantId: '848f3017-8444-45a0-803d-f2cd9a5ddefb',
+    agentStudio: true,
   },
   translations,
 }
