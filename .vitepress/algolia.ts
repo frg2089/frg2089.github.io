@@ -1,6 +1,6 @@
-import { DefaultTheme } from 'vitepress'
+import type { DocSearchProps, DocSearchTranslations } from '@docsearch/react'
 
-const translations: DefaultTheme.AlgoliaSearchOptions['translations'] = {
+const translations: DocSearchTranslations = {
   button: {
     buttonText: '搜索',
     buttonAriaLabel: '搜索',
@@ -92,11 +92,10 @@ const translations: DefaultTheme.AlgoliaSearchOptions['translations'] = {
   },
 }
 
-const options: DefaultTheme.AlgoliaSearchOptions = {
+const options: DocSearchProps = {
   appId: 'L43QG2V2U8',
   apiKey: '305cc25b9087e61962fc25566fa04469',
   indexName: 'shimakaze',
-  // @ts-ignore
   askAi: {
     assistantId: '848f3017-8444-45a0-803d-f2cd9a5ddefb',
     agentStudio: true,

@@ -13,6 +13,7 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
+    "@docsearch/react": "^4.6.3",
     "@giscus/vue": "^3.1.1",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "latest",
