@@ -13,26 +13,26 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "@docsearch/react": "^4.6.3",
+    "@docsearch/react": "^5.1.1",
     "@giscus/vue": "^3.1.1",
-    "@types/markdown-it": "^14.1.2",
+    "@types/markdown-it": "^14.2.0",
     "@types/node": "latest",
-    "algoliasearch": "^5.55.2",
+    "algoliasearch": "^5.59.0",
     "commander": "^15.0.0",
     "gray-matter": "^4.0.3",
     "holiday-calendar": "latest",
     "htmlparser2": "^12.0.0",
     "husky": "^9.1.7",
     "iso-3166-1": "^2.1.1",
-    "oxfmt": "^0.59.0",
-    "tsx": "^4.21.0",
+    "oxfmt": "^0.70.0",
+    "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "vitepress": "1.6.4",
     "vitepress-plugin-legend": "^2.0.0",
-    "vitepress-plugin-rss": "^0.4.4",
-    "vitepress-theme-teek": "^1.6.0",
-    "vue": "^3.5.39",
-    "vue-tsc": "^3.3.7"
+    "vitepress-plugin-rss": "^0.4.5",
+    "vitepress-theme-teek": "^1.6.2",
+    "vue": "^3.5.43",
+    "vue-tsc": "^3.3.11"
   },
   "devEngines": {
     "packageManager": {
