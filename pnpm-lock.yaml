@@ -7,7 +7,7 @@ importers:
     configDependencies: {}
     packageManagerDependencies:
       pnpm:
-        specifier: ^12
+        specifier: ^12.8.1
         version: 12.8.1
 
 packages:
@@ -200,7 +200,7 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       node:
-        specifier: runtime:^26
+        specifier: runtime:^26.10.0
         version: runtime:26.10.0
       oxfmt:
         specifier: ^0.70.0
