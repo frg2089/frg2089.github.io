@@ -51,7 +51,7 @@ export default defineConfig({
   head,
   // https://vitepress.dev/reference/default-theme-config
   themeConfig: {
-    logo: '/avatar.webp',
+    logo: '/favicon.svg',
 
     nav,
 
