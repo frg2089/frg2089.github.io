@@ -24,6 +24,7 @@ jobs:
         uses: pnpm/setup@v3
         with:
           cache: true
+          version: 12.8.1
 
       - name: 构建文档
         run: pnpm build
