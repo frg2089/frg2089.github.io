@@ -7,7 +7,7 @@ export default defineConfig({
   embeddedLanguageFormatting: 'auto',
   endOfLine: process.platform === 'win32' ? 'crlf' : 'lf',
   htmlWhitespaceSensitivity: 'strict',
-  ignorePatterns: ['.cache/', '.temp/', 'dist/'],
+  ignorePatterns: ['.cache/', '.temp/', 'dist/', 'docs/public/GB/T 2260'],
   insertFinalNewline: true,
   jsdoc: {
     addDefaultToDescription: true,
