@@ -81,7 +81,7 @@ export default defineConfig({
   },
 
   sitemap: {
-    hostname: 'https://blog.shimakaze.dev',
+    hostname: 'https://shimakaze.dev',
   },
 
   async transformPageData(pageData, ctx) {
@@ -103,7 +103,7 @@ export default defineConfig({
     plugins: [
       RssPlugin({
         title: '岛风的船坞',
-        baseUrl: 'https://blog.shimakaze.dev',
+        baseUrl: 'https://shimakaze.dev',
         copyright: 'Copyright © 2025-present 舰队的偶像-岛风酱！',
       }),
     ],

@@ -52,6 +52,6 @@ jobs:
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         with:
-          sitemap-location: https://blog.shimakaze.dev/sitemap.xml
+          sitemap-location: https://shimakaze.dev/sitemap.xml
           key: ${{ secrets.INDEXNOW_KEY }}
-          key-location: https://blog.shimakaze.dev/${{ secrets.INDEXNOW_KEY }}.txt
+          key-location: https://shimakaze.dev/${{ secrets.INDEXNOW_KEY }}.txt

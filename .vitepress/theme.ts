@@ -16,7 +16,7 @@ export default defineTeekConfig({
   bodyBgImg: {},
   author: {
     name: '舰队的偶像-岛风酱!',
-    link: 'https://blog.shimakaze.dev',
+    link: 'https://shimakaze.dev',
   },
   banner: {
     bgStyle: 'fullImg',

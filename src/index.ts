@@ -31,7 +31,7 @@ const options = program.opts()
 
 await indexer({
   appId: 'L43QG2V2U8',
-  host: 'blog.shimakaze.dev',
+  host: 'shimakaze.dev',
   src: 'docs',
   apiKey: options.apiKey,
   dryRun: options.dryRun,
