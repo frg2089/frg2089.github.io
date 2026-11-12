@@ -2,7 +2,7 @@
 title: 工具
 catalogue: true
 layout: page
-article: false
+hidden: true
 sitemap: false
 ---
 

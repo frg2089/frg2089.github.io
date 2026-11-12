@@ -1,7 +1,6 @@
 ---
 layout: friends
 title: 岛风的朋友们
-article: false
+hidden: true
 sitemap: false
-index: false
 ---

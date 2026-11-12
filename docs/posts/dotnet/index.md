@@ -2,7 +2,7 @@
 title: .Net & C♯ & MSBuild
 catalogue: true
 layout: page
-article: false
+hidden: true
 sitemap: false
 ---
 
