@@ -5,6 +5,9 @@ import friends from './friends'
 // 主题配置
 export default getThemeConfig({
   author: '舰队的偶像-岛风酱!',
+  article: {
+    readingTime: true,
+  },
   hotArticle: {
     nextText: '换一组',
     pageSize: 3,
@@ -19,6 +22,7 @@ export default getThemeConfig({
     motto: '并不常更新的个人博客',
     inspiring:
       '这里是岛风的船坞，这里充满了自然的气息（杂乱、破败且杂草丛生）。',
+    pageSize: 10,
   },
   search: false,
   comment: {
