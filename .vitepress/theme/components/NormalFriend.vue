@@ -13,21 +13,46 @@
       <div class="line group2"></div>
     </div>
     <div class="left">
-      <img class="avatar" :src="current.avatar" :alt="current.name" />
+      <img
+        v-if="typeof current.avatar === 'string'"
+        class="avatar"
+        :src="current.avatar"
+        :alt="current.nickname" />
+      <img
+        v-else-if="'src' in current.avatar"
+        class="avatar"
+        :src="current.avatar.src"
+        :alt="current.avatar.alt ?? current.nickname" />
+      <img
+        v-else-if="isDark"
+        class="avatar"
+        :src="current.avatar.dark"
+        :alt="current.avatar.alt ?? current.nickname" />
+      <img
+        v-else
+        class="avatar"
+        :src="current.avatar.light"
+        :alt="current.avatar.alt ?? current.nickname" />
     </div>
     <div class="right">
       <div class="text">
-        <div class="name" v-text="current.name" />
-        <div class="desc" v-text="current.desc" />
+        <div class="name" v-text="current.nickname" />
+        <div class="desc" v-text="current.des" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
+
 defineProps<{
   current: (typeof しまかぜのともだち)[0]
 }>()
+
+const isDark = computed(() =>
+  document.querySelector('html')?.classList.contains('dark'),
+)
 </script>
 
 <style lang="scss" scoped>

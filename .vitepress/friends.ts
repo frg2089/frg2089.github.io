@@ -1,6 +1,11 @@
-import { FriendLinkItem } from 'vitepress-theme-teek'
+import { getThemeConfig } from '@sugarat/theme/node'
 
-export interface FriendInfo extends FriendLinkItem {
+type ThemeFrientInfo = Extract<
+  NonNullable<NonNullable<Parameters<typeof getThemeConfig>[0]>['friend']>,
+  any[]
+>[0]
+
+export interface FriendInfo extends ThemeFrientInfo {
   background?: string
   special?: {
     characterArtUrl: string
@@ -13,41 +18,41 @@ export interface FriendInfo extends FriendLinkItem {
 
 const friends: FriendInfo[] = [
   {
-    name: 'Dylech30th',
+    nickname: 'Dylech30th',
     avatar: 'https://sora.ink/wp-content/uploads/avatar.jpg',
-    desc: '是DC姐姐',
-    link: 'https://sora.ink/',
+    des: '是DC姐姐',
+    url: 'https://sora.ink/',
   },
   {
-    name: 'MWX',
+    nickname: 'MWX',
     avatar: 'https://avatars.githubusercontent.com/u/146726100',
-    desc: 'MWX!',
-    link: 'https://dkrain.com',
+    des: 'MWX!',
+    url: 'https://dkrain.com',
   },
   {
-    name: 'ControlNet',
+    nickname: 'ControlNet',
     avatar: 'https://controlnet.space/images/avatar.jpg',
-    desc: '永远13岁~',
-    link: 'https://controlnet.space/',
+    des: '永远13岁~',
+    url: 'https://controlnet.space/',
   },
   {
-    name: '扑克',
+    nickname: '扑克',
     avatar: 'https://poker-sang.github.io/imgs/avatar.png',
-    desc: '太笨了！',
-    link: 'https://poker-sang.github.io/',
+    des: '太笨了！',
+    url: 'https://poker-sang.github.io/',
   },
   {
-    name: 'AgxCOy',
+    nickname: 'AgxCOy',
     avatar: 'https://github.com/AgxCOy.png',
-    desc: '致敬传奇改名王',
-    link: 'https://agxcoy.shimakaze.org/',
+    des: '致敬传奇改名王',
+    url: 'https://agxcoy.shimakaze.org/',
   },
   {
-    name: '红枫',
+    nickname: '红枫',
     avatar: 'https://github.com/HongFengRM.png',
-    desc: '知名（大概）模组作者',
-    link: 'https://github.com/HongFengRM/',
+    des: '知名（大概）模组作者',
+    url: 'https://github.com/HongFengRM/',
   },
 ]
 
-export default friends.sort((a, b) => (a.name > b.name ? 1 : -1))
+export default friends.sort((a, b) => (a.nickname > b.nickname ? 1 : -1))

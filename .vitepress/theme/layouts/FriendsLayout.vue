@@ -2,13 +2,10 @@
   <Transition mode="default" :duration="1000">
     <SpecialFriend
       v-if="current?.special"
-      :key="current.name"
+      :key="current.nickname"
       :current
       :special="current.special" />
-    <NormalFriend v-else-if="current" :key="`${current.name}`" :current />
-    <div v-else class="content">
-      <!-- <Content /> -->
-    </div>
+    <NormalFriend v-else-if="current" :key="`${current.nickname}`" :current />
   </Transition>
 
   <div class="friend-panel">
@@ -16,35 +13,55 @@
       v-for="(friend, i) in friends"
       :key="i"
       class="friend"
-      :class="{ current: friend.name === current?.name }">
-      <a v-if="friend.avatar" :href="`#${friend.name}`">
+      :class="{ current: friend.nickname === current?.nickname }">
+      <a v-if="friend.avatar" :href="`${friend.nickname}`">
         <div class="avatar">
-          <img :src="friend.avatar" :alt="friend.alt ?? friend.name" />
+          <img
+            v-if="typeof friend.avatar === 'string'"
+            :src="friend.avatar"
+            :alt="friend.nickname" />
+          <img
+            v-else-if="'src' in friend.avatar"
+            :src="friend.avatar.src"
+            :alt="friend.avatar.alt ?? friend.nickname" />
+          <img
+            v-else-if="isDark"
+            :src="friend.avatar.dark"
+            :alt="friend.avatar.alt ?? friend.nickname" />
+          <img
+            v-else
+            :src="friend.avatar.light"
+            :alt="friend.avatar.alt ?? friend.nickname" />
         </div>
       </a>
     </div>
   </div>
+
+  <Content />
 </template>
 
 <script lang="ts" setup>
-import { Content } from 'vitepress'
-import { computed, onMounted, ref } from 'vue'
+import { Content, useRoute } from 'vitepress'
+import { computed } from 'vue'
 
 import NormalFriend from '../components/NormalFriend.vue'
 import SpecialFriend from '../components/SpecialFriend.vue'
 
+const route = useRoute()
+
 const friends = しまかぜのともだち
 
-const current = ref<(typeof しまかぜのともだち)[0]>()
+const current = computed(() => {
+  if (!route.data.params) return
+  const id = route.data.params.id as string | undefined
+  if (!id) return
 
-onMounted(() => {
-  const updateCurrent = () =>
-    (current.value = friends.find(
-      i => i.name === decodeURIComponent(location.hash.substring(1)),
-    ))
-  window.addEventListener('hashchange', updateCurrent)
-  updateCurrent()
+  return friends.find(i => i.nickname === decodeURIComponent(id))
 })
+
+const isDark = computed(() =>
+  document.querySelector('html')?.classList.contains('dark'),
+)
 </script>
 
 <style lang="scss">

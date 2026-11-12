@@ -1,20 +1,28 @@
 <template>
   <FriendsLayout v-if="frontmatter.layout === 'friends'" />
-  <Teek.Layout v-else>
-    <template #teek-home-card-my-after>
+  <Theme.Layout v-else>
+    <template #home-hero-after>
       <ClientOnly>
         <CalendarCard />
       </ClientOnly>
     </template>
-  </Teek.Layout>
+  </Theme.Layout>
 </template>
 
 <script lang="ts" setup>
+import Theme from '@sugarat/theme'
 import { useData } from 'vitepress'
-import Teek from 'vitepress-theme-teek'
 
 import CalendarCard from './components/CalendarCard.vue'
 import FriendsLayout from './layouts/FriendsLayout.vue'
 
 const { frontmatter } = useData()
 </script>
+
+<style>
+/* 自定义首页背景图 */
+.VPHome::before {
+  background-image: url(https://www.loliapi.com/acg/);
+  background-size: cover;
+}
+</style>

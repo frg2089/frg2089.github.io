@@ -2,15 +2,14 @@ import * as child_process from 'node:child_process'
 import * as path from 'node:path'
 import * as util from 'node:util'
 
-import { defineConfig } from 'vitepress'
-import { RssPlugin } from 'vitepress-plugin-rss'
+import { defineConfig } from '@sugarat/theme/node'
 
 import algolia from './algolia'
 import friends from './friends'
 import head from './head'
 import nav from './navbar'
 import sidebar from './sidebar'
-import teekConfig from './theme'
+import theme from './theme'
 
 const exec = util.promisify(child_process.exec)
 
@@ -39,7 +38,7 @@ try {
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  extends: teekConfig,
+  extends: theme,
   srcDir: 'docs',
   outDir: 'dist',
   cacheDir: '.cache',
@@ -84,29 +83,7 @@ export default defineConfig({
     hostname: 'https://shimakaze.dev',
   },
 
-  async transformPageData(pageData, ctx) {
-    if (!pageData.frontmatter['date']) {
-      const fullPath = path.resolve(ctx.siteConfig.srcDir, pageData.filePath)
-
-      const process = await exec(
-        `git log --reverse --pretty="%ai" "${fullPath}"`,
-      )
-
-      const date = new Date(process.stdout.split(/\n/)[0])
-
-      pageData.frontmatter['date'] = date.getTime()
-    }
-
-    await teekConfig.transformPageData?.(pageData, ctx)
-  },
   vite: {
-    plugins: [
-      RssPlugin({
-        title: '岛风的船坞',
-        baseUrl: 'https://shimakaze.dev',
-        copyright: 'Copyright © 2025-present 舰队的偶像-岛风酱！',
-      }),
-    ],
     define: {
       __HOLIDAY__: holidayCalendar,
       しまかぜのともだち: friends,

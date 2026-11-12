@@ -1,136 +1,81 @@
-import { vitepressPluginLegend } from 'vitepress-plugin-legend'
-import { defineTeekConfig } from 'vitepress-theme-teek/config'
+import { getThemeConfig } from '@sugarat/theme/node'
 
-import footer from './footer'
 import friends from './friends'
 
-// Teek 主题配置
-export default defineTeekConfig({
-  homeCardListPosition: 'right',
-  pageStyle: 'default',
-  loading: '正在拔锚...',
-  backTop: {
-    content: 'icon',
+// 主题配置
+export default getThemeConfig({
+  author: '舰队的偶像-岛风酱!',
+  hotArticle: {
+    nextText: '换一组',
+    pageSize: 3,
   },
-  sidebarTrigger: true,
-  bodyBgImg: {},
-  author: {
-    name: '舰队的偶像-岛风酱!',
-    link: 'https://shimakaze.dev',
+  homeTags: {
+    limit: 10,
+    sort: 'desc',
+    showCount: true,
   },
-  banner: {
-    bgStyle: 'fullImg',
-    imgSrc: [
-      // using public anime wallpaper API
-      'https://www.loliapi.com/acg/',
-    ],
-    imgInterval: 15 * 1000,
-    imgShuffle: true,
-    imgWaves: true,
-    mask: true,
-    maskBg: 'rgba(0, 0, 0, 0.5)',
-    descStyle: 'types',
-    description:
+  home: {
+    name: '岛风的船坞',
+    motto: '并不常更新的个人博客',
+    inspiring:
       '这里是岛风的船坞，这里充满了自然的气息（杂乱、破败且杂草丛生）。',
   },
-  wallpaper: {
-    enabled: true,
-    hideBanner: true,
-    hideMask: true,
+  search: false,
+  comment: {
+    repo: 'frg2089/frg2089.github.io',
+    repoId: 'MDEwOlJlcG9zaXRvcnkyNDg0MzQzMTY',
+    category: 'Comment',
+    categoryId: 'DIC_kwDODs7OjM4CTRvB',
+    inputPosition: 'top',
   },
-  post: {
-    postStyle: 'list',
-    showCapture: true,
+  imagePreview: {
+    showProgress: true,
+    infinite: true,
+    hideOnClickModal: true,
   },
-  blogger: {
-    name: '舰队的偶像-岛风酱!',
-    slogan: '喔~',
-    avatar: '/avatar.webp',
-    shape: 'circle-rotate',
-    status: {
-      icon: '✨',
-      size: 24,
-      title: 'kira~kira~',
-    },
-  },
-  friendLink: {
-    enabled: true,
+  friend: {
     list: friends,
-    title: '岛风的朋友们',
+    limit: 10,
+    random: true,
   },
-  docAnalysis: {
-    createTime: 'Sun Jun 14 2020 21:18:22',
-  },
-  social: [
-    { icon: 'mdi:email', name: 'Email', link: 'mailto:i@shimakaze.dev' },
+  authorList: [
     {
-      icon: 'mdi:github',
-      name: 'GitHub',
-      link: 'https://github.com/frg2089',
+      nickname: '舰队的偶像-岛风酱!',
+      url: 'https://shimakaze.dev',
+      des: 'kira~kira!',
     },
-    { icon: 'mdi:rss', name: 'Feed', link: '/feed.rss' },
   ],
-  footerGroup: footer,
-  footerInfo: {
-    bottomMessage: [
-      '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a>',
-      '本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。',
-    ],
+  RSS: {
+    title: '岛风的船坞',
+    baseUrl: 'https://shimakaze.dev',
+    copyright: 'Copyright © 2020-present 舰队的偶像-岛风酱！',
+  },
+  footer: {
+    version: true,
     copyright: {
-      createYear: '2020',
-      suffix: '舰队的偶像-岛风酱!',
+      message: 'Copyright © 2020 舰队的偶像-岛风酱！',
     },
     icpRecord: {
       name: '萌ICP备20252089号',
       link: 'https://icp.gov.moe/?keyword=20252089',
     },
+    message: [
+      '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width: 0; display: inline;" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a>',
+      '本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。',
+    ],
   },
-  articleAnalyze: {
-    dateFormat: 'yyyy-MM-dd hh:mm:ss',
-    showUpdateDate: true,
-    showTag: true,
+  oml2d: {},
+  mermaid: true,
+  formatShowDate(date) {
+    if (typeof date === 'string') {
+      date = new Date(date)
+    }
+    const yyyy = date.getFullYear()
+    const MM = String(date.getMonth() + 1).padStart(2, '0')
+    const dd = String(date.getDate()).padStart(2, '0')
+    const hh = String(date.getHours()).padStart(2, '0')
+    const mm = String(date.getMinutes()).padStart(2, '0')
+    const ss = String(date.getSeconds()).padStart(2, '0')
+    return `${yyyy}-${MM}-${dd} ${hh}:${mm}:${ss}`
   },
-  articleShare: {
-    enabled: true,
-  },
-  riskLink: {
-    enabled: true,
-    whitelist: ['https://learn.microsoft.com', 'https://github.com/frg2089/'],
-  },
-  breadcrumb: {
-    showCurrentName: true,
-    separator: '>',
-  },
-  comment: {
-    provider: 'giscus',
-    options: {
-      repo: 'frg2089/frg2089.github.io',
-      repoId: 'MDEwOlJlcG9zaXRvcnkyNDg0MzQzMTY',
-      category: 'Comment',
-      categoryId: 'DIC_kwDODs7OjM4CTRvB',
-    },
-  },
-
-  vitePlugins: {
-    sidebarOption: {
-      titleFormMd: true,
-      ignoreIndexMd: true,
-      collapsed: true,
-    },
-    catalogueOption: {
-      titleFormMd: true,
-      ignoreIndexMd: true,
-    },
-    autoFrontmatterOption: {
-      permalink: false,
-    },
-  },
-
-  markdown: {
-    config: async md => {
-      vitepressPluginLegend(md)
-    },
-  },
-
-  siteAnalytics: [],
 })

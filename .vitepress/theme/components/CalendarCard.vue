@@ -1,5 +1,5 @@
 <template>
-  <TkPageCard>
+  <div class="card" style="max-width: 384px; margin: 0 auto">
     <div class="card-widget" id="card-widget-calendar">
       <div id="calendar-controls">
         <button class="control-btn" @click="prevYear" title="上一年">«</button>
@@ -69,11 +69,10 @@
         </div>
       </div>
     </div>
-  </TkPageCard>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { formatDate, TkPageCard } from 'vitepress-theme-teek'
 import { computed, onMounted, ref } from 'vue'
 
 // 星期几中文映射
@@ -154,7 +153,8 @@ const calendarWeeks = computed(() => {
   while (currentDay <= endDay) {
     const week = []
     for (let i = 0; i < 7; i++) {
-      const formattedDate = formatDate(currentDay, 'yyyy-MM-dd', false)
+      // 'yyyy-MM-dd'
+      const formattedDate = `${currentDay.getFullYear()}-${String(currentDay.getMonth() + 1).padStart(2, '0')}-${String(currentDay.getDate()).padStart(2, '0')}`
 
       const holiday = currentHolidayCalendar?.dates.find(
         i => i.date === formattedDate,
@@ -354,6 +354,26 @@ onMounted(() => {
   setInterval(checkUpdate, 60000)
 })
 </script>
+
+<style scoped>
+.card {
+  position: relative;
+  margin: 0 auto 10px;
+  padding: 10px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  box-shadow: var(--box-shadow);
+  box-sizing: border-box;
+  transition: all 0.3s;
+  background-color: rgba(var(--bg-gradient));
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  box-shadow: var(--box-shadow-hover);
+}
+</style>
 
 <style scoped>
 .card-widget {

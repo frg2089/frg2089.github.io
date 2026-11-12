@@ -3,10 +3,10 @@
     <div class="background right"> </div>
     <div class="background left"> </div>
     <div class="right">
-      <div class="text name" v-text="current.name" />
+      <div class="text name" v-text="current.nickname" />
     </div>
     <div class="left">
-      <div class="text desc" v-text="current.desc" />
+      <div class="text desc" v-text="current.des" />
     </div>
     <div class="characterArt">
       <img :src="special.characterArtUrl" />
