@@ -6,7 +6,7 @@ import * as util from 'node:util'
 import { defineConfig } from '@sugarat/theme/node'
 
 import algolia from './algolia'
-import friends from './friends'
+import しまかぜのともだち, { しまかぜ } from './friends'
 import head from './head'
 import nav from './navbar'
 import sidebar from './sidebar'
@@ -89,7 +89,8 @@ export default defineConfig({
   vite: {
     define: {
       __HOLIDAY__: holidayCalendar,
-      しまかぜのともだち: friends,
+      しまかぜのともだち,
+      しまかぜ,
     },
     resolve: {
       alias: [

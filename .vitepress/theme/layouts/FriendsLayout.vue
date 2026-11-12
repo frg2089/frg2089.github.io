@@ -52,11 +52,11 @@ const route = useRoute()
 const friends = しまかぜのともだち
 
 const current = computed(() => {
-  if (!route.data.params) return
+  if (!route.data.params) return しまかぜ
   const id = route.data.params.id as string | undefined
-  if (!id) return
+  if (!id) return しまかぜ
 
-  return friends.find(i => i.nickname === decodeURIComponent(id))
+  return friends.find(i => i.nickname === decodeURIComponent(id)) ?? しまかぜ
 })
 
 const isDark = computed(() =>

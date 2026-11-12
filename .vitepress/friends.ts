@@ -15,6 +15,19 @@ export interface FriendInfo extends ThemeFrientInfo {
     deg: number
   }
 }
+export const しまかぜ: FriendInfo = {
+  nickname: '舰队的偶像-岛风酱!',
+  avatar: '/avatar.webp',
+  des: '无业',
+  url: 'https://shimakaze.dev',
+  special: {
+    characterArtUrl: '/assets/character.avif',
+    leftBackgroundImageUrl: '/assets/background1.avif',
+    rightBackgroundImageUrl: '/assets/background2.avif',
+    shadowColor: 'rgba(0, 0, 0, 0.5)',
+    deg: 45,
+  },
+}
 
 const friends: FriendInfo[] = [
   {
