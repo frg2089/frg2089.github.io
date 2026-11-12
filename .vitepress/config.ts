@@ -92,6 +92,13 @@ export default defineConfig({
       しまかぜのともだち,
       しまかぜ,
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+    },
     resolve: {
       alias: [
         {
