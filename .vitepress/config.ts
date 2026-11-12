@@ -4,6 +4,7 @@ import * as url from 'node:url'
 import * as util from 'node:util'
 
 import { defineConfig } from '@sugarat/theme/node'
+import MDItFootnote from 'markdown-it-footnote'
 
 import algolia from './algolia'
 import しまかぜのともだち, { しまかぜ } from './friends'
@@ -51,6 +52,20 @@ export default defineConfig({
   lang: 'zh-CN',
 
   head,
+
+  markdown: {
+    anchor: {
+      level: [1, 2, 3, 4],
+    },
+    lineNumbers: true,
+    image: {
+      lazyLoading: true,
+    },
+    config: md => {
+      md.use(MDItFootnote)
+    },
+  },
+
   // https://vitepress.dev/reference/default-theme-config
   themeConfig: {
     logo: '/favicon.svg',
