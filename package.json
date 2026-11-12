@@ -16,7 +16,7 @@
     "@docsearch/react": "^5.2.0",
     "@giscus/vue": "^3.1.1",
     "@types/markdown-it": "^14.2.0",
-    "@types/node": "latest",
+    "@types/node": ">=24.15.0",
     "algoliasearch": "^5.63.0",
     "commander": "^15.1.0",
     "gray-matter": "^4.0.3",
@@ -30,7 +30,6 @@
     "vitepress": "1.6.4",
     "vitepress-plugin-legend": "^2.0.0",
     "vitepress-plugin-rss": "^0.4.6",
-    "vitepress-theme-teek": "^1.6.2",
     "vue": "^3.5.45",
     "vue-tsc": "^3.3.14"
   },
@@ -47,6 +46,6 @@
     }
   },
   "engines": {
-    "node": "^26"
+    "node": ">=24.15.0"
   }
 }
