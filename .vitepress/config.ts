@@ -1,5 +1,6 @@
 import * as child_process from 'node:child_process'
 import * as path from 'node:path'
+import * as url from 'node:url'
 import * as util from 'node:util'
 
 import { defineConfig } from '@sugarat/theme/node'
@@ -10,8 +11,6 @@ import head from './head'
 import nav from './navbar'
 import sidebar from './sidebar'
 import theme from './theme'
-
-const exec = util.promisify(child_process.exec)
 
 const holidayCalendar: Record<number, any> = {}
 try {
@@ -35,6 +34,10 @@ try {
     console.warn(`未能成功加载调休数据\r\n    ${error}`)
   }
 }
+
+const themeDir = path.dirname(
+  url.fileURLToPath(import.meta.resolve('@sugarat/theme')),
+)
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -87,6 +90,21 @@ export default defineConfig({
     define: {
       __HOLIDAY__: holidayCalendar,
       しまかぜのともだち: friends,
+    },
+    resolve: {
+      alias: [
+        {
+          find: /^@sugarat\/theme\/components\/(\w+?)\.vue$/,
+          replacement: path.resolve(themeDir, 'components/$1.vue'),
+        },
+        {
+          find: /^.*\/BlogHomeInfo\.vue$/,
+          replacement: path.resolve(
+            __dirname,
+            'theme/components/BlogHomeInfo.vue',
+          ),
+        },
+      ],
     },
   },
 })

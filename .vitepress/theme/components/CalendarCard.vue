@@ -1,69 +1,67 @@
 <template>
-  <div class="card" style="max-width: 384px; margin: 0 auto">
-    <div class="card-widget" id="card-widget-calendar">
-      <div id="calendar-controls">
-        <button class="control-btn" @click="prevYear" title="上一年">«</button>
-        <button class="control-btn" @click="prevMonth" title="上一月">‹</button>
-        <span class="current-date">
-          {{ displayYear }}年 {{ displayMonth }}月
-        </span>
-        <button class="control-btn" @click="nextMonth" title="下一月">›</button>
-        <button class="control-btn" @click="nextYear" title="下一年">»</button>
-      </div>
-      <div class="item-headline">
-        <i class="icon-calendar"></i>
-      </div>
-      <div class="item-content">
-        <div id="calendar-area-left">
-          <div id="calendar-week">
-            第 {{ weekNumber }} 周
-            {{ weekDays[today.getDay()] }}
-          </div>
-          <div id="calendar-date">{{ today.getDate() }}</div>
-          <div id="calendar-solar">
-            {{ today.getFullYear() }}年 {{ today.getMonth() + 1 }}月 第
-            {{ dayOfYear }} 天
-          </div>
-          <div id="calendar-lunar">
-            {{ lunarYear }}
-            {{ lunarMonth }}
-            {{ lunarDay }}
-          </div>
+  <div class="card-widget" id="card-widget-calendar">
+    <div id="calendar-controls">
+      <button class="control-btn" @click="prevYear" title="上一年">«</button>
+      <button class="control-btn" @click="prevMonth" title="上一月">‹</button>
+      <span class="current-date">
+        {{ displayYear }}年 {{ displayMonth }}月
+      </span>
+      <button class="control-btn" @click="nextMonth" title="下一月">›</button>
+      <button class="control-btn" @click="nextYear" title="下一年">»</button>
+    </div>
+    <div class="item-headline">
+      <i class="icon-calendar"></i>
+    </div>
+    <div class="item-content">
+      <div id="calendar-area-left">
+        <div id="calendar-week">
+          第 {{ weekNumber }} 周
+          {{ weekDays[today.getDay()] }}
         </div>
-        <div id="calendar-area-right">
-          <div id="calendar-main">
-            <!-- 星期标题行 -->
-            <div class="calendar-r0">
-              <div class="calendar-d0"><a>日</a></div>
-              <div class="calendar-d1"><a>一</a></div>
-              <div class="calendar-d2"><a>二</a></div>
-              <div class="calendar-d3"><a>三</a></div>
-              <div class="calendar-d4"><a>四</a></div>
-              <div class="calendar-d5"><a>五</a></div>
-              <div class="calendar-d6"><a>六</a></div>
-            </div>
+        <div id="calendar-date">{{ today.getDate() }}</div>
+        <div id="calendar-solar">
+          {{ today.getFullYear() }}年 {{ today.getMonth() + 1 }}月 第
+          {{ dayOfYear }} 天
+        </div>
+        <div id="calendar-lunar">
+          {{ lunarYear }}
+          {{ lunarMonth }}
+          {{ lunarDay }}
+        </div>
+      </div>
+      <div id="calendar-area-right">
+        <div id="calendar-main">
+          <!-- 星期标题行 -->
+          <div class="calendar-r0">
+            <div class="calendar-d0"><a>日</a></div>
+            <div class="calendar-d1"><a>一</a></div>
+            <div class="calendar-d2"><a>二</a></div>
+            <div class="calendar-d3"><a>三</a></div>
+            <div class="calendar-d4"><a>四</a></div>
+            <div class="calendar-d5"><a>五</a></div>
+            <div class="calendar-d6"><a>六</a></div>
+          </div>
 
-            <!-- 日期行 -->
+          <!-- 日期行 -->
+          <div
+            v-for="(week, weekIndex) in calendarWeeks"
+            :key="weekIndex"
+            :class="`calendar-r${weekIndex + 1} week`">
             <div
-              v-for="(week, weekIndex) in calendarWeeks"
-              :key="weekIndex"
-              :class="`calendar-r${weekIndex + 1} week`">
-              <div
-                v-for="(day, dayIndex) in week"
-                :key="dayIndex"
-                :class="`calendar-d${dayIndex}`">
-                <a
-                  :class="{
-                    now: day.isToday,
-                    'other-month': day.isOtherMonth,
-                    holiday: day.holiday?.type === 'public_holiday',
-                    workday: day.holiday?.type === 'transfer_workday',
-                  }"
-                  v-if="day.date">
-                  {{ day.date }}
-                </a>
-                <a v-else></a>
-              </div>
+              v-for="(day, dayIndex) in week"
+              :key="dayIndex"
+              :class="`calendar-d${dayIndex}`">
+              <a
+                :class="{
+                  now: day.isToday,
+                  'other-month': day.isOtherMonth,
+                  holiday: day.holiday?.type === 'public_holiday',
+                  workday: day.holiday?.type === 'transfer_workday',
+                }"
+                v-if="day.date">
+                {{ day.date }}
+              </a>
+              <a v-else></a>
             </div>
           </div>
         </div>
@@ -354,26 +352,6 @@ onMounted(() => {
   setInterval(checkUpdate, 60000)
 })
 </script>
-
-<style scoped>
-.card {
-  position: relative;
-  margin: 0 auto 10px;
-  padding: 10px;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 0.25rem;
-  box-shadow: var(--box-shadow);
-  box-sizing: border-box;
-  transition: all 0.3s;
-  background-color: rgba(var(--bg-gradient));
-  display: flex;
-  flex-direction: column;
-}
-.card:hover {
-  box-shadow: var(--box-shadow-hover);
-}
-</style>
 
 <style scoped>
 .card-widget {

@@ -1,13 +1,7 @@
 <template>
   <Transition mode="out-in" :duration="500" name="fade">
     <FriendsLayout v-if="frontmatter.layout === 'friends'" key="friends" />
-    <Theme.Layout v-else :key="frontmatter.layout">
-      <template #home-hero-after>
-        <ClientOnly>
-          <CalendarCard />
-        </ClientOnly>
-      </template>
-    </Theme.Layout>
+    <Theme.Layout v-else :key="frontmatter.layout" />
   </Transition>
 </template>
 
@@ -15,7 +9,6 @@
 import Theme from '@sugarat/theme'
 import { useData } from 'vitepress'
 
-import CalendarCard from './components/CalendarCard.vue'
 import FriendsLayout from './layouts/FriendsLayout.vue'
 
 const { frontmatter } = useData()

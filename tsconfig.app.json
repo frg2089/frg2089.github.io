@@ -12,7 +12,13 @@
     "jsx": "preserve",
     "strict": true,
     "skipLibCheck": true,
-    "noEmit": false
+    "noEmit": false,
+    "paths": {
+      "@sugarat/theme/components/*.vue": [
+        "./node_modules/@sugarat/theme/dist/components/*.vue"
+      ]
+    },
+    "allowArbitraryExtensions": true
   },
   "vueCompilerOptions": {
     "vitePressExtensions": [".md"]
