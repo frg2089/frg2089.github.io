@@ -57,7 +57,7 @@ export default defineConfig({
 
     nav,
 
-    sidebar,
+    // sidebar,
 
     search: {
       provider: 'algolia',

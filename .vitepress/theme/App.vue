@@ -41,6 +41,12 @@ const { frontmatter } = useData()
 
 .VPContent {
   padding-top: unset !important;
+  &.has-sidebar {
+    html.sidebar-collapsed & {
+      padding-left: unset !important;
+    }
+    padding-right: unset !important;
+  }
 }
 
 .VPDoc {
@@ -58,10 +64,18 @@ const { frontmatter } = useData()
   }
 }
 
-.VPNavBar:not(.has-sidebar) {
-  background: unset !important;
+.VPSidebar {
+  background-color: rgba(var(--bg-gradient-home), 0.9) !important;
+}
+
+.VPNavBar {
   backdrop-filter: blur(10px);
   transition-property: backdrop-filter;
+
+  &,
+  .content-body {
+    background: unset !important;
+  }
 
   &.top {
     backdrop-filter: unset;
