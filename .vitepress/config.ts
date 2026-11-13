@@ -136,7 +136,7 @@ export default defineConfig({
         {
           find: /^.*\/BlogHomeInfo\.vue$/,
           replacement: path.resolve(
-            __dirname,
+            import.meta.dirname,
             'theme/components/BlogHomeInfo.vue',
           ),
         },
