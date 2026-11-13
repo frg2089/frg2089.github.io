@@ -42,10 +42,15 @@ const { frontmatter } = useData()
 .VPContent {
   padding-top: unset !important;
   &.has-sidebar {
-    html.sidebar-collapsed & {
+    html.sidebar-collapsed &,
+    html.sidebar-auto-hidden & {
       padding-left: unset !important;
     }
     padding-right: unset !important;
+  }
+
+  & > * {
+    min-height: 100vh;
   }
 }
 
