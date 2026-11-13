@@ -19,6 +19,7 @@
     "@types/markdown-it": "^14.2.0",
     "@types/markdown-it-footnote": "^3.0.4",
     "@types/node": ">=24.15.0",
+    "algoliasearch": "^5.64.0",
     "commander": "^15.1.0",
     "gray-matter": "^4.0.3",
     "holiday-calendar": "latest",
