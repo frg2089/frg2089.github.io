@@ -1,3 +1,9 @@
+---
+title: 身份证号生成器
+hidden: true
+sitemap: false
+---
+
 # 身份证号生成器
 
 <IdCardGenerator />
