@@ -2,3 +2,5 @@ allowBuilds:
   '@parcel/watcher': true
   esbuild: true
   sharp: true
+minimumReleaseAgeExclude:
+  - '@frg2089/gb-t_2260'

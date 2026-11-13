@@ -15,13 +15,21 @@
       </tr>
       <tr>
         <th>受理地代码</th>
-        <td>{{ safeCode.substring(1, 3) }}</td>
+        <td>
+          {{ safeCode.substring(1, 3) }}
+          ({{
+            gb2260[safeCode.substring(1, 3) + '0000']?.[0]?.name ??
+            '未知一级行政区'
+          }})
+        </td>
       </tr>
       <tr>
         <th>国家/地区代码</th>
         <td>
           {{ safeCode.substring(3, 6) }}
-          ({{ iso.whereNumeric(safeCode.substring(3, 6))?.country }})
+          ({{
+            iso.whereNumeric(safeCode.substring(3, 6))?.country ?? 'Unknown'
+          }})
         </td>
       </tr>
     </tbody>
@@ -32,7 +40,10 @@
       </tr>
       <tr>
         <th>地址码</th>
-        <td>{{ safeCode.substring(0, 6) }}</td>
+        <td>
+          {{ addressCode }}
+          ({{ address }})
+        </td>
       </tr>
     </tbody>
     <tfoot>
@@ -68,6 +79,7 @@
 </template>
 
 <script lang="ts" setup>
+import gb2260 from '@frg2089/gb-t_2260'
 import iso from 'iso-3166-1'
 import { computed, ref } from 'vue'
 
@@ -77,6 +89,30 @@ const code = ref<string>()
 const safeCode = computed(() =>
   (code.value ?? '').padEnd(17, '0').substring(0, 17),
 )
+const addressCode = computed(() => safeCode.value.substring(0, 6))
+const address = computed(() => {
+  const areaCode = addressCode.value
+  const areas = gb2260[addressCode.value]
+  if (!areas?.length) return '未知地址'
+  const cityCode = areaCode.substring(0, 4) + '00'
+  const provinceCode = areaCode.substring(0, 2) + '0000'
+
+  const arr = gb2260[provinceCode].flatMap(province =>
+    gb2260[cityCode].flatMap(city =>
+      areas.flatMap(area => {
+        const result = []
+        result.push(province.name)
+        if (city.name !== province.name) result.push(city.name)
+        if (area.name !== city.name) result.push(area.name)
+
+        return result.join(' / ')
+      }),
+    ),
+  )
+
+  return arr.join(' ')
+})
+
 const hash = computed(() => {
   const idcard = safeCode.value
   const list = idcard.split('').map(i => Number(i))

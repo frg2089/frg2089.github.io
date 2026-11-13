@@ -166,6 +166,9 @@ importers:
 
   .:
     devDependencies:
+      '@frg2089/gb-t_2260':
+        specifier: ^0.2025.3
+        version: 0.2025.3
       '@giscus/vue':
         specifier: ^3.1.1
         version: 3.1.1(vue@3.5.45(typescript@7.0.2))
@@ -663,6 +666,9 @@ packages:
   '@floating-ui/utils@0.2.12':
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
 
+  '@frg2089/gb-t_2260@0.2025.3':
+    resolution: {integrity: sha512-WVdkmCu+nBfnHYWxrbVX9sXP0pm6ecjk8I+/LF4w5JquUpsJu9GXZUD4/lw81kDjKTWDFnuUkpr6IUx+d33bQw==}
+
   '@giscus/vue@3.1.1':
     resolution: {integrity: sha512-xgsc93MibRQ0d1glBxN1BrEREHTIf3BPYs/3R+UZHNqawFFoWBV6iJ7uVCXMqoEKZdE2c78B3aKt5gfGqo8I5A==}
     peerDependencies:
@@ -956,6 +962,12 @@ packages:
     resolution: {integrity: sha512-uNQqHJrtHIiSl8pMbhDktmGpA1hqwldWNO8kbNpNFhVt+BYk4C3Ge8nlJgkRtGjtMam0+542G5UQJJG6lLePbg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
+    os: [win32]
+
+  '@oxfmt/binding-win32-ia32-msvc@0.78.0':
+    resolution: {integrity: sha512-W6omURRT39EHBPH4Z8sUPIOzWVjMbhCCCWcfT0sa6aeC+vOXNyBAJmpQRh5//KfPDX96jJlNith9i4N65wxB+Q==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [ia32]
     os: [win32]
 
   '@oxfmt/binding-win32-x64-msvc@0.78.0':
@@ -3012,6 +3024,8 @@ snapshots:
 
   '@floating-ui/utils@0.2.12': {}
 
+  '@frg2089/gb-t_2260@0.2025.3': {}
+
   '@giscus/vue@3.1.1(vue@3.5.45(typescript@7.0.2))':
     dependencies:
       giscus: 1.6.0
@@ -3200,6 +3214,9 @@ snapshots:
     optional: true
 
   '@oxfmt/binding-win32-arm64-msvc@0.78.0':
+    optional: true
+
+  '@oxfmt/binding-win32-ia32-msvc@0.78.0':
     optional: true
 
   '@oxfmt/binding-win32-x64-msvc@0.78.0':
@@ -4501,6 +4518,7 @@ snapshots:
       '@oxfmt/binding-linux-x64-musl': 0.78.0
       '@oxfmt/binding-openharmony-arm64': 0.78.0
       '@oxfmt/binding-win32-arm64-msvc': 0.78.0
+      '@oxfmt/binding-win32-ia32-msvc': 0.78.0
       '@oxfmt/binding-win32-x64-msvc': 0.78.0
 
   package-manager-detector@1.9.0: {}
