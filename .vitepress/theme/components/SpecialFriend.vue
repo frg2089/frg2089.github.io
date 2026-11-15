@@ -1,15 +1,18 @@
 <template>
   <div class="theater">
-    <div class="background right"> </div>
-    <div class="background left"> </div>
-    <div class="right">
-      <div class="text name" v-text="current.nickname" />
+    <div class="theater__backdrop theater__backdrop--right" />
+    <div class="theater__backdrop theater__backdrop--left" />
+    <div class="theater__right">
+      <div class="theater__name" v-text="current.nickname" />
     </div>
-    <div class="left">
-      <div class="text desc" v-text="current.des" />
+    <div class="theater__left">
+      <div class="theater__desc" v-text="current.des" />
     </div>
-    <div class="characterArt">
-      <img :src="special.characterArtUrl" alt="" />
+    <div class="theater__character-art">
+      <img
+        class="theater__character-art-image"
+        :src="special.characterArtUrl"
+        :alt="alt" />
     </div>
   </div>
 </template>
@@ -18,28 +21,32 @@
 import { computed } from 'vue'
 
 type FriendItem = (typeof しまかぜのともだち)[0]
-const props = defineProps<{
+const { current, special } = defineProps<{
   current: FriendItem
   special: Exclude<FriendItem['special'], undefined>
 }>()
 
+const alt = computed(() => {
+  if (typeof current.avatar !== 'string')
+    return current.avatar.alt ?? current.nickname
+  return current.nickname
+})
+
 const leftBackgroundImageUrl = computed(
-  () => `url(${props.special.leftBackgroundImageUrl})`,
+  () => `url(${special.leftBackgroundImageUrl})`,
 )
 const rightBackgroundImageUrl = computed(
-  () => `url(${props.special.rightBackgroundImageUrl})`,
+  () => `url(${special.rightBackgroundImageUrl})`,
 )
 const dropShadow = computed(
   () =>
-    `drop-shadow(0 0 0.25rem ${props.special.shadowColor}) drop-shadow(0 0 1rem ${props.special.shadowColor})`,
+    `drop-shadow(0 0 0.25rem ${special.shadowColor}) drop-shadow(0 0 1rem ${special.shadowColor})`,
 )
 const leftGradientAngle = computed(
-  () =>
-    `linear-gradient(${props.special.deg + 90}deg, black 45%, transparent 55%)`,
+  () => `linear-gradient(${special.deg + 90}deg, black 45%, transparent 55%)`,
 )
 const rightGradientAngle = computed(
-  () =>
-    `linear-gradient(${props.special.deg - 90}deg, black 45%, transparent 55%)`,
+  () => `linear-gradient(${special.deg - 90}deg, black 45%, transparent 55%)`,
 )
 </script>
 
@@ -59,7 +66,7 @@ const rightGradientAngle = computed(
     @include fullscreen;
   }
 
-  .background {
+  &__backdrop {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -69,19 +76,19 @@ const rightGradientAngle = computed(
     animation-fill-mode: both;
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 
-    &.left,
-    &.right {
+    &--left,
+    &--right {
       filter: brightness(50%);
     }
 
-    &.left {
+    &--left {
       background-position: left center;
       background-image: v-bind('leftBackgroundImageUrl');
       mask-image: v-bind('leftGradientAngle');
 
       animation-name: background-left;
     }
-    &.right {
+    &--right {
       background-position: right center;
       background-image: v-bind('rightBackgroundImageUrl');
       mask-image: v-bind('rightGradientAngle');
@@ -90,7 +97,8 @@ const rightGradientAngle = computed(
     }
   }
 
-  .text {
+  &__name,
+  &__desc {
     filter: brightness(200%) v-bind('dropShadow');
     position: fixed;
     z-index: 2;
@@ -107,29 +115,24 @@ const rightGradientAngle = computed(
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 
-  .left {
-    .desc {
-      animation-delay: 1.2s;
-      left: 5%;
-      bottom: 20%;
-    }
+  &__desc {
+    animation-delay: 1.2s;
+    left: 5%;
+    bottom: 20%;
   }
 
-  .right {
-    .name {
-      font-size: 6rem;
-      right: 4rem;
-      top: 4rem;
-    }
+  &__name {
+    font-size: 6rem;
+    right: 4rem;
+    top: 4rem;
   }
 
-  .characterArt {
+  &__character-art {
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    img {
+    &-image {
       object-fit: cover;
       max-height: calc(100% - 4rem);
 
@@ -144,27 +147,111 @@ const rightGradientAngle = computed(
   }
 
   &.v-leave-active {
-    .background {
+    .theater__backdrop {
       animation-delay: 0.5s;
 
-      &.left {
+      &--left {
         animation-name: background-left-leave;
       }
 
-      &.right {
+      &--right {
         animation-name: background-right-leave;
       }
     }
 
-    .text {
+    .theater__name,
+    .theater__desc {
       animation-name: text-leave;
 
       animation-duration: 1s;
       animation-delay: 0s;
     }
-    .characterArt {
-      img {
-        animation-name: character-art-leave;
+
+    .theater__character-art-image {
+      animation-name: character-art-leave;
+    }
+  }
+
+  /* ---- 手机竖屏 / 横屏矮窗口适配 ---- */
+  @media (max-width: 768px), (max-height: 560px) {
+    // 手机上两张背景改为一上一下：左图贴左上角、右图贴右下角，中间叠压过渡
+    &__backdrop {
+      &--left {
+        top: 0;
+        left: 0;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        height: 90%;
+        background-position: 25% center;
+      }
+
+      &--right {
+        top: auto;
+        left: auto;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 90%;
+        background-position: 70% center;
+      }
+    }
+
+    &__name,
+    &__desc {
+      max-width: calc(
+        100% - 2rem - env(safe-area-inset-left) - env(safe-area-inset-right)
+      );
+      font-size: clamp(1.125rem, 4.5vmin, 2rem);
+      line-height: 1.35;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    &__name {
+      right: calc(1rem + env(safe-area-inset-right));
+      top: calc(1rem + env(safe-area-inset-top));
+      max-width: calc(100% - 2rem);
+      font-size: clamp(1.5rem, 8vmin, 4rem);
+      text-align: right;
+    }
+
+    &__desc {
+      left: calc(1rem + env(safe-area-inset-left));
+      bottom: calc(var(--friends-dock-clearance, 5rem) + 1rem);
+      max-width: 82%;
+    }
+
+    &__character-art {
+      padding-bottom: var(--friends-dock-clearance, 5rem);
+    }
+
+    &__character-art-image {
+      width: 100%;
+      height: auto;
+      max-height: calc(100vh - var(--friends-dock-clearance, 5rem) - 4rem);
+      max-height: calc(100dvh - var(--friends-dock-clearance, 5rem) - 4rem);
+      object-fit: contain;
+    }
+
+    &__backdrop {
+      &--left {
+        animation-name: background-top;
+      }
+
+      &--right {
+        animation-name: background-bottom;
+      }
+    }
+    &.v-leave-active {
+      .theater__backdrop {
+        &--left {
+          animation-name: background-top-leave;
+        }
+
+        &--right {
+          animation-name: background-bottom-leave;
+        }
       }
     }
   }
@@ -226,6 +313,42 @@ const rightGradientAngle = computed(
   }
 }
 
+@keyframes background-top {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes background-top-leave {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes background-bottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes background-bottom-leave {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
 @keyframes character-art {
   0% {
     transform: translateY(100vh);
@@ -241,63 +364,6 @@ const rightGradientAngle = computed(
   }
   100% {
     opacity: 0;
-  }
-}
-
-/* ---- 手机竖屏 / 横屏矮窗口适配 ---- */
-@media (max-width: 768px), (max-height: 560px) {
-  .theater {
-    .background {
-      &.left {
-        background-position: 20% center;
-        mask-image: linear-gradient(to right, black 30%, transparent 68%);
-      }
-
-      &.right {
-        background-position: 77% center;
-        mask-image: linear-gradient(to left, black 30%, transparent 68%);
-      }
-    }
-
-    .text {
-      max-width: calc(
-        100% - 2rem - env(safe-area-inset-left) - env(safe-area-inset-right)
-      );
-      font-size: clamp(1.125rem, 4.5vmin, 2rem);
-      line-height: 1.35;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    .left {
-      .desc {
-        left: calc(1rem + env(safe-area-inset-left));
-        bottom: calc(var(--friends-dock-clearance, 5rem) + 1rem);
-        max-width: 82%;
-      }
-    }
-
-    .right {
-      .name {
-        right: calc(1rem + env(safe-area-inset-right));
-        top: calc(1rem + env(safe-area-inset-top));
-        max-width: calc(100% - 2rem);
-        font-size: clamp(1.5rem, 8vmin, 4rem);
-        text-align: right;
-      }
-    }
-
-    .characterArt {
-      padding-bottom: var(--friends-dock-clearance, 5rem);
-
-      img {
-        width: 100%;
-        height: auto;
-        max-height: calc(100vh - var(--friends-dock-clearance, 5rem) - 4rem);
-        max-height: calc(100dvh - var(--friends-dock-clearance, 5rem) - 4rem);
-        object-fit: contain;
-      }
-    }
   }
 }
 </style>
