@@ -5,16 +5,92 @@ type ThemeFrientInfo = Extract<
   any[]
 >[0]
 
+/**
+ * @description 好友信息
+ */
+interface FriendLink {
+  /**
+   * @description 昵称
+   */
+  nickname: string
+  /**
+   * @description 个人简介
+   */
+  des: string
+  /**
+   * @description 个人主页 URL
+   */
+  url: string
+  /**
+   * @description 头像 URL 或对象
+   */
+  avatar:
+    | string
+    | {
+        /**
+         * @description 头像 URL
+         */
+        src: string
+        /**
+         * @description 头像描述
+         */
+        alt?: string
+      }
+    | {
+        /**
+         * @description 亮色模式下的头像 URL
+         */
+        light: string
+        /**
+         * @description 暗色模式下的头像 URL
+         */
+        dark: string
+        /**
+         * @description 头像描述
+         */
+        alt?: string
+      }
+}
+
+/**
+ * @description 超级好友信息
+ */
 export interface FriendInfo extends ThemeFrientInfo {
+  /**
+   * @description 背景图片 URL
+   *
+   * @default avatar
+   */
   background?: string
+  /**
+   * @description 特殊效果
+   *
+   * @default undefined
+   */
   special?: {
+    /**
+     * @description 角色立绘 URL
+     */
     characterArtUrl: string
+    /**
+     * @description 左侧背景图片 URL
+     */
     leftBackgroundImageUrl: string
+    /**
+     * @description 右侧背景图片 URL
+     */
     rightBackgroundImageUrl: string
+    /**
+     * @description 阴影颜色
+     */
     shadowColor: string
+    /**
+     * @description 背景图片裁切角度
+     */
     deg: number
   }
 }
+
 export const しまかぜ: FriendInfo = {
   nickname: '舰队的偶像-岛风酱!',
   avatar: '/avatar.webp',
