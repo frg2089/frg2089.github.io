@@ -44,15 +44,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { useData } from 'vitepress'
 
 defineProps<{
   current: (typeof しまかぜのともだち)[0]
 }>()
 
-const isDark = computed(() =>
-  document.querySelector('html')?.classList.contains('dark'),
-)
+const { isDark } = useData()
 </script>
 
 <style lang="scss" scoped>
@@ -197,7 +195,8 @@ $deg: 22deg;
     animation-name: right-intro;
     left: unset;
     height: 100vh;
-    width: 100vh;
+    height: 100dvh;
+    width: min(100vh, 100vw);
   }
 
   .avatar {
@@ -300,7 +299,7 @@ $deg: 22deg;
 
     .group2 {
       width: 0.5rem;
-      right: calc(100vh);
+      right: min(100vh, 100vw);
     }
     .line:nth-child(3) {
       animation-name: line3-intro;
@@ -330,6 +329,62 @@ $deg: 22deg;
       .line:nth-child(4) {
         animation-name: line4-leave;
         animation-delay: 0.2s;
+      }
+    }
+  }
+}
+
+/* ---- 手机竖屏 / 横屏矮窗口适配 ---- */
+@media (max-width: 768px), (max-height: 560px) {
+  .theater {
+    .left,
+    .right {
+      animation-duration: 0.8s;
+    }
+
+    .left {
+      // 让头像整体上移一点，给底部的名字/简介让出空间
+      padding-bottom: calc(var(--friends-dock-clearance, 5rem) + 2rem);
+    }
+
+    .avatar {
+      margin-left: 0;
+      margin-right: 0;
+      height: min(48vmin, 60vw);
+      width: min(48vmin, 60vw);
+    }
+
+    .background {
+      mask-image: none;
+    }
+
+    // 横屏时也让背景铺满，避免右侧画面只占一半
+    .right {
+      left: 0;
+      width: 100vw;
+    }
+
+    // 粗斜线在这个尺寸下会横穿头像和文字，只保留扫过的入场动画
+    .line-container .group2 {
+      display: none;
+    }
+
+    .text {
+      .name {
+        right: calc(1rem + env(safe-area-inset-right));
+        top: calc(1rem + env(safe-area-inset-top));
+        max-width: calc(100% - 2rem);
+        font-size: clamp(1.5rem, 7vmin, 4rem);
+        text-align: right;
+        text-shadow: 0 0 0.75rem rgb(0 0 0 / 70%);
+      }
+
+      .desc {
+        left: calc(1rem + env(safe-area-inset-left));
+        bottom: calc(var(--friends-dock-clearance, 5rem) + 1rem);
+        max-width: 88%;
+        font-size: clamp(1.125rem, 4.5vmin, 2.5rem);
+        text-shadow: 0 0 0.75rem rgb(0 0 0 / 70%);
       }
     }
   }

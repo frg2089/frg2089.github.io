@@ -14,7 +14,13 @@
       :key="i"
       class="friend"
       :class="{ current: friend.nickname === current?.nickname }">
-      <a v-if="friend.avatar" :href="`${friend.nickname}`">
+      <a
+        v-if="friend.avatar"
+        :href="`${friend.nickname}`"
+        :aria-label="friend.nickname"
+        :aria-current="
+          friend.nickname === current?.nickname ? 'page' : undefined
+        ">
         <div class="avatar">
           <img
             v-if="typeof friend.avatar === 'string'"
@@ -41,13 +47,20 @@
 </template>
 
 <script lang="ts" setup>
-import { Content, useRoute } from 'vitepress'
-import { computed } from 'vue'
+import { Content, useData, useRoute } from 'vitepress'
+import { computed, onBeforeUnmount, onMounted } from 'vue'
 
 import NormalFriend from '../components/NormalFriend.vue'
 import SpecialFriend from '../components/SpecialFriend.vue'
 
 const route = useRoute()
+const { isDark } = useData()
+
+// 全屏剧院在手机上不应跟随页面滚动/回弹
+onMounted(() => document.documentElement.classList.add('friends-theater'))
+onBeforeUnmount(() =>
+  document.documentElement.classList.remove('friends-theater'),
+)
 
 const friends = しまかぜのともだち
 
@@ -58,28 +71,58 @@ const current = computed(() => {
 
   return friends.find(i => i.nickname === decodeURIComponent(id)) ?? しまかぜ
 })
-
-const isDark = computed(() =>
-  document.querySelector('html')?.classList.contains('dark'),
-)
 </script>
 
 <style lang="scss">
 $avatar-size: 4rem;
+
+// 底部好友栏占用的高度（含移动端安全区），供剧院组件避让
+:root {
+  --friends-dock-clearance: 8rem;
+}
+
+// 全屏剧院：禁止页面滚动 / 回弹
+html.friends-theater {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+// 手机竖屏 / 横屏矮窗口
+@media (max-width: 768px), (max-height: 560px) {
+  :root {
+    --friends-dock-clearance: calc(4.5rem + env(safe-area-inset-bottom));
+  }
+}
+
 // content
 .friend-panel {
+  --friends-avatar-size: #{$avatar-size};
+  --friends-dock-gap: 1rem;
+  --friends-dock-padding: 2rem;
+
   display: flex;
-  gap: 1rem;
+  gap: var(--friends-dock-gap);
   position: fixed;
   overflow-x: auto;
-  padding: 2rem;
+  overflow-y: hidden;
+  padding: var(--friends-dock-padding);
+  padding-left: calc(var(--friends-dock-padding) + env(safe-area-inset-left));
+  padding-right: calc(var(--friends-dock-padding) + env(safe-area-inset-right));
+  padding-bottom: calc(
+    var(--friends-dock-padding) + env(safe-area-inset-bottom)
+  );
   bottom: 0;
   left: 0;
   right: 0;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: var(--friends-dock-padding);
+  scroll-snap-type: x proximity;
 
   .friend {
     filter: brightness(90%);
     flex-shrink: 0;
+    scroll-snap-align: center;
 
     &.current {
       filter: brightness(110%) contrast(120%)
@@ -89,11 +132,27 @@ $avatar-size: 4rem;
 
     .avatar {
       img {
+        display: block;
         object-fit: cover;
-        width: $avatar-size;
-        height: $avatar-size;
+        width: var(--friends-avatar-size);
+        height: var(--friends-avatar-size);
         border-radius: 9999px;
       }
+    }
+  }
+}
+
+@media (max-width: 768px), (max-height: 560px) {
+  .friend-panel {
+    --friends-avatar-size: 3rem;
+    --friends-dock-gap: 0.75rem;
+    --friends-dock-padding: 0.75rem;
+
+    background: linear-gradient(to top, rgb(0 0 0 / 45%), transparent);
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
 }

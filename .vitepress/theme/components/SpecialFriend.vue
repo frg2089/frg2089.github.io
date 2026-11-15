@@ -9,7 +9,7 @@
       <div class="text desc" v-text="current.des" />
     </div>
     <div class="characterArt">
-      <img :src="special.characterArtUrl" />
+      <img :src="special.characterArtUrl" alt="" />
     </div>
   </div>
 </template>
@@ -93,6 +93,7 @@ const rightGradientAngle = computed(
   .text {
     filter: brightness(200%) v-bind('dropShadow');
     position: fixed;
+    z-index: 2;
     font-size: 4rem;
     line-height: 6rem;
 
@@ -123,6 +124,7 @@ const rightGradientAngle = computed(
   }
 
   .characterArt {
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -143,7 +145,7 @@ const rightGradientAngle = computed(
 
   &.v-leave-active {
     .background {
-      animation-delay: 0.5;
+      animation-delay: 0.5s;
 
       &.left {
         animation-name: background-left-leave;
@@ -239,6 +241,63 @@ const rightGradientAngle = computed(
   }
   100% {
     opacity: 0;
+  }
+}
+
+/* ---- 手机竖屏 / 横屏矮窗口适配 ---- */
+@media (max-width: 768px), (max-height: 560px) {
+  .theater {
+    .background {
+      &.left {
+        background-position: 20% center;
+        mask-image: linear-gradient(to right, black 30%, transparent 68%);
+      }
+
+      &.right {
+        background-position: 77% center;
+        mask-image: linear-gradient(to left, black 30%, transparent 68%);
+      }
+    }
+
+    .text {
+      max-width: calc(
+        100% - 2rem - env(safe-area-inset-left) - env(safe-area-inset-right)
+      );
+      font-size: clamp(1.125rem, 4.5vmin, 2rem);
+      line-height: 1.35;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .left {
+      .desc {
+        left: calc(1rem + env(safe-area-inset-left));
+        bottom: calc(var(--friends-dock-clearance, 5rem) + 1rem);
+        max-width: 82%;
+      }
+    }
+
+    .right {
+      .name {
+        right: calc(1rem + env(safe-area-inset-right));
+        top: calc(1rem + env(safe-area-inset-top));
+        max-width: calc(100% - 2rem);
+        font-size: clamp(1.5rem, 8vmin, 4rem);
+        text-align: right;
+      }
+    }
+
+    .characterArt {
+      padding-bottom: var(--friends-dock-clearance, 5rem);
+
+      img {
+        width: 100%;
+        height: auto;
+        max-height: calc(100vh - var(--friends-dock-clearance, 5rem) - 4rem);
+        max-height: calc(100dvh - var(--friends-dock-clearance, 5rem) - 4rem);
+        object-fit: contain;
+      }
+    }
   }
 }
 </style>
