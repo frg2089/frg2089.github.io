@@ -137,6 +137,9 @@ export default defineConfig({
         },
       },
     },
+    ssr: {
+      noExternal: ['element-plus', '@element-plus/icons-vue'],
+    },
     resolve: {
       alias: [
         {
