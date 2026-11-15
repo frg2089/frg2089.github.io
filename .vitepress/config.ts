@@ -1,16 +1,16 @@
-import * as child_process from 'node:child_process'
 import * as path from 'node:path'
 import * as url from 'node:url'
-import * as util from 'node:util'
 
 import { defineConfig } from '@sugarat/theme/node'
 import MDItFootnote from 'markdown-it-footnote'
+import AutoImport from 'unplugin-auto-import/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
 
 import algolia from './algolia'
 import しまかぜのともだち, { しまかぜ } from './friends'
 import head from './head'
 import nav from './navbar'
-import sidebar from './sidebar'
 import theme from './theme'
 
 const holidayCalendar: Record<number, any> = {}
@@ -115,6 +115,16 @@ export default defineConfig({
   },
 
   vite: {
+    plugins: [
+      AutoImport({
+        dts: '../.cache/auto-imports.d.ts',
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        dts: '../.cache/components.d.ts',
+        resolvers: [ElementPlusResolver()],
+      }),
+    ],
     define: {
       __HOLIDAY__: holidayCalendar,
       しまかぜのともだち,

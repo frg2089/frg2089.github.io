@@ -24,6 +24,7 @@
     "vitePressExtensions": [".md"]
   },
   "include": [
+    ".cache/**/*.d.ts",
     ".vitepress/theme/**/*",
     "docs/**/*",
     "docs/**/*.md",

@@ -21,6 +21,7 @@
     "@types/node": ">=24.15.0",
     "algoliasearch": "^5.64.0",
     "commander": "^15.1.0",
+    "element-plus": "^2.14.8",
     "gray-matter": "^4.0.3",
     "holiday-calendar": "latest",
     "htmlparser2": "^12.0.0",
@@ -30,6 +31,8 @@
     "oxfmt": "^0.78.0",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
+    "unplugin-auto-import": "^21.1.0",
+    "unplugin-vue-components": "^32.1.0",
     "vitepress": "1.6.4",
     "vue": "^3.5.45",
     "vue-tsc": "^3.3.14"
