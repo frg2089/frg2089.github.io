@@ -1,43 +1,24 @@
 <template>
   <div class="theater">
     <div
-      class="right background"
+      class="theater__backdrop"
       :style="{
         '--background-url': `url(${current.background ?? current.avatar})`,
       }">
     </div>
-    <div class="line-container">
-      <div class="line group1"></div>
-      <div class="line group1"></div>
-      <div class="line group2"></div>
-      <div class="line group2"></div>
+    <div class="theater__decor">
+      <div class="theater__decor-line theater__decor-line--wide"></div>
+      <div class="theater__decor-line theater__decor-line--wide"></div>
+      <div class="theater__decor-line theater__decor-line--thin"></div>
+      <div class="theater__decor-line theater__decor-line--thin"></div>
     </div>
-    <div class="left">
-      <img
-        v-if="typeof current.avatar === 'string'"
-        class="avatar"
-        :src="current.avatar"
-        :alt="current.nickname" />
-      <img
-        v-else-if="'src' in current.avatar"
-        class="avatar"
-        :src="current.avatar.src"
-        :alt="current.avatar.alt ?? current.nickname" />
-      <img
-        v-else-if="isDark"
-        class="avatar"
-        :src="current.avatar.dark"
-        :alt="current.avatar.alt ?? current.nickname" />
-      <img
-        v-else
-        class="avatar"
-        :src="current.avatar.light"
-        :alt="current.avatar.alt ?? current.nickname" />
+    <div class="theater__avatar-pane">
+      <img class="theater__avatar" :src="avatar" :alt="current.nickname" />
     </div>
-    <div class="right">
-      <div class="text">
-        <div class="name" v-text="current.nickname" />
-        <div class="desc" v-text="current.des" />
+    <div class="theater__info-pane">
+      <div class="theater__text">
+        <div class="theater__name" v-text="current.nickname" />
+        <div class="theater__desc" v-text="current.des" />
       </div>
     </div>
   </div>
@@ -45,12 +26,20 @@
 
 <script lang="ts" setup>
 import { useData } from 'vitepress'
+import { computed } from 'vue'
 
-defineProps<{
+const { current } = defineProps<{
   current: (typeof しまかぜのともだち)[0]
 }>()
 
 const { isDark } = useData()
+
+const avatar = computed(() => {
+  if (typeof current.avatar === 'string') return current.avatar
+  if ('src' in current.avatar) return current.avatar.src
+  if (isDark.value && current.avatar.dark) return current.avatar.dark
+  return current.avatar.light
+})
 </script>
 
 <style lang="scss" scoped>
@@ -175,8 +164,9 @@ $deg: 22deg;
 }
 
 .theater {
-  .left,
-  .right {
+  &__avatar-pane,
+  &__info-pane,
+  &__backdrop {
     @include fullscreen;
     display: flex;
     align-items: center;
@@ -187,11 +177,14 @@ $deg: 22deg;
     animation-fill-mode: both;
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   }
-  .left {
+
+  &__avatar-pane {
     animation-name: left-intro;
     right: unset;
   }
-  .right {
+
+  &__info-pane,
+  &__backdrop {
     animation-name: right-intro;
     left: unset;
     height: 100vh;
@@ -199,7 +192,7 @@ $deg: 22deg;
     width: min(100vh, 100vw);
   }
 
-  .avatar {
+  &__avatar {
     filter: brightness(100%);
     position: relative;
     margin-left: min(10vh, 10vw);
@@ -215,7 +208,7 @@ $deg: 22deg;
     animation-timing-function: linear;
   }
 
-  .background {
+  &__backdrop {
     filter: brightness(50%);
     background-image: var(--background-url);
     background-position: center;
@@ -224,45 +217,44 @@ $deg: 22deg;
     mask-image: linear-gradient(-68deg, black 70%, transparent 70%);
   }
 
-  .text {
+  &__text {
     filter: brightness(120%);
     position: relative;
     width: 100%;
     height: 100%;
     text-align: center;
-
-    .name,
-    .desc {
-      animation-name: text-intro;
-
-      animation-duration: 1s;
-      animation-delay: 1.5s;
-      animation-fill-mode: both;
-      animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-
-      white-space: pre-wrap;
-      line-height: 1.2;
-    }
-
-    .name {
-      position: absolute;
-      right: 4rem;
-      top: 4rem;
-      font-size: 6rem;
-    }
-
-    .desc {
-      animation-delay: 1.75s;
-      color: var(--vp-c-important-1);
-
-      position: absolute;
-      left: 8rem;
-      bottom: 4rem;
-      font-size: 4rem;
-    }
   }
 
-  .line-container {
+  &__name,
+  &__desc {
+    animation-name: text-intro;
+    animation-duration: 1s;
+    animation-delay: 1.5s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    white-space: pre-wrap;
+    line-height: 1.2;
+  }
+
+  &__name {
+    position: absolute;
+    right: 4rem;
+    top: 4rem;
+    font-size: 6rem;
+  }
+
+  &__desc {
+    animation-delay: 1.75s;
+    color: var(--vp-c-important-1);
+
+    position: absolute;
+    left: 8rem;
+    bottom: 4rem;
+    font-size: 4rem;
+  }
+
+  &__decor {
     grid-column: 1 / span 2;
     position: fixed;
     left: 0;
@@ -271,7 +263,7 @@ $deg: 22deg;
     bottom: 0;
     overflow: hidden;
 
-    .line {
+    &-line {
       filter: brightness(200%);
       background-color: var(--vp-c-important-3);
       position: absolute;
@@ -281,111 +273,113 @@ $deg: 22deg;
       animation-duration: 1s;
       animation-fill-mode: both;
       animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
 
-    .group1 {
-      width: 5vw;
-    }
-    .line:nth-child(1) {
-      animation-name: line1-intro;
-      animation-delay: 0ms;
-      transform: rotate($deg);
-    }
-    .line:nth-child(2) {
-      animation-name: line2-intro;
-      animation-delay: 200ms;
-      transform: rotate($deg);
-    }
+      &--wide {
+        width: 5vw;
+      }
 
-    .group2 {
-      width: 0.5rem;
-      right: min(100vh, 100vw);
-    }
-    .line:nth-child(3) {
-      animation-name: line3-intro;
-      animation-delay: 0.8s;
-    }
-    .line:nth-child(4) {
-      animation-name: line4-intro;
-      animation-delay: 1s;
+      &--thin {
+        width: 0.5rem;
+        right: min(100vh, 100vw);
+      }
+
+      &:nth-child(1) {
+        animation-name: line1-intro;
+        animation-delay: 0ms;
+        transform: rotate($deg);
+      }
+
+      &:nth-child(2) {
+        animation-name: line2-intro;
+        animation-delay: 200ms;
+        transform: rotate($deg);
+      }
+
+      &:nth-child(3) {
+        animation-name: line3-intro;
+        animation-delay: 0.8s;
+      }
+
+      &:nth-child(4) {
+        animation-name: line4-intro;
+        animation-delay: 1s;
+      }
     }
   }
 
   &.v-leave-active {
-    .left {
+    .theater__avatar-pane {
       animation-name: left-leave;
       animation-delay: 0s;
     }
-    .right {
+
+    .theater__info-pane,
+    .theater__backdrop {
       animation-name: right-leave;
       animation-delay: 0s;
     }
 
-    .line-container {
-      .line:nth-child(3) {
-        animation-name: line3-leave;
-        animation-delay: 0s;
-      }
-      .line:nth-child(4) {
-        animation-name: line4-leave;
-        animation-delay: 0.2s;
-      }
+    .theater__decor-line:nth-child(3) {
+      animation-name: line3-leave;
+      animation-delay: 0s;
+    }
+
+    .theater__decor-line:nth-child(4) {
+      animation-name: line4-leave;
+      animation-delay: 0.2s;
     }
   }
-}
 
-/* ---- 手机竖屏 / 横屏矮窗口适配 ---- */
-@media (max-width: 768px), (max-height: 560px) {
-  .theater {
-    .left,
-    .right {
+  /* ---- 手机竖屏 / 横屏矮窗口适配 ---- */
+  @media (max-width: 768px), (max-height: 560px) {
+    &__avatar-pane,
+    &__info-pane,
+    &__backdrop {
       animation-duration: 0.8s;
     }
 
-    .left {
-      // 让头像整体上移一点，给底部的名字/简介让出空间
-      padding-bottom: calc(var(--friends-dock-clearance, 5rem) + 2rem);
+    // 头像全屏居中（水平 + 垂直）
+    &__avatar-pane {
+      right: 0;
     }
 
-    .avatar {
-      margin-left: 0;
-      margin-right: 0;
+    &__avatar {
+      margin: 0;
       height: min(48vmin, 60vw);
       width: min(48vmin, 60vw);
     }
 
-    .background {
+    &__backdrop {
       mask-image: none;
     }
 
     // 横屏时也让背景铺满，避免右侧画面只占一半
-    .right {
+    &__info-pane,
+    &__backdrop {
       left: 0;
       width: 100vw;
     }
 
-    // 粗斜线在这个尺寸下会横穿头像和文字，只保留扫过的入场动画
-    .line-container .group2 {
+    // 斜线在这个尺寸下会横穿头像和文字，只保留扫过的入场动画
+    &__decor-line--thin {
       display: none;
     }
 
-    .text {
-      .name {
-        right: calc(1rem + env(safe-area-inset-right));
-        top: calc(1rem + env(safe-area-inset-top));
-        max-width: calc(100% - 2rem);
-        font-size: clamp(1.5rem, 7vmin, 4rem);
-        text-align: right;
-        text-shadow: 0 0 0.75rem rgb(0 0 0 / 70%);
-      }
+    &__name {
+      right: calc(2rem + env(safe-area-inset-right));
+      top: calc(2rem + env(safe-area-inset-top));
+      max-width: calc(100% - 2rem);
+      font-size: clamp(2rem, 7vmin, 4rem);
+      text-align: right;
+      text-shadow: 0 0 0.75rem rgb(0 0 0 / 70%);
+    }
 
-      .desc {
-        left: calc(1rem + env(safe-area-inset-left));
-        bottom: calc(var(--friends-dock-clearance, 5rem) + 1rem);
-        max-width: 88%;
-        font-size: clamp(1.125rem, 4.5vmin, 2.5rem);
-        text-shadow: 0 0 0.75rem rgb(0 0 0 / 70%);
-      }
+    &__desc {
+      left: calc(1rem + env(safe-area-inset-left));
+      bottom: calc(var(--friends-dock-clearance, 5rem) + 1rem);
+      max-width: 88%;
+      font-size: clamp(1.625rem, 4.5vmin, 2.5rem);
+      text-shadow: 0 0 0.75rem rgb(0 0 0 / 70%);
     }
   }
 }
