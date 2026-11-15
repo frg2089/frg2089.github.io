@@ -15,29 +15,13 @@
       class="friend"
       :class="{ current: friend.nickname === current?.nickname }">
       <a
-        v-if="friend.avatar"
         :href="`${friend.nickname}`"
         :aria-label="friend.nickname"
         :aria-current="
           friend.nickname === current?.nickname ? 'page' : undefined
         ">
         <div class="avatar">
-          <img
-            v-if="typeof friend.avatar === 'string'"
-            :src="friend.avatar"
-            :alt="friend.nickname" />
-          <img
-            v-else-if="'src' in friend.avatar"
-            :src="friend.avatar.src"
-            :alt="friend.avatar.alt ?? friend.nickname" />
-          <img
-            v-else-if="isDark"
-            :src="friend.avatar.dark"
-            :alt="friend.avatar.alt ?? friend.nickname" />
-          <img
-            v-else
-            :src="friend.avatar.light"
-            :alt="friend.avatar.alt ?? friend.nickname" />
+          <img :src="getAvatar(friend)" :alt="friend.nickname" />
         </div>
       </a>
     </div>
@@ -56,12 +40,6 @@ import SpecialFriend from '../components/SpecialFriend.vue'
 const route = useRoute()
 const { isDark } = useData()
 
-// 全屏剧院在手机上不应跟随页面滚动/回弹
-onMounted(() => document.documentElement.classList.add('friends-theater'))
-onBeforeUnmount(() =>
-  document.documentElement.classList.remove('friends-theater'),
-)
-
 const friends = しまかぜのともだち
 
 const current = computed(() => {
@@ -71,6 +49,19 @@ const current = computed(() => {
 
   return friends.find(i => i.nickname === decodeURIComponent(id)) ?? しまかぜ
 })
+
+const getAvatar = (friend: (typeof current)['value']) => {
+  if (typeof friend.avatar === 'string') return friend.avatar
+  if ('src' in friend.avatar) return friend.avatar.src
+  if (isDark.value && friend.avatar.dark) return friend.avatar.dark
+  return friend.avatar.light
+}
+
+// 全屏剧院在手机上不应跟随页面滚动/回弹
+onMounted(() => document.documentElement.classList.add('friends-theater'))
+onBeforeUnmount(() =>
+  document.documentElement.classList.remove('friends-theater'),
+)
 </script>
 
 <style lang="scss">
@@ -79,19 +70,17 @@ $avatar-size: 4rem;
 // 底部好友栏占用的高度（含移动端安全区），供剧院组件避让
 :root {
   --friends-dock-clearance: 8rem;
+
+  // 手机竖屏 / 横屏矮窗口
+  @media (max-width: 768px), (max-height: 560px) {
+    --friends-dock-clearance: calc(4.5rem + env(safe-area-inset-bottom));
+  }
 }
 
 // 全屏剧院：禁止页面滚动 / 回弹
 html.friends-theater {
   overflow: hidden;
   overscroll-behavior: none;
-}
-
-// 手机竖屏 / 横屏矮窗口
-@media (max-width: 768px), (max-height: 560px) {
-  :root {
-    --friends-dock-clearance: calc(4.5rem + env(safe-area-inset-bottom));
-  }
 }
 
 // content
@@ -140,10 +129,8 @@ html.friends-theater {
       }
     }
   }
-}
 
-@media (max-width: 768px), (max-height: 560px) {
-  .friend-panel {
+  @media (max-width: 768px), (max-height: 560px) {
     --friends-avatar-size: 3rem;
     --friends-dock-gap: 0.75rem;
     --friends-dock-padding: 0.75rem;
