@@ -14,6 +14,8 @@
           <ElRadio value="foreigner">
             中华人民共和国外国人永久居留身份证
           </ElRadio>
+          <ElRadio value="hk-macau"> 中华人民共和国港澳居民居住证 </ElRadio>
+          <ElRadio value="taiwan"> 中华人民共和国台湾居民居住证 </ElRadio>
         </ElRadioGroup>
       </ElFormItem>
       <ElFormItem
@@ -48,12 +50,12 @@
           <ElOption
             v-for="(country, i) in iso.all()"
             :key="country.numeric"
-            :label="`${country.country} (${country.alpha2} / ${country.alpha3})`"
+            :label="`[${country.numeric}] ${country.country} (${country.alpha2} / ${country.alpha3})`"
             :value="country.numeric" />
         </ElSelect>
       </ElFormItem>
       <ElFormItem
-        v-if="form.type === 'id'"
+        v-if="form.type === 'id' || form.type === 'hk-macau'"
         label="地址"
         prop="adminRegionCode"
         style="flex: 1"
@@ -117,7 +119,7 @@ import { computed, ref, reactive } from 'vue'
 const endYear = new Date().getFullYear() - 1
 
 const form = reactive<{
-  type: 'id' | 'foreigner'
+  type: 'id' | 'foreigner' | 'hk-macau' | 'taiwan'
   countryCode?: string
   adminRegionCode?: string
   birthday?: Date
@@ -202,10 +204,21 @@ const getAdminRegionName = (
 const onCodeInput = (value: string) => {
   code.value = value
   value = value.padEnd(17, '0').substring(0, 17)
-  form.type = value.startsWith('9') ? 'foreigner' : 'id'
+  if (value.startsWith('9')) form.type = 'foreigner'
+  else if (value.startsWith('83')) form.type = 'taiwan'
+  else if (value.startsWith('81') || value.startsWith('82'))
+    form.type = 'hk-macau'
+  else form.type = 'id'
+
   if (form.type === 'foreigner') {
     form.adminRegionCode = value.substring(1, 3) + '0000'
     form.countryCode = value.substring(3, 6)
+  } else if (form.type === 'hk-macau') {
+    form.adminRegionCode = value.substring(0, 6)
+    form.countryCode = undefined
+  } else if (form.type === 'taiwan') {
+    form.adminRegionCode = '830000'
+    form.countryCode = undefined
   } else {
     form.adminRegionCode = value.substring(0, 6)
     form.countryCode = undefined
@@ -231,6 +244,26 @@ const updateCode = () => {
   if (form.type === 'foreigner') {
     value = `9${form.adminRegionCode?.substring(0, 2) ?? '00'}${form.countryCode ?? '000'}${birth}${form.sequenceCode ?? '000'}`
   } else {
+    if (form.type === 'taiwan') form.adminRegionCode = '830000'
+    else if (form.type === 'hk-macau') {
+      if (
+        !form.adminRegionCode ||
+        !form.adminRegionCode.startsWith('81') || // 港澳
+        !form.adminRegionCode.startsWith('82') // 港澳
+      )
+        form.adminRegionCode = '810000'
+    } else if (form.type === 'id') {
+      if (
+        !form.adminRegionCode ||
+        form.adminRegionCode.startsWith('71') || // 非法
+        form.adminRegionCode.startsWith('81') || // 港澳
+        form.adminRegionCode.startsWith('82') || // 港澳
+        form.adminRegionCode.startsWith('83') || // 台湾
+        form.adminRegionCode.startsWith('9') // 外国人
+      )
+        form.adminRegionCode = '000000'
+    }
+
     value = `${form.adminRegionCode ?? '000000'}${birth}${form.sequenceCode ?? '000'}`
   }
 
